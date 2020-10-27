@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1dccc1596ff7a43b117fc7b39d7402, type: 3}
+  m_Name: Mobility Temp
+  m_EditorClassIdentifier: 
+  powerName: Mobility Temp
+  powerIcon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  powerPrefabs:
+  - name: 2
+    superPowerObg: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 3
+    superPowerObg: {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: -410340012252742778, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 4
+    superPowerObg: {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 5
+    superPowerObg: {fileID: 3170358597876350239, guid: a727625a3d9ee6a4294a99bda99ac468, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  isSinglePower: 0
+  color1: {r: 0, g: 0, b: 0, a: 0}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  color3: {r: 0, g: 0, b: 0, a: 0}

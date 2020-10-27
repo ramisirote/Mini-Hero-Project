@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 514a64e3b0333f54a92590f3a10b9dd5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - parentCharacter: {instanceID: 0}
+  - abilityIcon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - audioSource: {instanceID: 0}
+  - chargingParticles: {instanceID: 0}
+  - hitParticles: {instanceID: 0}
+  - lineRenderer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

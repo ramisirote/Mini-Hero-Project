@@ -1,0 +1,580 @@
+fileFormatVersion: 2
+guid: cf90393ae052f284892b5eb556f8e93d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7925157222857896072
+    second: Platform_Spikes
+  - first:
+      213: -871907234539676369
+    second: Platform_Tech_Slim_1
+  - first:
+      213: 54522180897507154
+    second: Platform_Tech_Slim_2
+  - first:
+      213: 7193844817558614349
+    second: Platform_Tech_2
+  - first:
+      213: -4227913453271759177
+    second: Platform_Tech_Slim_3
+  - first:
+      213: -6518242031988935372
+    second: Platform_Tech_3
+  - first:
+      213: -6635905541183440361
+    second: Platform_Tech_Slim_4
+  - first:
+      213: -178359932455013240
+    second: Platform_Tech_4
+  - first:
+      213: -1598417253368685799
+    second: Platform_Tech_Hover_1
+  - first:
+      213: 1683800829450327948
+    second: Platform_Tech_Hover_2
+  - first:
+      213: -301653405578374708
+    second: Platform_Tech_Hover_3
+  - first:
+      213: 5399061400661604672
+    second: Platform_Tech_Hover_4
+  - first:
+      213: -9218933525715820318
+    second: Platform_Spikes
+  - first:
+      213: -401760725286436563
+    second: Platform_Tech_Slim_1
+  - first:
+      213: 1048187699627561703
+    second: Platform_Tech_Slim_2
+  - first:
+      213: 4509040652013639555
+    second: Platform_Tech_2
+  - first:
+      213: -3623984408930367450
+    second: Platform_Tech_Slim_3
+  - first:
+      213: 1180658907840484143
+    second: Platform_Tech_3
+  - first:
+      213: -5162335763747756371
+    second: Platform_Tech_Slim_4
+  - first:
+      213: -7817454769016446461
+    second: Platforms_7
+  - first:
+      213: -9007326063154363544
+    second: Platform_tech_bounce_1
+  - first:
+      213: -4716138995928940554
+    second: Platform_Tech_Hover_1
+  - first:
+      213: -7589342963474774674
+    second: Platform_tech_bounce_2
+  - first:
+      213: -1624737284193582526
+    second: Platform_Tech_4
+  - first:
+      213: 186778259860431313
+    second: Platforms_12
+  - first:
+      213: -274442635206943934
+    second: Platform_tech_bounce_3
+  - first:
+      213: -1460643933276943363
+    second: Platform_Tech_Hover_2
+  - first:
+      213: 5420418460906776080
+    second: Platforms_15
+  - first:
+      213: 7790489806565057393
+    second: Platforms_16
+  - first:
+      213: -7878943209181770541
+    second: Platform_Tech_Hover_3
+  - first:
+      213: 2940215413724971715
+    second: Platforms_18
+  - first:
+      213: -1295611036763423232
+    second: Platforms_19
+  - first:
+      213: -8465405623161569554
+    second: Platforms_20
+  - first:
+      213: -6369360062541761375
+    second: Platform_Tech_Hover_4
+  - first:
+      213: 1737881735260570576
+    second: Platforms_22
+  - first:
+      213: -1234702284303671506
+    second: Platforms_23
+  - first:
+      213: -4494513946834350030
+    second: Platform_tech_bounce_4
+  - first:
+      213: -9218933525715820318
+    second: spikes
+  - first:
+      213: -7925157222857896072
+    second: Platforms_0
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spikes
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 301
+        width: 25
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0e4c76dc4cf0080800000000000000
+      internalID: -9218933525715820318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Slim_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 453
+        width: 32
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21499cbfb8ac6af0800000000000000
+      internalID: -401760725286436563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Slim_2
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 426
+        width: 65
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e21c36c829eb8e00800000000000000
+      internalID: 1048187699627561703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 393
+        width: 65
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38791154594539e30800000000000000
+      internalID: 4509040652013639555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Slim_3
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 397
+        width: 97
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 628c62a716505bdc0800000000000000
+      internalID: -3623984408930367450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_3
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 346
+        width: 98
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f239bb2750b826010800000000000000
+      internalID: 1180658907840484143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Slim_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 369
+        width: 130
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6258e59f2bb58b0800000000000000
+      internalID: -5162335763747756371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platforms_7
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 360
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30267156e42d28390800000000000000
+      internalID: -7817454769016446461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_tech_bounce_1
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 339
+        width: 32
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863019d1bac8ff280800000000000000
+      internalID: -9007326063154363544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Hover_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 314
+        width: 36
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ffb9440298ec8eb0800000000000000
+      internalID: -4716138995928940554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_tech_bounce_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 339
+        width: 32
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65c977e8cc3da690800000000000000
+      internalID: -7589342963474774674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_4
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 297
+        width: 130
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2420f4a5c06c379e0800000000000000
+      internalID: -1624737284193582526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_tech_bounce_3
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 339
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b944990ebf03cf0800000000000000
+      internalID: -274442635206943934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Hover_2
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 287
+        width: 69
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfbc2bdd410cabbe0800000000000000
+      internalID: -1460643933276943363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Hover_3
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 258
+        width: 101
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc8e3b45ee58a290800000000000000
+      internalID: -7878943209181770541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_Tech_Hover_4
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 229
+        width: 132
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a473a9f4cc7b97a0800000000000000
+      internalID: -6369360062541761375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platform_tech_bounce_4
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 339
+        width: 32
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23056e8d06740a1c0800000000000000
+      internalID: -4494513946834350030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

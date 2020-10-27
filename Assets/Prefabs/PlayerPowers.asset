@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7e0fffc39d54444a29efacb81b82f8, type: 3}
+  m_Name: PlayerPowers
+  m_EditorClassIdentifier: 
+  powersLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
+  mainPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
+  secondaryPowers: {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
+  superPowers:
+  - name: 9
+    superPowerObg: {fileID: 6627867777535622825, guid: b1cd9f9491695e44b980ad0f44b17592, type: 3}
+    color1: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color2: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color3: {r: 0.83921576, g: 0, b: 0, a: 1}
+    unlockes: 00000000
+    icon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 2
+    superPowerObg: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
+    color1: {r: 1, g: 0.44072777, b: 0, a: 1}
+    color2: {r: 1, g: 0.73431313, b: 0.23113209, a: 1}
+    color3: {r: 0.9622642, g: 0.9438026, b: 0.05900679, a: 1}
+    unlockes: 00000000
+    icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 8
+    superPowerObg: {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+    color1: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color2: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color3: {r: 0.83921576, g: 0, b: 0, a: 1}
+    unlockes: 00000000
+    icon: {fileID: -4929241301462443967, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 7
+    superPowerObg: {fileID: 3288564294537034966, guid: 342eca419ea01ed448bee97aea7852af, type: 3}
+    color1: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color2: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color3: {r: 0.83921576, g: 0, b: 0, a: 1}
+    unlockes: 00000000
+    icon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 1
+    superPowerObg: {fileID: 1614017693320500932, guid: 5039080a2de7d50428d230a6de82db18, type: 3}
+    color1: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color2: {r: 0.83921576, g: 0, b: 0, a: 1}
+    color3: {r: 0.83921576, g: 0, b: 0, a: 1}
+    unlockes: 00000000
+    icon: {fileID: -3752968103342854351, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  active1: 0
+  active2: 1
+  hasPowers: 1
+  secondaryAbility:
+    name: 2
+    superPowerObg: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
+    color1: {r: 1, g: 0.44072777, b: 0, a: 1}
+    color2: {r: 1, g: 0.73431313, b: 0.23113209, a: 1}
+    color3: {r: 0.9622642, g: 0.9438026, b: 0.05900679, a: 1}
+    unlockes: 00000000
+    icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  mainColors:
+  - {r: 0.83921576, g: 0, b: 0, a: 1}
+  - {r: 0.83921576, g: 0, b: 0, a: 1}
+  - {r: 0.83921576, g: 0, b: 0, a: 1}
+  secColors:
+  - {r: 1, g: 0.44072777, b: 0, a: 1}
+  - {r: 1, g: 0.73431313, b: 0.23113209, a: 1}
+  - {r: 0.9622642, g: 0.9438026, b: 0.05900679, a: 1}

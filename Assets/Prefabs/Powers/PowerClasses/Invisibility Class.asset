@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1dccc1596ff7a43b117fc7b39d7402, type: 3}
+  m_Name: Invisibility Class
+  m_EditorClassIdentifier: 
+  powerName: Invisibility
+  powerIcon: {fileID: -1206386446500177724, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  powerPrefabs:
+  - name: 6
+    superPowerObg: {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
+    color1: {r: 0.115877524, g: 0.15083687, b: 0.7924528, a: 1}
+    color2: {r: 0.07186719, g: 0.8018868, b: 0.78261715, a: 1}
+    color3: {r: 1, g: 1, b: 1, a: 1}
+    isMainPower: 0
+    unlockes: 
+    icon: {fileID: -1206386446500177724, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  isSinglePower: 1

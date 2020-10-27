@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaec0961683673c4b86d034a2fcc8e94, type: 3}
+  m_Name: SuperPowerLibrary
+  m_EditorClassIdentifier: 
+  powersClasses:
+  - {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
+  - {fileID: 11400000, guid: 9816808f5b964994d9802bdf411650e9, type: 2}
+  - {fileID: 11400000, guid: bfda14939b87f1d4089c9f9232c54cac, type: 2}
+  - {fileID: 11400000, guid: 37604ea57c202c046bb6d61ff951e077, type: 2}
+  - {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
+  - {fileID: 11400000, guid: fabac1b14b20e1e4c9ac6a28b94c1d5f, type: 2}
+  - {fileID: 11400000, guid: fe7ff625b0f59394faec0ea72cb06185, type: 2}
+  abilityGameObject:
+  - {fileID: 3288564294537034966, guid: 342eca419ea01ed448bee97aea7852af, type: 3}
+  - {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+  - {fileID: 6627867777535622825, guid: b1cd9f9491695e44b980ad0f44b17592, type: 3}
+  - {fileID: 1614017693320500932, guid: 5039080a2de7d50428d230a6de82db18, type: 3}
+  - {fileID: 7653137281587227988, guid: 80d3a9eb2b37c524981b88bb3a8fb293, type: 3}
+  - {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
+  - {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
+  - {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
+  - {fileID: 3170358597876350239, guid: a727625a3d9ee6a4294a99bda99ac468, type: 3}
+  - {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}

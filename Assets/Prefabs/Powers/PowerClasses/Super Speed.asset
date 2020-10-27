@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1dccc1596ff7a43b117fc7b39d7402, type: 3}
+  m_Name: Super Speed
+  m_EditorClassIdentifier: 
+  powerName: Super Speed
+  powerIcon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  powerPrefabs:
+  - name: 4
+    superPowerObg: {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
+    color1: {r: 0.12941177, g: 0.5921569, b: 0.09019608, a: 1}
+    color2: {r: 0.60830694, g: 0.8301887, b: 0.003915994, a: 1}
+    color3: {r: 1, g: 1, b: 1, a: 1}
+    isMainPower: 0
+    unlockes: 
+    icon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  isSinglePower: 1

@@ -1,0 +1,346 @@
+fileFormatVersion: 2
+guid: 39f2fe25d8f30bf4494c8b46fd7473dc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3649903921604331707
+    second: Rig Sheet Logos 1_0
+  - first:
+      213: -208022369915453878
+    second: Rig Sheet Logos 1_1
+  - first:
+      213: -2460648615808339438
+    second: Rig Sheet Logos 1_2
+  - first:
+      213: 4843892064435632162
+    second: Rig Sheet Logos 1_3
+  - first:
+      213: -8727222065128082878
+    second: Rig Sheet Logos 1_4
+  - first:
+      213: -3061983444802693244
+    second: Rig Sheet Logos 1_5
+  - first:
+      213: 4156077009329470072
+    second: Rig Sheet Logos 1_6
+  - first:
+      213: -145715650455078904
+    second: Rig Sheet Logos 1_7
+  - first:
+      213: -7935797987342961543
+    second: Rig Sheet Logos 1_0
+  - first:
+      213: -6456069221897934968
+    second: Rig Sheet Logos 1_1
+  - first:
+      213: 1513556832779384110
+    second: Rig Sheet Logos 1_2
+  - first:
+      213: -6696325525642382525
+    second: Rig Sheet Logos 1_3
+  - first:
+      213: -6430162763277538406
+    second: Rig Sheet Logos 1_4
+  - first:
+      213: -3971631198006847496
+    second: Rig Sheet Logos 1_5
+  - first:
+      213: 7948506115935358404
+    second: Rig Sheet Logos 1_6
+  - first:
+      213: -3815081753426063131
+    second: Rig Sheet Logos 1_7
+  - first:
+      213: -8445825624503091510
+    second: Rig Sheet Logos 1_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 117
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974b923b6c16ed190800000000000000
+      internalID: -7935797987342961543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 117
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887e0779f3f6766a0800000000000000
+      internalID: -6456069221897934968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 117
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e253e259beb310510800000000000000
+      internalID: 1513556832779384110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 117
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34374bfb96fd113a0800000000000000
+      internalID: -6696325525642382525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 116
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9be5e6090973c6a0800000000000000
+      internalID: -6430162763277538406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_5
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 116
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f751ffc77ee1e8c0800000000000000
+      internalID: -3971631198006847496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_6
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 116
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cdc85f0334ce4e60800000000000000
+      internalID: 7948506115935358404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_7
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 116
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e017f1cb5b1e0bc0800000000000000
+      internalID: -3815081753426063131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rig Sheet Logos 1_8
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 117
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acef998a7566aca80800000000000000
+      internalID: -8445825624503091510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1dccc1596ff7a43b117fc7b39d7402, type: 3}
+  m_Name: Fire Powers
+  m_EditorClassIdentifier: 
+  powerName: FirePowers
+  powerIcon: {fileID: -7132433922774202216, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  powerPrefabs:
+  - name: 0
+    superPowerObg: {fileID: 7653137281587227988, guid: 80d3a9eb2b37c524981b88bb3a8fb293, type: 3}
+    color1: {r: 1, g: 0.009995077, b: 0, a: 0}
+    color2: {r: 1, g: 0.32082564, b: 0, a: 0}
+    color3: {r: 1, g: 0.7045615, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: -7132433922774202216, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 1
+    superPowerObg: {fileID: 1614017693320500932, guid: 5039080a2de7d50428d230a6de82db18, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 3
+    superPowerObg: {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  - name: 4
+    superPowerObg: {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
+    color1: {r: 0, g: 0, b: 0, a: 0}
+    color2: {r: 0, g: 0, b: 0, a: 0}
+    color3: {r: 0, g: 0, b: 0, a: 0}
+    isMainPower: 0
+    unlockes: 00000000
+    icon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  isSinglePower: 0
+  color1: {r: 1, g: 0.009995077, b: 0, a: 0}
+  color2: {r: 1, g: 0.32082564, b: 0, a: 0}
+  color3: {r: 1, g: 0.7045615, b: 0, a: 0}
