@@ -1,8 +1,14 @@
 using System.Collections;
 using System.IO.Compression;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+/*
+ * Character controller is in charge of the physical movement of the character.
+ * Handles if the character is grounded, jumping (including animation states related to jumping and falling),
+ * moving, flying, flipping looking direction.
+ */
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce;							// Amount of force added when the player jumps.
@@ -41,6 +47,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private bool _stopAll;
 	private bool _stopVertical;
+	private Collider2D[] groundCheckOverlapArray = new Collider2D[2];
 
 	public bool canTurn = true;
 
@@ -85,20 +92,9 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.drag = flyingDrag;
 		}
 	}
-	
-	public void HorizontalDecelarate() {
-		_stopHoriz = true;
-		// if(_flying){return;}
-		//
-		// Vector2 velocity = m_Rigidbody2D.velocity;
-		// Vector3 targetVelocity = new Vector2(0f, velocity.y);
-		// // And then smoothing it out and applying it to the character
-		// m_Rigidbody2D.velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref m_Velocity, 0.01f);
-	}
 
 
 	public void Push(float pushForceHoriz, float pushForceVertic) {
-		// m_Rigidbody2D.AddForce(new Vector2(pushForce, 0));
 		_pushBackHoriz = pushForceHoriz;
 		_pushBackVertic = pushForceVertic;
 	}
@@ -135,12 +131,60 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 	private void FixedUpdate() {
-		if (_pushBackHoriz > 0.01f || _pushBackHoriz < -0.01f || _pushBackVertic > 0.01f || _pushBackVertic < -0.01f) {
-			m_Rigidbody2D.AddForce(new Vector2(_pushBackHoriz, _pushBackVertic));
-			_pushBackHoriz = 0f;
-			_pushBackVertic = 0f;
+		
+		// Stop then push, so that if both are run at the same time, push will still add the force.
+		DoStops();
+		DoPush();
+		
+		if (_flying) {
+			m_Grounded = false;
 		}
-		else if (_stopAll) {
+		else {
+			GroundedCheck();
+			GroundStableCheck();
+		}
+	}
+
+	/*
+	 * This check prevents a character from getting stuck in the air where they are not moving on the
+	 * y axis, but not grounded, such as stuck on a wall.
+	 * If so, adds a small force to the character to try and get them free.
+	 */
+	private void GroundStableCheck() {
+		
+		if (!m_Grounded && m_Rigidbody2D.velocity.y == 0) {
+			_notGroundedStableCheck++;
+			if (_notGroundedStableCheck > 3) {
+				_notGroundedStableCheck = 0;
+				m_Rigidbody2D.AddForce(new Vector2(0f, 100f));
+			}
+		}
+		else {
+			_notGroundedStableCheck = 0;
+		}
+	}
+
+	/*
+	 * Should be run only in fixed update.
+	 * Pushes the character based on the values in push horizontal and vertical.
+	 * Resets them, since they are already done.
+	 */
+	private void DoPush() {
+		if (_pushBackHoriz < 0.01f && _pushBackHoriz > -0.01f && _pushBackVertic < 0.01f && _pushBackVertic > -0.01f) {
+			return;
+		}
+		
+		m_Rigidbody2D.AddForce(new Vector2(_pushBackHoriz, _pushBackVertic));
+		_pushBackHoriz = 0f;
+		_pushBackVertic = 0f;
+	}
+
+	/*
+	 * This should only be run in fixed update.
+	 * Stops The character's velocity smoothly in the axis that is set to stop.
+	 */
+	private void DoStops() {
+		if (_stopAll) {
 			Vector3 targetVelocity = new Vector2(0, 0);
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing/4);
 			_stopAll = false;
@@ -160,44 +204,23 @@ public class CharacterController2D : MonoBehaviour
 				_stopVertical = false;
 			}
 		}
-		
-		if (_flying) {
-			m_Grounded = false;
-		}
-		else {
-			GroundedCheck();
-			// If the object is not moving on the Y axis for 3 frames, its probably grounded.
-			if (!m_Grounded && m_Rigidbody2D.velocity.y == 0) {
-				_notGroundedStableCheck++;
-				if (_notGroundedStableCheck > 3) {
-					_notGroundedStableCheck = 0;
-					m_Rigidbody2D.AddForce(new Vector2(0f, 100f));
-					OnLandEvent.Invoke();
-				}
-			}
-			else {
-				_notGroundedStableCheck = 0;
-			}
-		}
 	}
 
 	private void GroundedCheck() {
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				m_Grounded = true;
-				if (!wasGrounded) {
-					animator.SetBool(AnimRefarences.Jumping, false);
-					OnLandEvent.Invoke();
-				}
-				break;
+		/*
+		 * The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+		 * This can be done using layers instead but Sample Assets will not overwrite your project settings.
+		 */
+		Physics2D.OverlapCircleNonAlloc(m_GroundCheck.position, k_GroundedRadius, 
+														groundCheckOverlapArray, m_WhatIsGround);
+		if (groundCheckOverlapArray.Any(colliderOverlapped => colliderOverlapped.gameObject != gameObject)) {
+			m_Grounded = true;
+			if (!wasGrounded) {
+				animator.SetBool(AnimRefarences.Jumping, false);
+				OnLandEvent.Invoke();
 			}
 		}
 
@@ -205,15 +228,10 @@ public class CharacterController2D : MonoBehaviour
 			StartCoroutine(CoyoteTime());
 		}
 
-		if (!m_Grounded) {
-			animator.SetBool(AnimRefarences.Jumping, true);
-		}
-		else {
-			animator.SetBool(AnimRefarences.Jumping, false);
-		}
+		animator.SetBool(AnimRefarences.Jumping, !m_Grounded);
 	}
 
-	IEnumerator CoyoteTime() {
+	private IEnumerator CoyoteTime() {
 		_coyoteTime = true;
 		yield return new WaitForSeconds(0.07f);
 		
@@ -242,11 +260,6 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 	public void FlyingMove(float horizontalMove, float verticalMove) {
-		if (_stopAll) {
-			Vector3 targetVelocity = new Vector2(0, 0);
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, 0);
-			return;
-		}
 		if (!_flying) {
 			Move(horizontalMove, verticalMove<0, verticalMove>0);
 			return;
@@ -279,60 +292,15 @@ public class CharacterController2D : MonoBehaviour
 			return;
 		}
 
-		// If uncrouching, check to see if the character can stand up
-		if (!crouch)
-		{
-			// If the character has a ceiling preventing them from standing up, keep them crouching
-			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-			{
-				crouch = true;
-			}
-		}
-
 		//only control the player if grounded or airControl is turned on
-		if (m_Grounded || _coyoteTime || m_AirControl)
-		{
-
-			// // If crouching
-			// if (crouch)
-			// {
-			// 	if (!m_wasCrouching)
-			// 	{
-			// 		m_wasCrouching = true;
-			// 		OnCrouchEvent.Invoke(true);
-			// 	}
-			//
-			// 	// Reduce the speed by the crouchSpeed multiplier
-			// 	// move *= m_CrouchSpeed;
-			//
-			// 	// Disable one of the colliders when crouching
-			// 	if (m_CrouchDisableCollider != null)
-			// 		m_CrouchDisableCollider.enabled = false;
-			// } else
-			// {
-			// 	// Enable the collider when not crouching
-			// 	if (m_CrouchDisableCollider != null)
-			// 		m_CrouchDisableCollider.enabled = true;
-			//
-			// 	if (m_wasCrouching)
-			// 	{
-			// 		m_wasCrouching = false;
-			// 		OnCrouchEvent.Invoke(false);
-			// 	}
-			// }
-
-			// Move the character by finding the target velocity
-			
-			// If the input is moving the player right and the player is facing left...
-			if (canTurn==true) {
-				if (move > 0 && !m_FacingRight)
-				{
+		if (m_Grounded || _coyoteTime || m_AirControl) {
+			if (canTurn) {
+				if (move > 0 && !m_FacingRight) {
 					// ... flip the player.
 					Flip();
 				}
 				// Otherwise if the input is moving the player left and the player is facing right...
-				else if (move < 0 && m_FacingRight)
-				{
+				else if (move < 0 && m_FacingRight) {
 					// ... flip the player.
 					Flip();
 				}
