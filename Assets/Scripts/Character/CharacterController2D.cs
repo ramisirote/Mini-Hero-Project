@@ -47,7 +47,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private bool _stopAll;
 	private bool _stopVertical;
-	private Collider2D[] groundCheckOverlapArray = new Collider2D[2];
+	private Collider2D[] groundCheckOverlapArray;
 
 	public bool canTurn = true;
 
@@ -128,13 +128,13 @@ public class CharacterController2D : MonoBehaviour
 		
 		
 		MakeFlying(baseFlying);
+		
+		groundCheckOverlapArray = new Collider2D[2];
 	}
 
 	private void FixedUpdate() {
-		
-		// Stop then push, so that if both are run at the same time, push will still add the force.
-		DoStops();
 		DoPush();
+		DoStops();
 		
 		if (_flying) {
 			m_Grounded = false;
@@ -214,9 +214,11 @@ public class CharacterController2D : MonoBehaviour
 		 * The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		 * This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		 */
+		for (int i = 0; i < 2; i++) groundCheckOverlapArray[i] = null;
 		Physics2D.OverlapCircleNonAlloc(m_GroundCheck.position, k_GroundedRadius, 
 														groundCheckOverlapArray, m_WhatIsGround);
-		if (groundCheckOverlapArray.Any(colliderOverlapped => colliderOverlapped.gameObject != gameObject)) {
+		if (groundCheckOverlapArray.Any(colliderOverlapped => 
+												colliderOverlapped && colliderOverlapped.gameObject != gameObject)) {
 			m_Grounded = true;
 			if (!wasGrounded) {
 				animator.SetBool(AnimRefarences.Jumping, false);
