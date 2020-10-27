@@ -6,7 +6,9 @@ using UnityEngine.PlayerLoop;
 using Random = System.Random;
 
 /*
- * 
+ * A flying enemy.
+ * Patrols an area. (Left and right)
+ * Moves to the player and tries to punch.
  */
 public class AI_Flyer : AIBase
 {

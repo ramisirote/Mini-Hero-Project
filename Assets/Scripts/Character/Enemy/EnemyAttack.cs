@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * DO NOT USE, OLD FUNCTION
+ */
 public class EnemyAttack : MonoBehaviour
 {
     private Animator animator;

@@ -8,6 +8,10 @@ using Random = System.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+/*
+ * The basic AI for character enemies.
+ * This enemy tires to walk to the player and punch it.
+ */
 public class AIBase : MonoBehaviour, IManager
 {
     [SerializeField] protected SoundManager soundManager;

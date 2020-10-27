@@ -18,7 +18,7 @@ public class PowersInstance : MonoBehaviour
     private void Awake() {
         manager = GetComponent<PlayerManager>();
 
-        if (!powers.hasPowers || !manager) return;
+        if (!powers.hasAbilities || !manager) return;
         
         powers.Init();
         active1 = powers.active1;
@@ -26,8 +26,8 @@ public class PowersInstance : MonoBehaviour
         
         var pos = transform.position;
 
-        foreach (var pow in powers.superPowers) {
-            var powObj = Instantiate(pow.superPowerObg, pos, Quaternion.identity);
+        foreach (var pow in powers.abilities) {
+            var powObj = Instantiate(pow.abilityGameObg, pos, Quaternion.identity);
             var superPow = powObj.GetComponent<Ability>();
             powersList.Add(superPow);
             superPow.Init(gameObject, pow.color1, pow.color2, pow.color3, pow.unlockes);
@@ -44,7 +44,7 @@ public class PowersInstance : MonoBehaviour
             active1 = (active1+1)%powersList.Count;
             if(active1 == active2) active1 = (active1+1)%powersList.Count;
             
-            powers.SetPowerAsActive(active1, 1);
+            powers.SetAbilityAsActive(active1, 1);
             manager.SetAbility(powersList[active1], 1);
         }
         
@@ -54,7 +54,7 @@ public class PowersInstance : MonoBehaviour
             active2 = (active2+1)%powersList.Count;
             if(active2 == active1) active2 = (active2+1)%powersList.Count;
             
-            powers.SetPowerAsActive(active2, 2);
+            powers.SetAbilityAsActive(active2, 2);
             manager.SetAbility(powersList[active2], 2);
         }
         
@@ -65,9 +65,9 @@ public class PowersInstance : MonoBehaviour
 
 
     public void AddPowerAbility(PowerAbility.AbilityNames newPowerName, bool fromMainPowers) {
-        var pow = powers.AddPowerFromClass(newPowerName, fromMainPowers);
+        var pow = powers.AddAbilityFromClass(newPowerName, fromMainPowers);
         
-        var powObj = Instantiate(pow.superPowerObg, transform.position, Quaternion.identity);
+        var powObj = Instantiate(pow.abilityGameObg, transform.position, Quaternion.identity);
         var superPow = powObj.GetComponent<Ability>();
         powersList.Add(superPow);
         

@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Replaces the basic attack with a super strength one.
+ * This new attack deals more damage and pushes enemies a bunch.
+ * Enemies pushed this way deal damage to enemies they hit on the way.
+ */
 public class SuperStrength : Ability
 {
     [SerializeField] private float damageMult;
@@ -15,7 +17,6 @@ public class SuperStrength : Ability
     private Transform torso;
     private Transform head;
     private AttackManagerBase _attackDefault;
-    // private SuperStrangthAttack _superAttack;
     
     protected override void AdditionalInit() {
         _effectPoints = parentCharacter.GetComponent<EffectPoints>();
@@ -28,12 +29,6 @@ public class SuperStrength : Ability
         strengthAttack.Init(parentCharacter.GetComponent<Animator>(), Controller, CharacterStats,
                             Manager, attackCooldown, thrower, damageMult);
     }
-
-    // private void FixedUpdate() {
-    //     if (PowerOn) {
-    //         strengthAttack.direction = Manager.GetPowerTargetDirection();
-    //     }
-    // }
 
     public override void UseAbility(Vector3 direction) {
         if (!AbilityOn) {

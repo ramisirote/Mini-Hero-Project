@@ -43,7 +43,6 @@ public class AI_ChargeBolt : AIBase
             // Check if the player is in a straight line with no ground in the way.
             RaycastHit2D playerHit = Physics2D.Raycast(transform.position, GetDirectionToTarget(), 100f,
                 whatIsGround+playerLayer);
-            Debug.Log(playerHit.collider.gameObject);
             if (Time.time > _doneChargingTime && playerHit.collider.gameObject.CompareTag("Player")) {
                 ability.UseAbilityRelease(GetDirectionToTarget());
                 nextCanUseAbility = Time.time + timeBetweenCharges;

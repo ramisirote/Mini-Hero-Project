@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Turn invisible for a short time.
+ * Enemies can't see you while invisible (but can remember your position for a bit)
+ */
 public class Invisibility : Ability
 {
     // Start is called before the first frame update
@@ -21,7 +25,7 @@ public class Invisibility : Ability
     }
 
     protected override void OnDamageTaken(object o, float damageTaken) {
-        if(AbilityOn) SetAbilityOff();
+        // if(AbilityOn) SetAbilityOff();
     }
 
     public override void UseAbility(Vector3 direction) {

@@ -36,7 +36,7 @@ public class SelectPower : MonoBehaviour
     private Image _selectedIconImage;
 
     public void AssignPower(GameObject power) {
-        powersPrefb.SelectPower(power, _powerIndex);
+        powersPrefb.SelectAbility(power, _powerIndex);
     }
     
     public void InitSuperPowerButton(SuperPowerButton superPowerButton) {
@@ -57,8 +57,8 @@ public class SelectPower : MonoBehaviour
     public void SelectSuperPower(SuperPowerButton superPowerButton) {
         if(superPowerButton==null) return;
         
-        powersPrefb.SelectPower(superPowerButton.superPower, _powerIndex);
-        powersPrefb.SetPowerAsActive(_powerIndex, _powerIndex+1);
+        powersPrefb.SelectAbility(superPowerButton.superPower, _powerIndex);
+        powersPrefb.SetAbilityAsActive(_powerIndex, _powerIndex+1);
         if (!_selectedIconImage) return;
         _selectedIconImage.sprite = superPowerButton.powerSprite;
         _selectedIconImage.enabled = true;

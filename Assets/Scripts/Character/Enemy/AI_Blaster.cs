@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Random = System.Random;
+﻿using UnityEngine;
 
+/*
+ * This enemy tries to hit the player with a simple ray-cast blast attack.
+ */
 public class AI_Blaster : AIBase
 {
     

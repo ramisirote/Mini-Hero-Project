@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * The projectile from the EnergyBoltCharge ability.
+ * It cheeps charging while not released. Once released, flies in the direction, hitting the first enemy.
+ * The more its charged the bigger and more damage it deals.
+ */
 public class EnergyChargeProjectile : MonoBehaviour
 {
     [SerializeField] private float maxScale;

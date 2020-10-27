@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "CharacterPowers", menuName = "CharacterPowers/PowerClass", order = 1)]
 [System.Serializable]
@@ -18,7 +19,7 @@ public class PowersClass : ScriptableObject
     // public Color color3;
 
 
-    public PowerAbility GetPowerAt(int i) {
+    public PowerAbility GetAbilityAt(int i) {
         if (powerPrefabs.Length == 0) return null;
         if (i >= powerPrefabs.Length || i < 0) return powerPrefabs[0];
         
@@ -39,7 +40,7 @@ public class PowersClass : ScriptableObject
     }
 
     public bool HasPowerObject(GameObject powerObject) {
-        return Array.Exists(powerPrefabs, ability => ability.superPowerObg.name == powerObject.name);
+        return Array.Exists(powerPrefabs, ability => ability.abilityGameObg.name == powerObject.name);
     }
 
     public PowerAbility[] GetAbilites() {
@@ -65,7 +66,7 @@ public class PowerAbility
     }
     
     public AbilityNames name;
-    public GameObject superPowerObg;
+    [FormerlySerializedAs("superPowerObg")] public GameObject abilityGameObg;
     public Color color1;
     public Color color2;
     public Color color3;
@@ -74,6 +75,6 @@ public class PowerAbility
     public Sprite icon;
 
     public void SetUpIcon() {
-        icon = superPowerObg.GetComponent<Ability>().GetIconImage();
+        icon = abilityGameObg.GetComponent<Ability>().GetIconImage();
     }
 }

@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 
+/*
+ * This scriptable object contains the current powers of the players and the colors selected for those powers,
+ * as well the the abilities the player has unlocked from those powers.
+ * It also saves which of the abilities is currently selected in the two selected ability slots.
+ *
+ * Implements adding abilities and changing which ability is active.
+ */
 [CreateAssetMenu(fileName = "CharacterPowers", menuName = "CharacterPowers/CharacterPowers", order = 1)]
 public class CharacterPowers : ScriptableObject
 {
@@ -12,12 +17,12 @@ public class CharacterPowers : ScriptableObject
     public PowersClass mainPowers;
     public PowersClass secondaryPowers;
 
-    public List<PowerAbility> superPowers;
+    [FormerlySerializedAs("superPowers")] public List<PowerAbility> abilities;
 
     public int active1 = -1;
     public int active2 = -1;
 
-    public bool hasPowers = false;
+    [FormerlySerializedAs("hasPowers")] public bool hasAbilities = false;
 
     public PowerAbility secondaryAbility;
     
@@ -25,13 +30,12 @@ public class CharacterPowers : ScriptableObject
     [SerializeField] private Color[] secColors = new Color[3];
 
     
-    // Need to remove for power system update.
-    public void SelectPower(GameObject newPower, int position) {
-        if (position >= superPowers.Count) return;
-        superPowers[position] = new PowerAbility{superPowerObg = newPower};
-        hasPowers = true;
+    public void SelectAbility(GameObject abilityGameObject, int position) {
+        if (position >= abilities.Count) return;
+        abilities[position] = new PowerAbility{abilityGameObg = abilityGameObject};
+        hasAbilities = true;
         
-        FirstSetUpPower(position);
+        FirstSetUpAbility(position);
     }
 
     public void SetPowerClass(PowersClass powersClass, bool asMain) {
@@ -43,41 +47,41 @@ public class CharacterPowers : ScriptableObject
         }
     }
 
-    public PowerAbility AddPowerFromClass(PowerAbility.AbilityNames powerName, bool fromMain) {
+    public PowerAbility AddAbilityFromClass(PowerAbility.AbilityNames abilityName, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
-        var ability = powersClass.GetPowerByName(powerName);
+        var ability = powersClass.GetPowerByName(abilityName);
         if (ability == null) return null;
         if (!fromMain) secondaryAbility = ability;
         
         SetAbilityColors(ability, fromMain);
         
-        superPowers.Add(ability);
+        abilities.Add(ability);
         
-        FirstSetUpPower(superPowers.Count-1);
+        FirstSetUpAbility(abilities.Count-1);
 
         return ability;
     }
     
-    public PowerAbility AddPowerFromClass(int powerIndex, bool fromMain) {
+    public PowerAbility AddAbilityFromClass(int abilityIndex, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
-        var ability = powersClass.GetPowerAt(powerIndex);
+        var ability = powersClass.GetAbilityAt(abilityIndex);
         if (ability == null) return null;
 
         if (!fromMain) secondaryAbility = ability;
         
         SetAbilityColors(ability, fromMain);
         
-        superPowers.Add(ability);
+        abilities.Add(ability);
         
-        FirstSetUpPower(superPowers.Count-1);
+        FirstSetUpAbility(abilities.Count-1);
 
         return ability;
     }
 
-    public void SetPowerAsActive(int positionInList, int whichActive) {
-        if(positionInList >= superPowers.Count) return;
+    public void SetAbilityAsActive(int positionInList, int whichActive) {
+        if(positionInList >= abilities.Count) return;
 
         switch (whichActive) {
             case 1:
@@ -91,7 +95,7 @@ public class CharacterPowers : ScriptableObject
 
 
     public void Init() {
-        if (superPowers.Count > 1) {
+        if (abilities.Count > 1) {
             if (active1 == -1) {
                 active1 = active2 == 0 ? 1 : 0;
             }
@@ -100,14 +104,14 @@ public class CharacterPowers : ScriptableObject
                 active2 = active1 == 0 ? 1 : 0;
             }
         }
-        else if(superPowers.Count == 1) {
+        else if(abilities.Count == 1) {
             if (active1 == -1) active1 = 0;
         }
         
     }
 
 
-    private void FirstSetUpPower(int pos) {
+    private void FirstSetUpAbility(int pos) {
         if (active1 == -1) {
             active1 = pos;
         }
@@ -127,16 +131,16 @@ public class CharacterPowers : ScriptableObject
 
 
     public PowerAbility GetActive(int which) {
-        return which == 1 ? superPowers[active1] : superPowers[active2];
+        return which == 1 ? abilities[active1] : abilities[active2];
     }
 
     public bool IsAbilityUnlocked(PowerAbility ability) {
-        return superPowers.Exists(power => power.name == ability.name);
+        return abilities.Exists(power => power.name == ability.name);
     }
 
 
     public void Clear() {
-        superPowers.Clear();
+        abilities.Clear();
         active1 = -1;
         active2 = -1;
     }
@@ -144,14 +148,14 @@ public class CharacterPowers : ScriptableObject
 
     public void SetStartingAbilities(int mainAbilityIndex, int secondaryAbilityIndex) {
         Clear();
-        AddPowerFromClass(mainAbilityIndex, true);
-        AddPowerFromClass(secondaryAbilityIndex, false);
+        AddAbilityFromClass(mainAbilityIndex, true);
+        AddAbilityFromClass(secondaryAbilityIndex, false);
     }
 
     public void SetSubColor(Color c,bool isMain, int sub) {
         if (isMain) {
             mainColors[sub] = c;
-            foreach (var powerAbility in superPowers) {
+            foreach (var powerAbility in abilities) {
                 if (powerAbility.name != secondaryAbility.name) {
                     switch (sub) {
                         case 0: powerAbility.color1 = c; break;
@@ -183,22 +187,22 @@ public class CharacterPowers : ScriptableObject
         mainColors = Utils.FloatArrayToColorArray(ser.mainColors);
         secColors = Utils.FloatArrayToColorArray(ser.secondColors);
         
-        superPowers.Clear();
+        abilities.Clear();
 
         secondaryAbility = secondaryPowers.GetPowerByName((PowerAbility.AbilityNames) ser.secAbilityNameEnum);
 
         for (int i = 0; i < ser.abilityNamesEnum.Length; i++) {
             if (ser.abilityNamesEnum[i] != ser.secAbilityNameEnum) {
-                superPowers.Add(mainPowers.GetPowerByName((PowerAbility.AbilityNames)ser.abilityNamesEnum[i]));
+                abilities.Add(mainPowers.GetPowerByName((PowerAbility.AbilityNames)ser.abilityNamesEnum[i]));
             }
             else {
-                superPowers.Add(secondaryAbility);
+                abilities.Add(secondaryAbility);
             }
 
-            superPowers[i].unlockes = ser.abilityUpgrades[i];
+            abilities[i].unlockes = ser.abilityUpgrades[i];
         }
 
-        foreach (var ability in superPowers) {
+        foreach (var ability in abilities) {
             SetAbilityColors(ability, ability.name!=secondaryAbility.name);
         }
 
@@ -206,6 +210,9 @@ public class CharacterPowers : ScriptableObject
         active2 = ser.active2;
     }
 
+    /*
+     * This class is a serialized version of the base class for saving purposes.
+     */
     [System.Serializable]
     public class SerializedPowers
     {
@@ -227,11 +234,11 @@ public class CharacterPowers : ScriptableObject
             mainPowerName = other.mainPowers.GetName();
             secPowerName = other.secondaryPowers.GetName();
             
-            abilityNamesEnum = new int[other.superPowers.Count];
-            abilityUpgrades = new bool[other.superPowers.Count][];
-            for (int i = 0; i < other.superPowers.Count; i++) {
-                abilityNamesEnum[i] = (int)other.superPowers[i].name;
-                abilityUpgrades[i] = other.superPowers[i].unlockes;
+            abilityNamesEnum = new int[other.abilities.Count];
+            abilityUpgrades = new bool[other.abilities.Count][];
+            for (int i = 0; i < other.abilities.Count; i++) {
+                abilityNamesEnum[i] = (int)other.abilities[i].name;
+                abilityUpgrades[i] = other.abilities[i].unlockes;
             }
 
             secAbilityNameEnum = (int)other.secondaryAbility.name;

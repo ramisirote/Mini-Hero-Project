@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This script goes on the game object that is attached to a character hit by the super strength basic attack.
+ * When attacked to a character, moves them in the direction. When collides with a enemy, deals damage to them.
+ */
 public class StrengthThrower : MonoBehaviour
 {
     [SerializeField] private float flyTime;
@@ -42,11 +46,14 @@ public class StrengthThrower : MonoBehaviour
             rb.AddForce(throwForce*direction/direction.magnitude);
         }
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other) {
         var g = other.gameObject;
         int facing;
         facing = direction.x > 0 ? 1 : 0;
+        
+        // The tag should be changed in the inspector so that in can work on players too.
+        // Or not. Could be interesting if enemies could friendly fire with this?
         if (g != parent && g.CompareTag("Enemy")) {
             g.GetComponent<TakeDamage>().Damage(damage, facing);
         }

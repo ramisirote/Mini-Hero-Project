@@ -4,6 +4,8 @@ using UnityEngine;
 
 /**
  * The basic attack active while the Super Strength ability is active.
+ * When hit makes a (not visible) object on the character hit that
+ * pushes them and deals damage to all enemies hit while pushed this way.
  */
 public class SuperStrangthAttack : AttackManagerBase
 {

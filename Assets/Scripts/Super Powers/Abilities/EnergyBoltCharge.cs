@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Charge a bolt that gets bigger and deals more damage the more its charged
+ * Part of the Energy Power class.
+ * Strengths: Range, high damage if fully charged, no disable.
+ * Weaknesses: High energy cost up front.
+ */
 public class EnergyBoltCharge : Ability
 {
 

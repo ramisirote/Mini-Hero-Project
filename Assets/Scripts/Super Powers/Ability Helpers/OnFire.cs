@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * When a fire power sets someone on fire, this game object is added to them.
+ * This deals damage over time, and can extend its duration and increase the damage amount.
+ * While dealing damage over time, plays a fire particle.
+ *
+ * Can search for this script in the children of a character to tell if they are already have one.
+ * Can tell if this is dealing damage by calling IsTicking().
+ */
 public class OnFire : MonoBehaviour
 {
     [SerializeField] private ParticleSystem particleSys;

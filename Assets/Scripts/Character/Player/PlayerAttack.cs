@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * The player attack. It has two attack animations that cycle if triggered within a window.
+ * Other then that, it's a basic attack.
+ */
 public class PlayerAttack : AttackManagerBase
 {
     [SerializeField] private float resetStateTimeLength;

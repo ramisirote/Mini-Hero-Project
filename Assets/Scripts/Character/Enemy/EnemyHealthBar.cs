@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/*
+ * Makes sure the enemy health bar doesnt flip and disappears when the enemy dies. 
+ */
 public class EnemyHealthBar : MonoBehaviour
 {
     [FormerlySerializedAs("stats")] [SerializeField] private CharacterStats characterStats;

@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Teleport instantly in the direction given.
+ * If the target location is in the ground, teleport to the nearest
+ * spot between you and the target that is not in a wall.
+ */
 public class Teleportation : Ability
 {
 

@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * A flame thrower ability. Keep holding the power to keep it on.
+ * Part of the Fire Powers class
+ * When an enemy walks into the flame, puts a fire object on them dealing damage over time.
+ * The longer you burn an enemy, the more damage it'll do.
+ */
 public class FlameThrower : Ability
 {
 

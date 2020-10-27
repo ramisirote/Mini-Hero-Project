@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * A charged beam attack. Charge for a bit, then fires for a bit. Stops at the first enemy.
+ * Part of the Energy Power class.
+ * Strengths: Range, low cooldown, easy to use and aim, high damage if hit or hit multiple targets.
+ * Weaknesses: high energy cost per-damage, disable while on, charge time.
+ */
 public class EnergyBeam : Ability
 {
     [SerializeField] private float damage;

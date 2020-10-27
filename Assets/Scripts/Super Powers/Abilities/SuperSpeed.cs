@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Increase the character's move speed and attack speed for a time.
+ * While on the time scale of the game is slowed a bit to allow for more control with higher speed.
+ */
 public class SuperSpeed : Ability
 {
     
@@ -16,9 +20,6 @@ public class SuperSpeed : Ability
     private TrailRenderer _handRTrail;
 
     private GameObject trail;
-    // private flo
-
-    
 
     private Gradient ColorGradient() {
         var gradient = new Gradient();

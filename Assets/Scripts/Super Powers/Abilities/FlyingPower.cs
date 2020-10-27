@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Allows the character to fly.
+ * When flying energy regen is off.
+ * Taking damage while flying will cost energy.
+ *
+ * Flying is done in practice in the character controller. This ability just turn that mode on/off.
+ */
 public class FlyingPower : Ability
 {
     [SerializeField] private float energyCostOnDamage;
