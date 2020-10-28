@@ -20,14 +20,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
   - {fileID: 11400000, guid: fabac1b14b20e1e4c9ac6a28b94c1d5f, type: 2}
   - {fileID: 11400000, guid: fe7ff625b0f59394faec0ea72cb06185, type: 2}
-  abilityGameObject:
-  - {fileID: 3288564294537034966, guid: 342eca419ea01ed448bee97aea7852af, type: 3}
-  - {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
-  - {fileID: 6627867777535622825, guid: b1cd9f9491695e44b980ad0f44b17592, type: 3}
-  - {fileID: 1614017693320500932, guid: 5039080a2de7d50428d230a6de82db18, type: 3}
-  - {fileID: 7653137281587227988, guid: 80d3a9eb2b37c524981b88bb3a8fb293, type: 3}
-  - {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
-  - {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
-  - {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
-  - {fileID: 3170358597876350239, guid: a727625a3d9ee6a4294a99bda99ac468, type: 3}
-  - {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
+  abilities:
+  - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
+  - {fileID: 11400000, guid: 21d08b554b01fc94ca76239949afbb15, type: 2}
+  - {fileID: 11400000, guid: a835299b902279445936319813b20a19, type: 2}
+  - {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
+  - {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
+  - {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
+  - {fileID: 11400000, guid: 89b8a3716a247904788dc07b41e31704, type: 2}
+  - {fileID: 11400000, guid: 9a21b503fec110447a1c380b58f5a53a, type: 2}
+  - {fileID: 11400000, guid: c8102e6f62d56034798e333352db6534, type: 2}
+  - {fileID: 11400000, guid: ea94f24e64ad363489521965d8c9487b, type: 2}

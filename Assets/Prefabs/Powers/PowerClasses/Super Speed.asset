@@ -14,13 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerName: Super Speed
   powerIcon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  powerPrefabs:
-  - name: 4
-    superPowerObg: {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
-    color1: {r: 0.12941177, g: 0.5921569, b: 0.09019608, a: 1}
-    color2: {r: 0.60830694, g: 0.8301887, b: 0.003915994, a: 1}
-    color3: {r: 1, g: 1, b: 1, a: 1}
-    isMainPower: 0
-    unlockes: 
-    icon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilitiesInClass:
+  - {fileID: 11400000, guid: 9a21b503fec110447a1c380b58f5a53a, type: 2}
   isSinglePower: 1

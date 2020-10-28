@@ -11,21 +11,21 @@ public class PowerIconsManager : MonoBehaviour
     [SerializeField] private UI_Overlay _uiOverlay;
     
     private Image[] _powerIconsImage;
-    private Animator[] _powerIconsAnimarots;
+    private Animator[] _powerIconsAnimators;
 
     private PlayerManager _playerManager;
 
-    private Ability[] _superPowers;
-    
-    Dictionary<Ability, int> powerToIcon = new Dictionary<Ability, int>();
+    private Ability[] _managerAbilities;
+
+    private readonly Dictionary<Ability, int> powerToIcon = new Dictionary<Ability, int>();
     
     private void Start() {
         
         _powerIconsImage = new Image[powerIcons.Length];
-        _powerIconsAnimarots = new Animator[powerIcons.Length];
+        _powerIconsAnimators = new Animator[powerIcons.Length];
         for (int i = 0; i < powerIcons.Length; i++) {
             _powerIconsImage[i] = powerIcons[i].GetComponentsInChildren<Image>()[1];
-            _powerIconsAnimarots[i] = powerIcons[i].GetComponent<Animator>();
+            _powerIconsAnimators[i] = powerIcons[i].GetComponent<Animator>();
         }
         
         
@@ -34,16 +34,16 @@ public class PowerIconsManager : MonoBehaviour
             return;
         }
         
-        _superPowers = _playerManager.GetAbilities();
+        _managerAbilities = _playerManager.GetAbilities();
 
         for (int i = 0; i < powerIcons.Length; i++) {
-            if (_superPowers[i] != null) {
-                powerToIcon[_superPowers[i]] = i;
+            if (_managerAbilities[i] != null) {
+                powerToIcon[_managerAbilities[i]] = i;
 
-                _superPowers[i].AbilityOnEvent += OnAbilityOnEvent;
-                _superPowers[i].AbilityOffEvent += OnAbilityOffEvent;
+                _managerAbilities[i].AbilityOnEvent += OnAbilityOnEvent;
+                _managerAbilities[i].AbilityOffEvent += OnAbilityOffEvent;
 
-                _powerIconsImage[i].sprite = _superPowers[i].GetIconImage();
+                _powerIconsImage[i].sprite = _managerAbilities[i].GetIconImage();
                 _powerIconsImage[i].enabled = true;
                 
             }
@@ -60,42 +60,42 @@ public class PowerIconsManager : MonoBehaviour
         }
         
         // Remove the current active power
-        if (_superPowers[i]) {
-            powerToIcon.Remove(_superPowers[i]);
-            _superPowers[i].AbilityOnEvent -= OnAbilityOnEvent;
-            _superPowers[i].AbilityOffEvent -= OnAbilityOffEvent;
+        if (_managerAbilities[i]) {
+            powerToIcon.Remove(_managerAbilities[i]);
+            _managerAbilities[i].AbilityOnEvent -= OnAbilityOnEvent;
+            _managerAbilities[i].AbilityOffEvent -= OnAbilityOffEvent;
         }
         
         // Reget the active powers
-        _superPowers[i] = _playerManager.GetAbilities()[i];
-        if (!_superPowers[i]) return;
+        _managerAbilities[i] = _playerManager.GetAbilities()[i];
+        if (!_managerAbilities[i]) return;
         
         // set up the active power
-        powerToIcon[_superPowers[i]] = i;
+        powerToIcon[_managerAbilities[i]] = i;
 
-        _superPowers[i].AbilityOnEvent += OnAbilityOnEvent;
-        _superPowers[i].AbilityOffEvent += OnAbilityOffEvent;
+        _managerAbilities[i].AbilityOnEvent += OnAbilityOnEvent;
+        _managerAbilities[i].AbilityOffEvent += OnAbilityOffEvent;
 
-        _powerIconsImage[i].sprite = _superPowers[i].GetIconImage();
+        _powerIconsImage[i].sprite = _managerAbilities[i].GetIconImage();
         _powerIconsImage[i].enabled = true;
     }
 
     private void OnAbilityOnEvent(object sender, EventArgs e) {
         int i = powerToIcon[(Ability) sender];
-        if(_powerIconsAnimarots[i]) _powerIconsAnimarots[i].SetBool("On", true);
+        if(_powerIconsAnimators[i]) _powerIconsAnimators[i].SetBool("On", true);
     }
     
     private void OnAbilityOffEvent(object sender, EventArgs e) {
         int i = powerToIcon[(Ability) sender];
-        if(_powerIconsAnimarots[i]) _powerIconsAnimarots[i].SetBool("On", false);
+        if(_powerIconsAnimators[i]) _powerIconsAnimators[i].SetBool("On", false);
     }
 
     private void ClearIcons() {
-        for (int i = 0; i < _superPowers.Length; i++) {
-            if (_superPowers[i]) {
-                powerToIcon.Remove(_superPowers[i]);
-                _superPowers[i].AbilityOnEvent -= OnAbilityOnEvent;
-                _superPowers[i].AbilityOffEvent -= OnAbilityOffEvent;
+        for (int i = 0; i < _managerAbilities.Length; i++) {
+            if (_managerAbilities[i]) {
+                powerToIcon.Remove(_managerAbilities[i]);
+                _managerAbilities[i].AbilityOnEvent -= OnAbilityOnEvent;
+                _managerAbilities[i].AbilityOffEvent -= OnAbilityOffEvent;
             }
             
             _powerIconsImage[i].sprite = null;

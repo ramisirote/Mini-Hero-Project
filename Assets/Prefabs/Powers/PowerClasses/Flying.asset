@@ -14,13 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerName: Flying
   powerIcon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  powerPrefabs:
-  - name: 0
-    superPowerObg: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
-    color1: {r: 0, g: 0, b: 0, a: 0}
-    color2: {r: 0, g: 0, b: 0, a: 0}
-    color3: {r: 0, g: 0, b: 0, a: 0}
-    isMainPower: 0
-    unlockes: 
-    icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilitiesInClass:
+  - {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
   isSinglePower: 1

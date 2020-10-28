@@ -125,8 +125,9 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 	private void FixedUpdate() {
-		DoPush();
-		DoStops();
+		if (!DoPush()) {
+			DoStops();
+		}
 		
 		if (_flying) {
 			m_Grounded = false;
@@ -161,14 +162,15 @@ public class CharacterController2D : MonoBehaviour
 	 * Pushes the character based on the values in push horizontal and vertical.
 	 * Resets them, since they are already done.
 	 */
-	private void DoPush() {
+	private bool DoPush() {
 		if (_pushBackHoriz < 0.01f && _pushBackHoriz > -0.01f && _pushBackVertic < 0.01f && _pushBackVertic > -0.01f) {
-			return;
+			return false;
 		}
 		
 		m_Rigidbody2D.AddForce(new Vector2(_pushBackHoriz, _pushBackVertic));
 		_pushBackHoriz = 0f;
 		_pushBackVertic = 0f;
+		return true;
 	}
 
 	/*

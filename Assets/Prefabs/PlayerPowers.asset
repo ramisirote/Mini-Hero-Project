@@ -14,22 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powersLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
   mainPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
-  secondaryPowers: {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
+  secondaryPowers: {fileID: 11400000, guid: 9816808f5b964994d9802bdf411650e9, type: 2}
   abilities:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  activeAbility1: -1
-  activeAbility2: -1
+  - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
+  - {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
+  - {fileID: 11400000, guid: a835299b902279445936319813b20a19, type: 2}
+  activeAbility1: 0
+  activeAbility2: 1
   hasAbilities: 1
-  secondaryAbility: {fileID: 0}
+  secondaryAbility: {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
   mainColors:
   - {r: 0.83921576, g: 0, b: 0, a: 1}
-  - {r: 0.83921576, g: 0, b: 0, a: 1}
-  - {r: 0.83921576, g: 0, b: 0, a: 1}
-  secColors:
   - {r: 1, g: 0.44072777, b: 0, a: 1}
-  - {r: 1, g: 0.73431313, b: 0.23113209, a: 1}
   - {r: 0.9622642, g: 0.9438026, b: 0.05900679, a: 1}
+  secColors:
+  - {r: 0.83921576, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.3160377, b: 0.8693335, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}

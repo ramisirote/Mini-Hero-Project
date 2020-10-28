@@ -14,13 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerName: Super Strangth
   powerIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  powerPrefabs:
-  - name: 0
-    superPowerObg: {fileID: 3170358597876350239, guid: a727625a3d9ee6a4294a99bda99ac468, type: 3}
-    color1: {r: 0.12941177, g: 0.5921569, b: 0.09019608, a: 1}
-    color2: {r: 0.60830694, g: 0.8301887, b: 0.003915994, a: 1}
-    color3: {r: 1, g: 1, b: 1, a: 1}
-    isMainPower: 0
-    unlockes: 
-    icon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilitiesInClass:
+  - {fileID: 11400000, guid: c8102e6f62d56034798e333352db6534, type: 2}
   isSinglePower: 1

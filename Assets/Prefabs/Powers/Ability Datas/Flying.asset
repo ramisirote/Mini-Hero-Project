@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
-  m_Name: Teleportation
+  m_Name: Flying
   m_EditorClassIdentifier: 
-  abilityName: Teleportation
-  abilityEnum: 3
-  icon: {fileID: -5797615915856013160, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  abilityGameObject: {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
-  powerClassName: Teleportation
+  abilityName: Flying
+  abilityEnum: 2
+  icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
+  powerClassName: Flying
   description: 'A simple ray-cast line attack that hit enemies at a distance. Part
     of the Energy Power class. Strengths: Range, low cooldown, easy to use and aim,
     fast. Weaknesses: Low damage, high energy cost per-damage, short disable.'

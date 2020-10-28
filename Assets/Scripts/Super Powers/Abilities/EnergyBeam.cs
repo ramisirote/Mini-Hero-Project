@@ -33,12 +33,19 @@ public class EnergyBeam : Ability
         _animator = parentCharacter.GetComponent<Animator>();
         var t = transform;
         SetUpArmAngler();
+        SetUpParticles();
+    }
+
+    private void SetUpParticles() {
+        // Charging particles
         var col = chargingParticles.colorOverLifetime;
         col.color = Utils.CreateGradient(new[] {_color1, _color2, _color3}, new[] {0.5f, 0.8f});
+        
+        // hit particles
         hitParticlesInstance = Instantiate(hitParticles, parentCharacter.transform);
         var hitParticlesMain = hitParticlesInstance.main;
         var minMaxGradient = hitParticlesMain.startColor;
-        minMaxGradient.color = new Color(_color3.r, _color3.g, _color3.b, 0.3f);
+        minMaxGradient.color = new Color(_color1.r, _color1.g, _color1.b, 0.3f);
         hitParticlesMain.startColor = minMaxGradient;
         hitParticlesInstance.Stop();
     }
@@ -96,7 +103,10 @@ public class EnergyBeam : Ability
     private void HandleLineHit() {
         var position = effectPointTransform.position;
         if (lineRenderer.enabled) {
+            // set the start of the line to the effect point
             lineRenderer.SetPosition(0, position);
+            
+            //
             RaycastHit2D rayHit = Physics2D.Raycast(transform.position, Manager.GetDirectionToTarget(), 100, layerMask);
             if (rayHit.collider) {
                 lineRenderer.SetPosition(1, rayHit.point);

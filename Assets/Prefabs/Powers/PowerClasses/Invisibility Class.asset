@@ -14,13 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerName: Invisibility
   powerIcon: {fileID: -1206386446500177724, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  powerPrefabs:
-  - name: 6
-    superPowerObg: {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
-    color1: {r: 0.115877524, g: 0.15083687, b: 0.7924528, a: 1}
-    color2: {r: 0.07186719, g: 0.8018868, b: 0.78261715, a: 1}
-    color3: {r: 1, g: 1, b: 1, a: 1}
-    isMainPower: 0
-    unlockes: 
-    icon: {fileID: -1206386446500177724, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilitiesInClass:
+  - {fileID: 11400000, guid: 89b8a3716a247904788dc07b41e31704, type: 2}
   isSinglePower: 1

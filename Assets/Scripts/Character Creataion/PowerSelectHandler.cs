@@ -61,7 +61,7 @@ public class PowerSelectHandler : MonoBehaviour
         var abilites = pc.GetAbilities();
 
         foreach (var ability in abilites) {
-            dropdown.options.Add(new Dropdown.OptionData(ability.name.ToString(), ability.icon));
+            dropdown.options.Add(new Dropdown.OptionData(ability.abilityName, ability.icon));
         }
         
         dropdown.RefreshShownValue();

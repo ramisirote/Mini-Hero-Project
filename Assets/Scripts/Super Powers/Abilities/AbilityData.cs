@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is all the static parts of a ability. The name, icon description, game object ece...
+ */
 [CreateAssetMenu(fileName = "NewAbility", menuName = "CharacterPowers/AbilityData", order = 1)]
 [System.Serializable]
 public class AbilityData : ScriptableObject
