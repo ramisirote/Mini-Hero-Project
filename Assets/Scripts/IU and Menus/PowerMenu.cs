@@ -21,8 +21,8 @@ public class PowerMenu : MonoBehaviour
 
     private CharacterStatsData _statsData;
     
-    private PowerAbility[] _powerAbilitiesMain;
-    private PowerAbility _secondaryPowerAbility;
+    private AbilityData[] _powerAbilitiesMain;
+    private AbilityData _secondaryPowerAbility;
     
     void Awake() {
         var playerObj = GameObject.FindWithTag("Player");
@@ -40,7 +40,7 @@ public class PowerMenu : MonoBehaviour
 
         unlockPointsText.text = _statsData.UnlockPoints.ToString();
         
-        _powerAbilitiesMain = _powersInstance.powers.mainPowers.GetAbilites();
+        _powerAbilitiesMain = _powersInstance.powers.mainPowers.GetAbilities();
         _secondaryPowerAbility = _powersInstance.powers.secondaryAbility;
         
         for(int i=0; i<abilityIcons.Length-1 && i<_powerAbilitiesMain.Length ;i++) {
@@ -51,7 +51,7 @@ public class PowerMenu : MonoBehaviour
         SetUpAbility(4, _secondaryPowerAbility);
     }
 
-    private void SetUpAbility(int i, PowerAbility ability) {
+    private void SetUpAbility(int i, AbilityData ability) {
         powerImages[i].enabled = true;
         powerImages[i].sprite = ability.icon;
         if (!_powersInstance.IsAbilityUnlocked(ability)) {
@@ -65,15 +65,15 @@ public class PowerMenu : MonoBehaviour
     }
 
 
-    public void UnlockPowerMain(int powerNum) {
+    public void UnlockPowerMain(int abilityNum) {
         if (!(_statsData.UnlockPoints > 0)) return;
         
         _statsData.UnlockPoints--;
-        if (powerNum < 4) {
-            _powersInstance.AddPowerAbility(_powerAbilitiesMain[powerNum].name, true);
+        if (abilityNum < 4) {
+            _powersInstance.AddPowerAbility(_powerAbilitiesMain[abilityNum].abilityEnum, true);
         }
         else {
-            _powersInstance.AddPowerAbility(_secondaryPowerAbility.name, false);
+            _powersInstance.AddPowerAbility(_secondaryPowerAbility.abilityEnum, false);
         }
         SetUp();
     }

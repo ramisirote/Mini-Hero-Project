@@ -151,7 +151,7 @@ public class AIBase : MonoBehaviour, IManager
     }
 
     public bool IsFlying() {
-        return controller.isFlying();
+        return controller.IsFlying();
     }
 
     /*

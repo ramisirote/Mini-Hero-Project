@@ -64,18 +64,10 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_wasCrouching = false;
 
 	public bool IsGrounded() {
-		if (m_Grounded) {
-			return true;
-		}
-
-		if (_coyoteTime) {
-			return true;
-		}
-
-		return false;
+		return m_Grounded || _coyoteTime;
 	}
 
-	public bool isFlying() {
+	public bool IsFlying() {
 		return _flying;
 	}
 

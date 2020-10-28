@@ -58,7 +58,7 @@ public class PowerSelectHandler : MonoBehaviour
     private void SetUpAbilityDropDown(PowersClass pc, Dropdown dropdown) {
         dropdown.ClearOptions();
 
-        var abilites = pc.GetAbilites();
+        var abilites = pc.GetAbilities();
 
         foreach (var ability in abilites) {
             dropdown.options.Add(new Dropdown.OptionData(ability.name.ToString(), ability.icon));

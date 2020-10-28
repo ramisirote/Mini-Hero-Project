@@ -102,7 +102,7 @@ public class AI_Flyer : AIBase
         Gizmos.color = Color.green;
         
         // controller if not flying only if start wasnt called. This way the values are set before start.
-        if (!controller.isFlying()) {
+        if (!controller.IsFlying()) {
             Vector3 position = transform.position;
 
             _moveEdgeLeftGizmo = position.x - leftPatrolDistance;

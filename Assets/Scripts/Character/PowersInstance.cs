@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
+/*
+ * Power Instance is the mono behaviour that links up the instance of the player and the Character Powers.
+ * This class creates the ability objects and inits the abilities scripts, attaching them to the player.  
+ */
 public class PowersInstance : MonoBehaviour
 {
     public CharacterPowers powers;
@@ -13,7 +17,7 @@ public class PowersInstance : MonoBehaviour
     private int active2 = -1;
     [SerializeField] private PlayerManager manager;
 
-    private List<Ability> powersList = new List<Ability>();
+    private List<Ability> abilitiesList = new List<Ability>();
 
     private void Awake() {
         manager = GetComponent<PlayerManager>();
@@ -21,41 +25,38 @@ public class PowersInstance : MonoBehaviour
         if (!powers.hasAbilities || !manager) return;
         
         powers.Init();
-        active1 = powers.active1;
-        active2 = powers.active2;
+        active1 = powers.activeAbility1;
+        active2 = powers.activeAbility2;
         
         var pos = transform.position;
 
-        foreach (var pow in powers.abilities) {
-            var powObj = Instantiate(pow.abilityGameObg, pos, Quaternion.identity);
-            var superPow = powObj.GetComponent<Ability>();
-            powersList.Add(superPow);
-            superPow.Init(gameObject, pow.color1, pow.color2, pow.color3, pow.unlockes);
+        foreach (var abilityData in powers.abilities) {
+            SetUpAbility(abilityData);
         }
         
-        if(active1 > -1) manager.SetAbility(powersList[active1], 1);
-        if(active2 > -1) manager.SetAbility(powersList[active2], 2);
+        if(active1 > -1) manager.SetAbility(abilitiesList[active1], 1);
+        if(active2 > -1) manager.SetAbility(abilitiesList[active2], 2);
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Q) && active1 > -1) {
-            powersList[active1].SetAbilityOff();
+            abilitiesList[active1].SetAbilityOff();
             
-            active1 = (active1+1)%powersList.Count;
-            if(active1 == active2) active1 = (active1+1)%powersList.Count;
+            active1 = (active1+1)%abilitiesList.Count;
+            if(active1 == active2) active1 = (active1+1)%abilitiesList.Count;
             
             powers.SetAbilityAsActive(active1, 1);
-            manager.SetAbility(powersList[active1], 1);
+            manager.SetAbility(abilitiesList[active1], 1);
         }
         
         if (Input.GetKeyDown(KeyCode.E) && active2 > -1) {
-            powersList[active2].SetAbilityOff();
+            abilitiesList[active2].SetAbilityOff();
             
-            active2 = (active2+1)%powersList.Count;
-            if(active2 == active1) active2 = (active2+1)%powersList.Count;
+            active2 = (active2+1)%abilitiesList.Count;
+            if(active2 == active1) active2 = (active2+1)%abilitiesList.Count;
             
             powers.SetAbilityAsActive(active2, 2);
-            manager.SetAbility(powersList[active2], 2);
+            manager.SetAbility(abilitiesList[active2], 2);
         }
         
         if (Input.GetKeyDown(KeyCode.P)) {
@@ -63,24 +64,28 @@ public class PowersInstance : MonoBehaviour
         }
     }
 
+    private void SetUpAbility(AbilityData abilityData) {
+        var abilityObject = Instantiate(abilityData.abilityGameObject, transform.position, Quaternion.identity);
+        var ability = abilityObject.GetComponent<Ability>();
+        abilitiesList.Add(ability);
+        Color[] abilityColors = powers.GetColorsOfAbility(abilityData);
+        ability.Init(gameObject,abilityColors[0], abilityColors[1], abilityColors[2]);
+    }
 
-    public void AddPowerAbility(PowerAbility.AbilityNames newPowerName, bool fromMainPowers) {
-        var pow = powers.AddAbilityFromClass(newPowerName, fromMainPowers);
-        
-        var powObj = Instantiate(pow.abilityGameObg, transform.position, Quaternion.identity);
-        var superPow = powObj.GetComponent<Ability>();
-        powersList.Add(superPow);
-        
-        superPow.Init(gameObject, pow.color1, pow.color2, pow.color3, pow.unlockes);
 
-        switch (powersList.Count) {
+    public void AddPowerAbility(AbilityData.AbilityEnum newPowerEnum, bool fromMainPowers) {
+        var abilityData = powers.AddAbilityFromClass(newPowerEnum, fromMainPowers);
+        SetUpAbility(abilityData);
+        
+
+        switch (abilitiesList.Count) {
             case 1: 
                 active1 = 0; 
-                manager.SetAbility(powersList[active1], 1);
+                manager.SetAbility(abilitiesList[active1], 1);
                 break;
             case 2: 
                 active2 = 1;
-                manager.SetAbility(powersList[active2], 2); 
+                manager.SetAbility(abilitiesList[active2], 2); 
                 break;
         }
     }
@@ -90,13 +95,13 @@ public class PowersInstance : MonoBehaviour
     }
 
 
-    public bool IsAbilityUnlocked(PowerAbility ability) {
+    public bool IsAbilityUnlocked(AbilityData ability) {
         return powers.IsAbilityUnlocked(ability);
     }
 
     public void ClearPowers() {
         powers.Clear();
-        powersList.Clear();
+        abilitiesList.Clear();
         active1 = -1;
         active2 = -1;
         manager.ClearPowers();

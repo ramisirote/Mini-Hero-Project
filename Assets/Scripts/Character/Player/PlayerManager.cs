@@ -163,7 +163,7 @@ public class PlayerManager : MonoBehaviour, IManager
     }
 
     public bool IsFlying() {
-        return controller.isFlying();
+        return controller.IsFlying();
     }
 
     // the target for the player is the mouse.
@@ -295,7 +295,7 @@ public class PlayerManager : MonoBehaviour, IManager
     // Check if vertical input. if flying, get the raw amount, otherwise, just get bool to jump or nor.
     // Actual moving is done in fixed update.
     private void JumpInput() {
-        if (controller.isFlying()) {
+        if (controller.IsFlying()) {
             _verticalMove = Input.GetAxisRaw("Vertical") * _runSpeed;
         }
         else if (Input.GetButtonDown("Jump")) {
@@ -312,7 +312,7 @@ public class PlayerManager : MonoBehaviour, IManager
             return;
         }
         
-        if (!controller.isFlying()) {
+        if (!controller.IsFlying()) {
             // not flying move
             if (Time.time <= _shouldJumpTime && controller.IsGrounded() && _hasLanded) {
                 // Jumping

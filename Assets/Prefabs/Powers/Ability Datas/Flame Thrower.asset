@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
+  m_Name: Flame Thrower
+  m_EditorClassIdentifier: 
+  abilityName: Flame Thrower
+  abilityEnum: 0
+  icon: {fileID: -7132433922774202216, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 7653137281587227988, guid: 80d3a9eb2b37c524981b88bb3a8fb293, type: 3}
+  powerClassName: Fire Powers
+  description: 'A simple ray-cast line attack that hit enemies at a distance. Part
+    of the Energy Power class. Strengths: Range, low cooldown, easy to use and aim,
+    fast. Weaknesses: Low damage, high energy cost per-damage, short disable.'
+  upgrades:
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 

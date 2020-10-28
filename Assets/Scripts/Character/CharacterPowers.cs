@@ -17,22 +17,24 @@ public class CharacterPowers : ScriptableObject
     public PowersClass mainPowers;
     public PowersClass secondaryPowers;
 
-    [FormerlySerializedAs("superPowers")] public List<PowerAbility> abilities;
+    public List<AbilityData> abilities;
 
-    public int active1 = -1;
-    public int active2 = -1;
+    public int activeAbility1 = -1;
+    public int activeAbility2 = -1;
 
-    [FormerlySerializedAs("hasPowers")] public bool hasAbilities = false;
+    public bool hasAbilities = false;
 
-    public PowerAbility secondaryAbility;
+    public Dictionary<AbilityData.AbilityEnum, UpgradeMask> abilityUpgrades;
+
+    public AbilityData secondaryAbility;
     
     [SerializeField] private Color[] mainColors = new Color[3];
     [SerializeField] private Color[] secColors = new Color[3];
 
     
-    public void SelectAbility(GameObject abilityGameObject, int position) {
+    public void SelectAbility(GameObject abilityObject, int position) {
         if (position >= abilities.Count) return;
-        abilities[position] = new PowerAbility{abilityGameObg = abilityGameObject};
+        abilities[position] = new AbilityData{abilityGameObject = abilityObject};
         hasAbilities = true;
         
         FirstSetUpAbility(position);
@@ -47,14 +49,12 @@ public class CharacterPowers : ScriptableObject
         }
     }
 
-    public PowerAbility AddAbilityFromClass(PowerAbility.AbilityNames abilityName, bool fromMain) {
+    public AbilityData AddAbilityFromClass(AbilityData.AbilityEnum abilityEnum, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
-        var ability = powersClass.GetPowerByName(abilityName);
+        var ability = powersClass.GetPowerByEnum(abilityEnum);
         if (ability == null) return null;
         if (!fromMain) secondaryAbility = ability;
-        
-        SetAbilityColors(ability, fromMain);
         
         abilities.Add(ability);
         
@@ -63,15 +63,13 @@ public class CharacterPowers : ScriptableObject
         return ability;
     }
     
-    public PowerAbility AddAbilityFromClass(int abilityIndex, bool fromMain) {
+    public AbilityData AddAbilityFromClass(int abilityIndex, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
         var ability = powersClass.GetAbilityAt(abilityIndex);
         if (ability == null) return null;
 
         if (!fromMain) secondaryAbility = ability;
-        
-        SetAbilityColors(ability, fromMain);
         
         abilities.Add(ability);
         
@@ -85,10 +83,10 @@ public class CharacterPowers : ScriptableObject
 
         switch (whichActive) {
             case 1:
-                active1 = positionInList;
+                activeAbility1 = positionInList;
                 break;
             case 2: 
-                active2 = positionInList;
+                activeAbility2 = positionInList;
                 break;
         }
     }
@@ -96,53 +94,52 @@ public class CharacterPowers : ScriptableObject
 
     public void Init() {
         if (abilities.Count > 1) {
-            if (active1 == -1) {
-                active1 = active2 == 0 ? 1 : 0;
+            if (activeAbility1 == -1) {
+                activeAbility1 = activeAbility2 == 0 ? 1 : 0;
             }
 
-            if (active2 == -1) {
-                active2 = active1 == 0 ? 1 : 0;
+            if (activeAbility2 == -1) {
+                activeAbility2 = activeAbility1 == 0 ? 1 : 0;
             }
         }
         else if(abilities.Count == 1) {
-            if (active1 == -1) active1 = 0;
+            if (activeAbility1 == -1) activeAbility1 = 0;
         }
         
     }
 
 
     private void FirstSetUpAbility(int pos) {
-        if (active1 == -1) {
-            active1 = pos;
+        if (activeAbility1 == -1) {
+            activeAbility1 = pos;
         }
-        else if(active2 == -1) {
-            active2 = pos;
+        else if(activeAbility2 == -1) {
+            activeAbility2 = pos;
         }
     }
 
-    private void SetAbilityColors(PowerAbility ability, bool isMain) {
-        var colorArray = isMain ? mainColors : secColors;
 
-        ability.color1 = colorArray[0];
-        ability.color2 = colorArray[1];
-        ability.color3 = colorArray[2];
-
+    public AbilityData GetActive(int which) {
+        return which == 1 ? abilities[activeAbility1] : abilities[activeAbility2];
     }
 
-
-    public PowerAbility GetActive(int which) {
-        return which == 1 ? abilities[active1] : abilities[active2];
-    }
-
-    public bool IsAbilityUnlocked(PowerAbility ability) {
+    public bool IsAbilityUnlocked(AbilityData ability) {
         return abilities.Exists(power => power.name == ability.name);
+    }
+
+    public Color[] GetColorsOfAbility(AbilityData ability) {
+        if (ability.abilityEnum == secondaryAbility.abilityEnum) {
+            return secColors;
+        }
+
+        return mainColors;
     }
 
 
     public void Clear() {
         abilities.Clear();
-        active1 = -1;
-        active2 = -1;
+        activeAbility1 = -1;
+        activeAbility2 = -1;
     }
 
 
@@ -155,23 +152,9 @@ public class CharacterPowers : ScriptableObject
     public void SetSubColor(Color c,bool isMain, int sub) {
         if (isMain) {
             mainColors[sub] = c;
-            foreach (var powerAbility in abilities) {
-                if (powerAbility.name != secondaryAbility.name) {
-                    switch (sub) {
-                        case 0: powerAbility.color1 = c; break;
-                        case 1: powerAbility.color2 = c; break;
-                        case 2: powerAbility.color3 = c; break;
-                    }
-                }
-            }
         }
         else {
             secColors[sub] = c;
-            switch (sub) {
-                case 0: secondaryAbility.color1 = c; break;
-                case 1: secondaryAbility.color2 = c; break;
-                case 2: secondaryAbility.color3 = c; break;
-            }
         }
     }
 
@@ -189,25 +172,19 @@ public class CharacterPowers : ScriptableObject
         
         abilities.Clear();
 
-        secondaryAbility = secondaryPowers.GetPowerByName((PowerAbility.AbilityNames) ser.secAbilityNameEnum);
+        secondaryAbility = secondaryPowers.GetPowerByEnum((AbilityData.AbilityEnum) ser.secAbilityNameEnum);
 
         for (int i = 0; i < ser.abilityNamesEnum.Length; i++) {
             if (ser.abilityNamesEnum[i] != ser.secAbilityNameEnum) {
-                abilities.Add(mainPowers.GetPowerByName((PowerAbility.AbilityNames)ser.abilityNamesEnum[i]));
+                abilities.Add(mainPowers.GetPowerByEnum((AbilityData.AbilityEnum)ser.abilityNamesEnum[i]));
             }
             else {
                 abilities.Add(secondaryAbility);
             }
-
-            abilities[i].unlockes = ser.abilityUpgrades[i];
         }
 
-        foreach (var ability in abilities) {
-            SetAbilityColors(ability, ability.name!=secondaryAbility.name);
-        }
-
-        active1 = ser.active1;
-        active2 = ser.active2;
+        activeAbility1 = ser.active1;
+        activeAbility2 = ser.active2;
     }
 
     /*
@@ -220,7 +197,7 @@ public class CharacterPowers : ScriptableObject
         public string secPowerName;
 
         public int[] abilityNamesEnum;
-        public bool[][] abilityUpgrades;
+        // public bool[][] abilityUpgrades;
         
         public int secAbilityNameEnum;
 
@@ -235,19 +212,19 @@ public class CharacterPowers : ScriptableObject
             secPowerName = other.secondaryPowers.GetName();
             
             abilityNamesEnum = new int[other.abilities.Count];
-            abilityUpgrades = new bool[other.abilities.Count][];
+            // abilityUpgrades = new bool[other.abilities.Count][];
             for (int i = 0; i < other.abilities.Count; i++) {
-                abilityNamesEnum[i] = (int)other.abilities[i].name;
-                abilityUpgrades[i] = other.abilities[i].unlockes;
+                abilityNamesEnum[i] = (int)other.abilities[i].abilityEnum;
+                // abilityUpgrades[i] = other.abilities[i].unlockes;
             }
 
-            secAbilityNameEnum = (int)other.secondaryAbility.name;
+            secAbilityNameEnum = (int)other.secondaryAbility.abilityEnum;
 
             mainColors = Utils.ColorsArrayToFloatArray(other.mainColors);
             secondColors = Utils.ColorsArrayToFloatArray(other.secColors);
 
-            active1 = other.active1;
-            active2 = other.active2;
+            active1 = other.activeAbility1;
+            active2 = other.activeAbility2;
         }
     }
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
+  m_Name: Energy Beam
+  m_EditorClassIdentifier: 
+  abilityName: Energy Beam
+  abilityEnum: 9
+  icon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 6627867777535622825, guid: b1cd9f9491695e44b980ad0f44b17592, type: 3}
+  powerClassName: Energy Powers
+  description: 'A simple ray-cast line attack that hit enemies at a distance. Part
+    of the Energy Power class. Strengths: Range, low cooldown, easy to use and aim,
+    fast. Weaknesses: Low damage, high energy cost per-damage, short disable.'
+  upgrades:
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
