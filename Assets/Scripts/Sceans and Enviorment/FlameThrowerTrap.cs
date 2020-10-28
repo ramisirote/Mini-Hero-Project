@@ -9,6 +9,7 @@ public class FlameThrowerTrap : MonoBehaviour
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private ParticleSystemRenderer particleSystemRenderer;
     [SerializeField] private Material material;
+    [SerializeField] private float DelayOn;
     [SerializeField] private float fireTurnOnTime;
     [SerializeField] private float fireOnTime;
     [SerializeField] private float fireOffTime;
@@ -34,6 +35,7 @@ public class FlameThrowerTrap : MonoBehaviour
     }
 
     private IEnumerator Cycle() {
+        yield return new WaitForSeconds(DelayOn);
         while (true) {
             particleSystem.Play();
             yield return new WaitForSeconds(fireTurnOnTime);

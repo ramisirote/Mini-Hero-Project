@@ -653,7 +653,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420618597366512145, guid: a0fb89e584f07624d89c0782163a5e88, type: 3}
-      propertyPath: stats
+      propertyPath: characterStats
       value: 
       objectReference: {fileID: 1021237653}
     m_RemovedComponents: []
@@ -2911,7 +2911,7 @@ PrefabInstance:
       objectReference: {fileID: 607398340}
     - target: {fileID: 4048655245941046848, guid: 5470daf5f95118a47bf2fb24a45b1068, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.105972
+      value: -8.1059265
       objectReference: {fileID: 0}
     - target: {fileID: 4048655245941046848, guid: 5470daf5f95118a47bf2fb24a45b1068, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36677,6 +36677,14 @@ PrefabInstance:
       propertyPath: characterStats.<Health>k__BackingField
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1667639059875832841, guid: 5cdb08b1caa0b8e44a20eedf19453bc0, type: 3}
+      propertyPath: characterStatsData.<MaxHealth>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667639059875832841, guid: 5cdb08b1caa0b8e44a20eedf19453bc0, type: 3}
+      propertyPath: characterStatsData.<Health>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5921303277786144376, guid: 5cdb08b1caa0b8e44a20eedf19453bc0, type: 3}
       propertyPath: m_Name
       value: Robot Blaster Variant
@@ -37901,7 +37909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5647851063858033851, guid: 0a5d97e381857d2468c34e8118755f0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8837457
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5647851063858033851, guid: 0a5d97e381857d2468c34e8118755f0a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -39031,7 +39039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682703136511595919, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.32
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 2682703136511595919, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_LocalPosition.z
