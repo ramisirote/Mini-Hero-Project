@@ -2,8 +2,9 @@
 Mini-Hero Game
 Make your own mini superhero!  They’re mini in stature, but stacked with powers!
 First, you choose the appearance (costume, colors, gender, etc). Then, you pick primary and secondary powers, and unlock abilities within those powers. For example, if you choose energy powers as you primary, you unlock abilities from a list of energy-based powers, such as a beam that hits enemies from afar, a burst that hits all the enemies near you, and more.
-Once you have made your character, you explore levels, defeat enemies and collect xp to gain unlock-points, which can be used to unlock new abilities and upgrade current ones. 
+Once you have made your character, you explore levels, defeat enemies and collect xp to gain unlock-points, which can be used to unlock new abilities and upgrade current ones.
 Version 1.0 has only 4 levels and 4 enemy types, but I have plans to add more soon!
+
 Project Design:
 This game was developed using Unity, and its basic structure is that of a regular Unity project. The C# assets are found in Mini-Hero-Project/Assets/Scripts.
 Some examples of how thing are handled: 
