@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 200
+  abilityCooldown: 0
   energyRequired: 33
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  audioSource: {fileID: 0}
+  onTime: 3
   attackSpeed: 3
   runSpeedMult: 3.5
   timeSlow: 0.81

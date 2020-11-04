@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: PlayerPowers
   m_EditorClassIdentifier: 
   powersLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
-  mainPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
-  secondaryPowers: {fileID: 11400000, guid: 9816808f5b964994d9802bdf411650e9, type: 2}
+  mainPowers: {fileID: 11400000, guid: fabac1b14b20e1e4c9ac6a28b94c1d5f, type: 2}
+  secondaryPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
   abilities:
-  - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
-  - {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
-  - {fileID: 11400000, guid: a835299b902279445936319813b20a19, type: 2}
-  activeAbility1: 0
-  activeAbility2: 1
+  - {fileID: 11400000, guid: 9a21b503fec110447a1c380b58f5a53a, type: 2}
+  - {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
+  - {fileID: 11400000, guid: 6c435d5015b7c11429a9ab48ae50aa1e, type: 2}
+  activeAbility1: 1
+  activeAbility2: 0
   hasAbilities: 1
-  secondaryAbility: {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
+  secondaryAbility: {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
   mainColors:
-  - {r: 0.83921576, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.44072777, b: 0, a: 1}
-  - {r: 0.9622642, g: 0.9438026, b: 0.05900679, a: 1}
+  - {r: 0.115877524, g: 0.15083687, b: 0.7924528, a: 1}
+  - {r: 0.07186719, g: 0.8018868, b: 0.78261715, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   secColors:
-  - {r: 0.83921576, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0.3160377, b: 0.8693335, a: 1}
+  - {r: 0.11764707, g: 0.14901961, b: 0.79215693, a: 1}
+  - {r: 0.07058824, g: 0.8000001, b: 0.7843138, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

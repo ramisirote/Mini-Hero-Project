@@ -38,7 +38,7 @@ public abstract class AttackManagerBase: MonoBehaviour
     // Do the attack if attack cooldown is done. Resetting the timer.
     public virtual void Attack() {
         if (Time.time > timeCanNextAttack) {
-            timeCanNextAttack = Time.time + cooldown;
+            timeCanNextAttack = Time.time + cooldown/_attackSpeed;
             AttackStart();
         }
     }

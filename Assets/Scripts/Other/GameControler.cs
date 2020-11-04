@@ -107,13 +107,14 @@ public class GameControler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
-
         if (Time.time > _nextTimeCanScreenshot && Input.GetKeyDown(KeyCode.LeftShift)) {
-            while (File.Exists("Sceenshot" + _screenshotFileSaveNum) && _screenshotFileSaveNum<10) {
-                _screenshotFileSaveNum++;
-            }
-            ScreenCapture.CaptureScreenshot("Screenshot"+_screenshotFileSaveNum);
-            _nextTimeCanScreenshot = Time.time + 5f;
+            ScreenCapture.CaptureScreenshot("Screenshots\\Screenshot_"+_screenshotFileSaveNum+".png");
+            _screenshotFileSaveNum++;
+            _nextTimeCanScreenshot = Time.time + 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L) && Input.GetKeyDown(KeyCode.V)) {
+            _characterStatsData.AddXp(100);
         }
     }
 

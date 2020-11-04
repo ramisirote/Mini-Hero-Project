@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
-  m_Name: SpeedDash
+  m_Name: Speed Dash
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityEnum: 0
-  icon: {fileID: 0}
-  abilityGameObject: {fileID: 0}
-  powerClassName: 
+  abilityName: Speed Dash
+  abilityEnum: 10
+  icon: {fileID: -2444672830243479490, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 6706058779998514126, guid: f0e1fc20c174fc24fba46c1723b4d3fa, type: 3}
+  powerClassName: Super Speed
   description: 
   upgrades:
   - upgradeName: 

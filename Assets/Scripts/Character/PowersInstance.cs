@@ -39,7 +39,7 @@ public class PowersInstance : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Q) && active1 > -1) {
+        if (Input.GetKeyDown(KeyCode.E) && active1 > -1) {
             abilitiesList[active1].SetAbilityOff();
             
             active1 = (active1+1)%abilitiesList.Count;
@@ -49,7 +49,7 @@ public class PowersInstance : MonoBehaviour
             manager.SetAbility(abilitiesList[active1], 1);
         }
         
-        if (Input.GetKeyDown(KeyCode.E) && active2 > -1) {
+        if (Input.GetKeyDown(KeyCode.Q) && active2 > -1) {
             abilitiesList[active2].SetAbilityOff();
             
             active2 = (active2+1)%abilitiesList.Count;

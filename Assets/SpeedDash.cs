@@ -30,7 +30,7 @@ public class SpeedDash : Ability
     }
 
     public override void UseAbility(Vector3 direction) {
-        if (AbilityOn || !Controller.IsGrounded()) { return; }
+        if (AbilityOn) { return; }
 
         AbilityOn = true;
         Manager.DisableManager();

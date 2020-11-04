@@ -25,7 +25,7 @@ public class PlayerAttack : AttackManagerBase
                 _animator.SetTrigger(AnimRefarences.Punch01); break;
             case 1:
                 _animator.SetTrigger(AnimRefarences.Punch02);
-                timeCanNextAttack = Time.time + secondaryCooldown;
+                timeCanNextAttack = Time.time + secondaryCooldown/_attackSpeed;
                 break;
         }
 

@@ -9,7 +9,8 @@ using UnityEngine;
  */
 public class SuperSpeed : Ability
 {
-    
+
+    [SerializeField] private float onTime;
     [SerializeField] private float attackSpeed;
     [SerializeField] private float runSpeedMult;
     [SerializeField][Range(0.1f, 1)] private float timeSlow;
@@ -18,6 +19,7 @@ public class SuperSpeed : Ability
     private TrailRenderer speedTrail;
     private TrailRenderer _handLTrail;
     private TrailRenderer _handRTrail;
+    private float _turnOffTime;
 
     private GameObject trail;
 
@@ -86,7 +88,7 @@ public class SuperSpeed : Ability
 
     private void Update() {
         // Check if the power is done. revert to normal settings
-        if (AbilityOn && Time.time >= NextCanUse) {
+        if (AbilityOn && Time.time >= _turnOffTime) {
             SetAbilityOff();
         }
     }
@@ -102,6 +104,7 @@ public class SuperSpeed : Ability
             speedTrail.enabled = true;
             _handLTrail.enabled = true;
             _handRTrail.enabled = true;
+            _turnOffTime = Time.time + onTime;
             
             AbilityOnInvoke();
         }
