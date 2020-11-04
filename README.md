@@ -7,6 +7,7 @@ First, you choose the appearance (costume, colors, gender, etc). Then, you pick 
 Once you have made your character, you explore levels, defeat enemies and collect xp to gain unlock-points, which can be used to unlock new abilities and upgrade current ones. 
 
 Version 1.0 has only 4 levels and 4 enemy types, but I have plans to add more soon!
+
 Look at screenshots from the game here: https://github.com/ramisirote/Mini-Hero-Project/tree/main/Screenshots
 
 Project Design:
