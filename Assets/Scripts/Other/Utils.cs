@@ -73,4 +73,8 @@ public class Utils
 
         return colors;
     }
+
+    public static bool IsObjectInLayerMask(GameObject obj, LayerMask layerMask) {
+        return layerMask == (layerMask | (1 << obj.layer));
+    }
 }

@@ -5,21 +5,22 @@
  */
 public class AI_Blaster : AIBase
 {
-    
+
     protected override void PlayerDetectedLogic() {
         if (IsPlayerInAttackRange()) {
             if(Time.time >= _nextCanAttack && _random.NextDouble() < 0.2){
-                _nextCanAttack = Time.time + Time.deltaTime / characterStats.GetCharacterStats().AttackRate;
+                _nextCanAttack = Time.time + 1 / characterStats.GetCharacterStats().AttackRate;
                 DoAttack();
             }
         }
-        else if(PlayerInBlastRang()) {
+        else if(PlayerInBlastRang() && CanUseAbility()) {
             var direction = playerCollider.transform.position - transform.position;
             UseAbility(direction);
         }
         else {
-            MoveToPlayer();
+            MaintainDistanceFromPlayer();
         }
+        
     }
 
     private bool PlayerInBlastRang() {
@@ -31,7 +32,7 @@ public class AI_Blaster : AIBase
     }
 
     protected override void UseAbility(Vector3 direction) {
-        if (ability && ability.CanUseAbilityAgain() && !_actionDisabled) {
+        if (CanUseAbility()) {
             ability.UseAbility(direction);
         }
     }

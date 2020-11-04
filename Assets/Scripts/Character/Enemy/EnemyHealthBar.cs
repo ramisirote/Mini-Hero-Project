@@ -22,7 +22,7 @@ public class EnemyHealthBar : MonoBehaviour
         if (baseCharacter.transform.localScale.x <= 0 && transformLocalScale.x <= 0) {
             transformLocalScale.x *= -1;
         }
-
+        
         transform.localScale = transformLocalScale;
 
         if (characterStats.IsDead()) {

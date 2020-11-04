@@ -33,7 +33,7 @@ public class SuperStrangthAttack : AttackManagerBase
     protected override void AttackStart() {
         _animator.SetTrigger(AnimRefarences.Punch03);
         _controller.StopHorizontal();
-        manager.FacePowerTarget();
+        manager.FaceTarget();
     }
     
     /*

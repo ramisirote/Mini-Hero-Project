@@ -11,7 +11,7 @@ Version 1.0 has only 4 levels and 4 enemy types, but I have plans to add more so
 
 Project Design:
 
-This game was developed using Unity, and its basic structure is that of a regular Unity project. The C# assets are found in Mini-Hero-Project/Assets/Scripts.
+This game was developed using Unity, and its basic structure is that of a regular Unity project. The C# assets are found in https://github.com/ramisirote/Mini-Hero-Project/tree/main/Assets/Scripts.
 Some examples of how thing are handled:
  
 Each Character (player or enemy AI character) has a Manager that manages its inputs and translates them to game actions. For the player it’s physical game control inputs, for AI it’s logic inputs based on what the AI thinks it should do at that moment. 

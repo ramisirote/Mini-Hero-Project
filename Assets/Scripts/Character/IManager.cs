@@ -59,7 +59,7 @@ public interface IManager
      Vector3 GetDirectionToTarget();
 
      // Face the target. If there is not target, do nothing.
-     void FacePowerTarget();
+     void FaceTarget();
 
      // Get a trigger from the animator that a basic attack is triggered to do the hit.
      void AttackAnimationTrigger();

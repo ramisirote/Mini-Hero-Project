@@ -50,7 +50,8 @@ public class AI_ChargeBolt : AIBase
             }
             else {
                 ability.UpdateDirection(GetDirectionToTarget());
-                FacePowerTarget();
+                MaintainDistanceFromPlayer();
+                // FacePlayerTarget();
             }
         }
         // If you can attack the player, just attack him, otherwise start charging the ability.
@@ -64,7 +65,7 @@ public class AI_ChargeBolt : AIBase
                     UseAbility(GetDirectionToTarget());
                 }
                 else {
-                    MoveToPlayer();
+                    MaintainDistanceFromPlayer();
                 }
             }
         }

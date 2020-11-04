@@ -25,6 +25,8 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 
     private IManager _manager;
 
+    private bool _playAnimation = true;
+
     private void Start() {
         _manager = GetComponent<IManager>();
     }
@@ -46,7 +48,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         if (characterStats.IsDead()) {
             Die();
         }
-        else {
+        else if(_playAnimation){
             animator.SetTrigger(AnimRefarences.Hit);
             _manager.DisableManager();
         }
@@ -70,7 +72,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         if (characterStats.IsDead()) {
             Die();
         }
-        else {
+        else if(_playAnimation){
             animator.SetTrigger(AnimRefarences.Hit);
             _manager.DisableManager();
         }
@@ -115,6 +117,10 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 
     public bool IsDotTicking() {
         return _dotTicks >= 1;
+    }
+
+    public void SetPlayAnimatoin(bool shouldPlay) {
+        _playAnimation = shouldPlay;
     }
 
     IEnumerator HitRecolor() {

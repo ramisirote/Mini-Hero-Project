@@ -25,6 +25,8 @@ public class AIBase : MonoBehaviour, IManager
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected float detectRadius;
     [SerializeField] protected float attackDetectRadius;
+    [SerializeField] protected float maintainDistance;
+    [SerializeField] protected float maintainErrorRange;
     [SerializeField] protected float minMoveToDistance;
     [SerializeField] protected Ability ability;
     [SerializeField] protected int xpWorth;
@@ -172,7 +174,7 @@ public class AIBase : MonoBehaviour, IManager
         // DetectPlayer sets the playerCollider if found.
         DetectPlayer();
         
-        if (Time.time > forgetPlayerTime && playerCollider) {
+        if (Time.time > forgetPlayerTime && playerCollider!=null) {
             playerCollider = null;
         }
         
@@ -198,7 +200,7 @@ public class AIBase : MonoBehaviour, IManager
             }
         }
         else {
-            MoveToPlayer();
+            MaintainDistanceFromPlayer();
         }
     }
 
@@ -209,13 +211,20 @@ public class AIBase : MonoBehaviour, IManager
         ability.UseAbilityStart(direction);
     }
 
+    protected virtual bool CanUseAbility() {
+        return (ability && ability.CanUseAbilityAgain() && !_actionDisabled);
+    }
+
     /* Find the player using an overlap circle.
      * If this is a new discovery play detect player sound.
      * Also, set the timer to forget the player.
      */
     protected void DetectPlayer() {
         bool wasKnown = playerCollider;
-        var size = Physics2D.OverlapCircleNonAlloc(frontCheck.position, detectRadius, PlayerColliderNoneAlloc, playerLayer);
+        
+        PlayerColliderNoneAlloc[0] = null;
+        Physics2D.OverlapCircleNonAlloc(frontCheck.position, detectRadius, PlayerColliderNoneAlloc, playerLayer);
+        
         if (PlayerColliderNoneAlloc[0]) {
             playerCollider = PlayerColliderNoneAlloc[0];
             forgetPlayerTime = Time.time + timeToForgetPlayer;
@@ -230,11 +239,42 @@ public class AIBase : MonoBehaviour, IManager
         Vector2 checkPosition = transform.position;
         Vector2 closestPointToPlayer = playerCollider.bounds.ClosestPoint(checkPosition);
         float distanceFromPlayer = Vector2.Distance(closestPointToPlayer, checkPosition);
-        if (distanceFromPlayer <= attackDetectRadius && distanceFromPlayer >= minMoveToDistance) {
-            return (transform.position.x-closestPointToPlayer.x)*controller.GetFacingMult() < 0;
+        if (distanceFromPlayer <= attackDetectRadius) {
+            FaceTarget();
+            return true;
         }
 
         return false;
+    }
+
+    protected virtual void MaintainDistanceFromPlayer(float distance) {
+        if(_moveDisabled || playerCollider==null) return;
+        bool stopWalking = false;
+
+        var position = transform.position;
+        var playerPosition = playerCollider.transform.position;
+        if (position.x > playerPosition.x + distance + maintainErrorRange ||
+            (position.x < playerPosition.x && position.x > playerPosition.x - distance + maintainErrorRange)) {
+            _walkDirectionMult = -1;
+        }
+        else if (position.x < playerPosition.x - distance - maintainErrorRange ||
+            (position.x > playerPosition.x && position.x < playerPosition.x + distance - maintainErrorRange)) {
+            _walkDirectionMult = 1;
+        }
+        else {
+            FaceTarget();
+            stopWalking = true;
+        }
+
+        _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+        // at this point, horizontal speed is 0 (see beginning of update)
+        if (AtEdge() || AtWall() || stopWalking) {
+            _horizontalSpeed = 0;
+        }
+    }
+
+    protected virtual void MaintainDistanceFromPlayer() {
+        MaintainDistanceFromPlayer(maintainDistance);
     }
 
     // Move to the player
@@ -254,8 +294,9 @@ public class AIBase : MonoBehaviour, IManager
         }
 
         // at this point, horizontal speed is 0 (see beginning of update)
-        if (!AtEdge() && !AtWall()) {
-            _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+        _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+        if (AtEdge() || AtWall()) {
+            _horizontalSpeed = 0;
         }
     }
 
@@ -346,14 +387,20 @@ public class AIBase : MonoBehaviour, IManager
     void OnDrawGizmosSelected() {
         if (punch == null) return;
 
+        var position = transform.position;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackDetectRadius);
+        Gizmos.DrawWireSphere(position, attackDetectRadius);
         
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, minMoveToDistance);
+        Gizmos.DrawWireSphere(position, minMoveToDistance);
         
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, detectRadius);
+        Gizmos.DrawWireSphere(position, detectRadius);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(position, maintainDistance + maintainErrorRange);
+        Gizmos.DrawWireSphere(position, maintainDistance - maintainErrorRange);
         
         Gizmos.color = Color.yellow;
         var frontCheckPosition = frontCheck.position + Vector3.right*controller.GetFacingMult()*0.2f;
@@ -369,7 +416,7 @@ public class AIBase : MonoBehaviour, IManager
         canFlip = true;
     }
 
-    public void FacePowerTarget() {
+    public void FaceTarget() {
         if(!playerCollider) return;
 
         if (controller.GetFacingMult() > 0) {

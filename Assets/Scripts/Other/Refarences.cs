@@ -53,6 +53,7 @@ public class AnimRefarences
     public static string IsFireingContinues = "IsFireingContinues";
     public static string WalkReverse = "WalkReverse";
     public static string Burst = "Burst";
+    public static string Dash = "Dash";
 
 
     public static void ResetAnimatorBools(Animator anim) {

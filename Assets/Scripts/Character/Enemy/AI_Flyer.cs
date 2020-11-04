@@ -12,6 +12,7 @@ using Random = System.Random;
  */
 public class AI_Flyer : AIBase
 {
+    [SerializeField] private float verticalMaintainDistance;
     [SerializeField] private float leftPatrolDistance;
     [SerializeField] private float rightPatrolDistance;
     
@@ -46,6 +47,46 @@ public class AI_Flyer : AIBase
         }
         else {
             _verticalSpeed = 0f;
+        }
+    }
+    
+    protected override void MaintainDistanceFromPlayer() {
+        if(_moveDisabled || playerCollider==null) return;
+        bool stopHorizontal = false;
+
+        // Maintain vertical distance
+        var position = transform.position;
+        var playerPosition = playerCollider.transform.position;
+        if (position.y > playerPosition.y + verticalMaintainDistance + maintainErrorRange ||
+            (position.y < playerPosition.y && position.y > playerPosition.y - verticalMaintainDistance + maintainErrorRange)) {
+            _verticalSpeed = -1 * _walkingSpeed;
+        }
+        else if (position.y < playerPosition.y - verticalMaintainDistance - maintainErrorRange ||
+                 (position.y > playerPosition.y && position.y < playerPosition.y + verticalMaintainDistance - maintainErrorRange)) {
+            _verticalSpeed = _walkingSpeed;
+        }
+        else {
+            _verticalSpeed = 0;
+        }
+        
+        // Maintain horizontal distance
+        if (position.x > playerPosition.x + maintainDistance + maintainErrorRange ||
+            (position.x < playerPosition.x && position.x > playerPosition.x - maintainDistance + maintainErrorRange)) {
+            _walkDirectionMult = -1;
+        }
+        else if (position.x < playerPosition.x - maintainDistance - maintainErrorRange ||
+                 (position.x > playerPosition.x && position.x < playerPosition.x + maintainDistance - maintainErrorRange)) {
+            _walkDirectionMult = 1;
+        }
+        else {
+            FaceTarget();
+            stopHorizontal = true;
+        }
+
+        _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+        // at this point, horizontal speed is 0 (see beginning of update)
+        if (AtWall() || stopHorizontal) {
+            _horizontalSpeed = 0;
         }
     }
 
@@ -101,13 +142,31 @@ public class AI_Flyer : AIBase
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.green;
         
+        Vector3 position = transform.position;
+        
         // controller if not flying only if start wasnt called. This way the values are set before start.
         if (!controller.IsFlying()) {
-            Vector3 position = transform.position;
 
             _moveEdgeLeftGizmo = position.x - leftPatrolDistance;
             _moveEdgeRightGizmo = position.x + rightPatrolDistance;
         }
+        
+        if (punch == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(position, attackDetectRadius);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(position, minMoveToDistance);
+        
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(position, detectRadius);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(position, maintainDistance + maintainErrorRange);
+        Gizmos.DrawWireSphere(position, maintainDistance - maintainErrorRange);
+        
+        Gizmos.color = Color.yellow;
         
         
         Gizmos.DrawLine(new Vector3(_moveEdgeLeftGizmo, transform.position.y,0),

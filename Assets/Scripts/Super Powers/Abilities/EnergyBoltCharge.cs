@@ -62,7 +62,7 @@ public class EnergyBoltCharge : Ability
     
     private void SetUpParticleSystem() {
         var col = chargeParticle.colorOverLifetime;
-        col.color = Utils.CreateGradient(new []{_color1, _color2, _color3},new []{0.5f, 0.8f});
+        col.color = Utils.CreateGradient(new []{_color1, _color2, _color3},new []{0f, 0.5f,0.8f});
     }
     
     
@@ -82,6 +82,7 @@ public class EnergyBoltCharge : Ability
     public override void UseAbility(Vector3 direction) {
         if (!AbilityOn && CharacterStats.UseEnergy(energyRequired)) {
             Manager.DisableActions();
+            Manager.DisableFlip();
             AbilityOn = true;
             _animator.SetBool(AnimRefarences.IsFireingContinues, true);    
             chargeParticle.Play();
@@ -145,7 +146,7 @@ public class EnergyBoltCharge : Ability
         if(!AbilityOn) return;
         
         float angle;
-        Manager.FacePowerTarget();
+        Manager.FaceTarget();
         angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90 )* -Controller.GetFacingMult();
 
         

@@ -162,8 +162,7 @@ public class EnergyBlast : Ability
         }
         energyLine.enabled = true;
         StartCoroutine(MakeLineInvisibleFor(lineVisibleFor));
-        // _turnLineInvisibleTime = Time.time + Time.deltaTime * lineVisibleFor;
-        NextCanUse = Time.time + abilityCooldown * Time.deltaTime;
+        NextCanUse = Time.time + abilityCooldown;
         
         _startPowEffect.Play();
     }
@@ -199,8 +198,8 @@ public class EnergyBlast : Ability
 
     public override void UseAbility(Vector3 vectorToTarget) {
         if (!AbilityOn && CharacterStats.UseEnergy(energyRequired)) {
+            Manager.FaceTarget();
             Manager.DisableFlip();
-            Manager.FacePowerTarget();
             Controller.StopHorizontal();
             _direction = vectorToTarget;
             

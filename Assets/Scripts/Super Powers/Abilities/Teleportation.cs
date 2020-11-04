@@ -31,7 +31,7 @@ public class Teleportation : Ability
         AbilityOnInvoke();
         audioSource.Play();
         
-        Manager.FacePowerTarget();
+        Manager.FaceTarget();
 
         parentCharacter.transform.position += GetSafeTargetTeleportation(direction);
         

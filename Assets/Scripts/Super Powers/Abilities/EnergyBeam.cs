@@ -160,7 +160,7 @@ public class EnergyBeam : Ability
     
     public override void UpdateDirection(Vector3 direction) {
         float angle;
-        Manager.FacePowerTarget();
+        Manager.FaceTarget();
         angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90 )* -Controller.GetFacingMult();
 
         // var transformLocalRotation = transform.localRotation;

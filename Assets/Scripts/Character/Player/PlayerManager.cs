@@ -238,7 +238,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     
     // Flip the player to face the mouse
-    public void FacePowerTarget() {
+    public void FaceTarget() {
         var mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         if (controller.GetFacingMult() > 0) {
             if (mousePos.x < transform.position.x) {

@@ -26,7 +26,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   detectRadius: 5
-  attackDetectRadius: 0
+  attackDetectRadius: 0.3
+  maintainDistance: 7.9
+  maintainErrorRange: 0.7
   minMoveToDistance: 0.5
   ability: {fileID: 7021240690699212367}
   xpWorth: 13

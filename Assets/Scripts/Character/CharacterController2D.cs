@@ -263,13 +263,9 @@ public class CharacterController2D : MonoBehaviour
 
 		if (canTurn==true) {
 			// If the input is moving the player right and the player is facing left...
-			if (horizontalMove > 0 && !m_FacingRight)
-			{
-				Flip();
-			}
-			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (horizontalMove < 0 && m_FacingRight)
-			{
+			if (canTurn 
+			    && (horizontalMove > 0 && !m_FacingRight) 
+			    || (horizontalMove < 0 && m_FacingRight)) {
 				Flip();
 			}
 		}
@@ -290,16 +286,10 @@ public class CharacterController2D : MonoBehaviour
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || _coyoteTime || m_AirControl) {
-			if (canTurn) {
-				if (move > 0 && !m_FacingRight) {
-					// ... flip the player.
-					Flip();
-				}
-				// Otherwise if the input is moving the player left and the player is facing right...
-				else if (move < 0 && m_FacingRight) {
-					// ... flip the player.
-					Flip();
-				}
+			if (canTurn 
+				&& (move > 0 && !m_FacingRight) 
+				|| (move < 0 && m_FacingRight)) {
+				Flip();
 			}
 			
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);

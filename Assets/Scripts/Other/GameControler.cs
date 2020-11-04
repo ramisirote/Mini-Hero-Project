@@ -24,6 +24,10 @@ public class GameControler : MonoBehaviour
 
     private static bool _setUp = false;
 
+
+    private int _screenshotFileSaveNum = 0;
+    private float _nextTimeCanScreenshot;
+
     private void Awake() {
         if (_gameControler == null) {
             DontDestroyOnLoad(gameObject);
@@ -102,6 +106,14 @@ public class GameControler : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Backspace)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+
+        if (Time.time > _nextTimeCanScreenshot && Input.GetKeyDown(KeyCode.LeftShift)) {
+            while (File.Exists("Sceenshot" + _screenshotFileSaveNum) && _screenshotFileSaveNum<10) {
+                _screenshotFileSaveNum++;
+            }
+            ScreenCapture.CaptureScreenshot("Screenshot"+_screenshotFileSaveNum);
+            _nextTimeCanScreenshot = Time.time + 5f;
         }
     }
 

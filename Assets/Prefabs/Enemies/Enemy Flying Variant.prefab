@@ -26,13 +26,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   detectRadius: 3
-  attackDetectRadius: 0
+  attackDetectRadius: 0.9
+  maintainDistance: 0.8
+  maintainErrorRange: 0.2
   minMoveToDistance: 0.3
   ability: {fileID: 0}
   xpWorth: 0
   characterStats: {fileID: 4869357374628970037}
   startWalkingDirectionRight: 0
   timeToForgetPlayer: 3
+  verticalMaintainDistance: 0
   leftPatrolDistance: 5
   rightPatrolDistance: 5
 --- !u!1001 &2567504680763658700

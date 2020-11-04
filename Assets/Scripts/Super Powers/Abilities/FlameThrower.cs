@@ -104,7 +104,7 @@ public class FlameThrower : Ability
         if (_bodyAngler && _arm) {
             _bodyAngler.RotatePart(_arm, Mathf.Atan2(direction.y, direction.x)*Mathf.Rad2Deg + 90f);
         }
-        Manager.FacePowerTarget();
+        Manager.FaceTarget();
         
         _animator.SetBool(AnimRefarences.IsFireingContinues, true);
         Manager.DisableActions();
@@ -221,7 +221,7 @@ public class FlameThrower : Ability
 
     public override void UpdateDirection(Vector3 direction) {
         float angle;
-        Manager.FacePowerTarget();
+        Manager.FaceTarget();
         angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90 )* -Controller.GetFacingMult();
         
         
