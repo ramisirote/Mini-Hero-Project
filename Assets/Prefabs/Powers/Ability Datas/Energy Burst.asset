@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
   m_Name: Energy Burst
   m_EditorClassIdentifier: 
-  abilityName: Energy Blast
-  abilityEnum: 1
-  icon: {fileID: -3752968103342854351, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  abilityGameObject: {fileID: 1614017693320500932, guid: 5039080a2de7d50428d230a6de82db18, type: 3}
+  abilityName: Energy Burst
+  abilityEnum: 7
+  icon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 3288564294537034966, guid: 342eca419ea01ed448bee97aea7852af, type: 3}
   powerClassName: Energy Powers
-  description: 'A simple ray-cast line attack that hit enemies at a distance. Part
-    of the Energy Power class. Strengths: Range, low cooldown, easy to use and aim,
-    fast. Weaknesses: Low damage, high energy cost per-damage, short disable.'
+  description: 
   upgrades:
   - upgradeName: 
     upgradeDescription: 

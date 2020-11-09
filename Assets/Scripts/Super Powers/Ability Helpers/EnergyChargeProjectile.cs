@@ -15,10 +15,13 @@ public class EnergyChargeProjectile : MonoBehaviour
     [SerializeField] private ParticleSystem explodeParticals;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private float baseRadius;
+    [SerializeField] private float maxRadius;
 
     private LayerMask _stopLayers;
     private float _maxCharges;
     private float _damagePerCharge;
+    private bool _isPlayer;
 
     private Color _c1, _c2, _c3;
 
@@ -27,9 +30,11 @@ public class EnergyChargeProjectile : MonoBehaviour
     private float _charges = 0;
 
     private float scalePerCharge;
+    private float hitRadiusPerCharge;
 
     private bool _wasReleased = false;
-    private float startTrailWidth;
+    private float _startTrailWidth;
+    private bool _detonated;
     
 
     public void Releace(Vector2 direction, float speed) {
@@ -38,20 +43,22 @@ public class EnergyChargeProjectile : MonoBehaviour
         _wasReleased = true;
     }
 
-    public void SetUp(float maxCharges, LayerMask stopLayers, float damage, Color c1, Color c2, Color c3) {
+    public void SetUp(float maxCharges, LayerMask stopLayers, float damage, Color c1, Color c2, Color c3, bool isPlayer) {
         _maxCharges = maxCharges;
         _stopLayers = stopLayers;
         _damagePerCharge = damage;
+        _isPlayer = isPlayer;
         
         var startingScale = transform.localScale.x;
         scalePerCharge = (maxScale - startingScale) / _maxCharges;
+        hitRadiusPerCharge = (maxRadius - baseRadius) / _maxCharges;
 
         _c1 = c1;
         _c2 = c2;
         _c3 = c3;
 
         trailRenderer.colorGradient = Utils.CreateGradient(new[] {c1, c2, c3}, new[] {0.8f, 0.2f});
-        startTrailWidth = trailRenderer.startWidth;
+        _startTrailWidth = trailRenderer.startWidth;
         
         SetUpColor();
     }
@@ -79,29 +86,56 @@ public class EnergyChargeProjectile : MonoBehaviour
         scale.y += scalePerCharge*addAmount;
         
         
-        trailRenderer.startWidth = startTrailWidth*scale.x;
+        trailRenderer.startWidth = _startTrailWidth*scale.x;
         
         transform.localScale = scale;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (!_wasReleased) return;
-        // if other has tag that is an emeny
-        if (_stopLayers==(_stopLayers | (1 << other.gameObject.layer))) {
-            var damager = other.gameObject.GetComponent<TakeDamage>();
-            if (damager) {
+        // if other has tag that is an enemy
+        if (Utils.IsObjectInLayerMask(other.gameObject, _stopLayers) && !_detonated) {
+            _detonated = true;
+            Detonate();
+        }
+    }
+
+    private void Detonate() {
+        var hitsDetected = 
+            Physics2D.OverlapCircleAll(transform.position, baseRadius + _charges*hitRadiusPerCharge, _stopLayers);
+        foreach (var hit in hitsDetected) {
+            var damager = hit.gameObject.GetComponent<ITakeDamage>();
+            if (damager != null) {
                 int hitFacing = flyDirection.x > 0 ? 1 : -1;
                 damager.Damage(_damagePerCharge*_charges, hitFacing);
             }
-            
-            
-            var p = Instantiate(explodeParticals);
-            p.transform.position = transform.position;
-            var mainModule = p.main;
-            mainModule.startColor = _c1;
-            p.Play();
-            
-            Destroy(gameObject);
         }
+
+        var p = Instantiate(explodeParticals);
+        p.transform.localScale *= Math.Max(0.2f,_charges/_maxCharges);
+        p.transform.position = transform.position;
+        var mainModule = p.main;
+        mainModule.startColor = _c1;
+        p.Clear();
+        p.Play();
+        
+        if(_isPlayer) CinemachineShake.Instance.ShakeCamera(2*GetChargeNormalized());
+        
+        Destroy(gameObject);
+    }
+
+    public float GetChargeNormalized() {
+        return _charges / _maxCharges;
+    }
+    
+    void OnDrawGizmosSelected(){
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, baseRadius);
+        
+        Gizmos.color = new Color(_charges/_maxCharges, 0, 0);
+        Gizmos.DrawWireSphere(transform.position, baseRadius + _charges*hitRadiusPerCharge);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxRadius);
     }
 }

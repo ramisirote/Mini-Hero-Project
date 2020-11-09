@@ -9,11 +9,16 @@ public class CharacterStats : MonoBehaviour
 {
     [FormerlySerializedAs("characterStats")] [SerializeField] private CharacterStatsData characterStatsData;
     private int _level;
+    private bool _disableEnergyRecharge;
 
     private void Start() {
         if (characterStatsData == null) {
             characterStatsData = new CharacterStatsData();
         }
+    }
+
+    public void DisableEnergyRecharge(bool disable) {
+        _disableEnergyRecharge = disable;
     }
 
     public void SetCharacterStats(CharacterStatsData characterStatsDataOther) {
@@ -22,7 +27,9 @@ public class CharacterStats : MonoBehaviour
 
     private void Update() {
         characterStatsData.RegenerateHealth(Time.deltaTime);
-        characterStatsData.RegenerateEnergy(Time.deltaTime);
+        if (!_disableEnergyRecharge) {
+            characterStatsData.RegenerateEnergy(Time.deltaTime);
+        }
     }
 
     public bool IsDead() {

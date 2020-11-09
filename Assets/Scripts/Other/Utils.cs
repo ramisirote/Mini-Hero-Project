@@ -77,4 +77,12 @@ public class Utils
     public static bool IsObjectInLayerMask(GameObject obj, LayerMask layerMask) {
         return layerMask == (layerMask | (1 << obj.layer));
     }
+
+
+    public static void SetUpSpriteRenderedShaderColors(SpriteRenderer sr, Color[] colors) {
+        var material = sr.material;
+        for (var i = 0; i < 3 && i < colors.Length; i++) {
+            material.SetColor("_Color" + (i + 1), colors[i]);
+        }
+    }
 }

@@ -12,12 +12,15 @@ public class SuperStrangthAttack : AttackManagerBase
     private float direction;
     private IManager manager;
     private GameObject thrower;
+    private float _cameraShake;
+    private bool _isPlayer;
     
     /*
      * This Attack Manager is set up by the super strength ability, not from the inspector
      */
     public void Init(Animator newAnimator, CharacterController2D newController, CharacterStats newCharacterStats,
-                        IManager manager,float newCooldown, GameObject newThrower, float newDamageMult) {
+                        IManager manager,float newCooldown, GameObject newThrower, float newDamageMult,
+                        float cameraShake,bool isPlayer) {
         _animator = newAnimator;
         _controller = newController;
         characterStats = newCharacterStats;
@@ -25,6 +28,8 @@ public class SuperStrangthAttack : AttackManagerBase
         cooldown = newCooldown;
         thrower = newThrower;
         damageMult = newDamageMult;
+        _isPlayer = isPlayer;
+        _cameraShake = cameraShake;
     }
 
     /*
@@ -45,6 +50,7 @@ public class SuperStrangthAttack : AttackManagerBase
         var hit = Physics2D.OverlapCircle(punch.position, hitRadius, enemyLayer);
         if (hit) {
             hit.GetComponent<TakeDamage>().Damage(characterStats.GetCharacterStats().PunchDamage * damageMult, Vector2.zero);
+            if(_isPlayer) CinemachineShake.Instance.ShakeCamera(_cameraShake);
             
             if (!hit.GetComponent<CharacterStats>().IsDead()) { // is the hit target is dead, dont push it
                 // The thrower handles the push and damage parts of the super strength hit, as well as

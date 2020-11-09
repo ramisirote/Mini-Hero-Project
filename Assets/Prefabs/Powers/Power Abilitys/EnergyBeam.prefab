@@ -1361,8 +1361,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1480,7 +1480,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -417117072856043440, guid: 09cb240eeac57f345a8a4f20586186ca, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4766,7 +4766,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 71da275f808a01c47af80acfd15430dc, type: 2}
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4859,12 +4859,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 0
+  abilityCooldown: 0
   energyRequired: 0
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: 5549668560740660759, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 0}
   damage: 7
   chargingParticles: {fileID: 2738053042572702634}
@@ -4875,6 +4875,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1536
+  cameraShake: 0.5
 --- !u!120 &8702542206472248794
 LineRenderer:
   m_ObjectHideFlags: 0

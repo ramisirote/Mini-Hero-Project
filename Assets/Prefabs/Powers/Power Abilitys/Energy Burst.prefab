@@ -4918,12 +4918,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 0
+  abilityCooldown: 0
   energyRequired: 0
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 0}
   damage: 15
   knockBack: 1000
@@ -4933,6 +4933,7 @@ MonoBehaviour:
   layersToHit:
     serializedVersion: 2
     m_Bits: 1024
+  cameraShake: 5
 --- !u!198 &5552097164592649793
 ParticleSystem:
   m_ObjectHideFlags: 0

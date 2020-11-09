@@ -113,9 +113,21 @@ public class GameControler : MonoBehaviour
             _nextTimeCanScreenshot = Time.time + 1f;
         }
 
-        if (Input.GetKeyDown(KeyCode.L) && Input.GetKeyDown(KeyCode.V)) {
+        if (Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.V)
+            || Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.L)) {
             _characterStatsData.AddXp(100);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            if (Time.timeScale == 0) {
+                Time.timeScale = 1;
+            }
+            else {
+                Time.timeScale = 0;
+            }
+        }
+        
+        
     }
 
     public void EnemyDeathAddXpToPlayer(object sender, EventArgs e) {

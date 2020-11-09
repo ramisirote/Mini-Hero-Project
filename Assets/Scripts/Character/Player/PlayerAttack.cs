@@ -11,6 +11,7 @@ public class PlayerAttack : AttackManagerBase
 {
     [SerializeField] private float resetStateTimeLength;
     [SerializeField] private float secondaryCooldown;
+    [SerializeField] private float cameraShake;
     private float _animationState = 0;
 
     private float resetStateTime;
@@ -43,6 +44,7 @@ public class PlayerAttack : AttackManagerBase
         }
         if (hits.Length > 0) {
             _controller.StopHorizontal();
+            if(gameObject.CompareTag("Player")) CinemachineShake.Instance.ShakeCamera();
         }
         
         resetStateTime = Time.time + resetStateTimeLength;

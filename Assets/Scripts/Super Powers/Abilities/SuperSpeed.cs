@@ -16,9 +16,11 @@ public class SuperSpeed : Ability
     [SerializeField][Range(0.1f, 1)] private float timeSlow;
     private float originalSpeed;
     private float originalAttackSpeed;
+    private EffectPoints _effectPoints;
     private TrailRenderer speedTrail;
     private TrailRenderer _handLTrail;
     private TrailRenderer _handRTrail;
+    private Transform _chestPoint;
     private float _turnOffTime;
 
     private GameObject trail;
@@ -47,18 +49,24 @@ public class SuperSpeed : Ability
     }
 
     private void InitHandTrails() {
-        var armLEffectPoint = parentCharacter.GetComponent<EffectPoints>().GetPointObject(Refarences.EBodyParts.ArmL);
+        _effectPoints = parentCharacter.GetComponent<EffectPoints>();
+        
+        var armLEffectPoint = _effectPoints.GetPointObject(Refarences.EBodyParts.ArmL);
         _handLTrail = armLEffectPoint.GetComponent<TrailRenderer>();
         if (!_handLTrail) {
             _handLTrail = armLEffectPoint.AddComponent<TrailRenderer>();
         }
         
-        var armREffectPoint = parentCharacter.GetComponent<EffectPoints>().GetPointObject(Refarences.EBodyParts.ArmR);
+        var armREffectPoint = _effectPoints.GetPointObject(Refarences.EBodyParts.ArmR);
         _handRTrail = armREffectPoint.GetComponent<TrailRenderer>();
         if (!_handRTrail) {
             _handRTrail = armREffectPoint.AddComponent<TrailRenderer>();
         }
-        
+
+        _chestPoint = _effectPoints.GetPointTransform(Refarences.EBodyParts.Chest);
+        transform.parent = _chestPoint;
+        transform.position = _chestPoint.position;
+
         _handRTrail.materials = speedTrail.materials;
         _handLTrail.materials = speedTrail.materials;
 

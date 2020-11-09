@@ -42,6 +42,7 @@ public class SpeedDash : Ability
         _stopDashingTime = Time.time + dashTime;
         
         _animator.SetBool(AnimRefarences.Dash, true);
+        if(IsPlayer) CinemachineShake.Instance.ShakeCamera(10, 0.05f);
         
         NextCanUse = Time.time + abilityCooldown;
         

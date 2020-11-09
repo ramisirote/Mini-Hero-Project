@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 25
-  energyRequired: 10
+  abilityCooldown: 0
+  energyRequired: 1
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: -4929241301462443967, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: -4929241301462443967, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 0}
   damagePerCharge: 9
   chargeParticle: {fileID: 3552919036651096067}

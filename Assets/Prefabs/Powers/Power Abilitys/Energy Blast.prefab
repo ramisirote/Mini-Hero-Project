@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1614017693320500933}
   - component: {fileID: 6657092705314105146}
   m_Layer: 0
-  m_Name: EnergyProjection
+  m_Name: Energy Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 0
+  abilityCooldown: 10
   energyRequired: 0
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: -3752968103342854351, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: -3752968103342854351, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 6657092705314105146}
   energyLine: {fileID: 1614017693320500933}
   lineVisibleFor: 0.2

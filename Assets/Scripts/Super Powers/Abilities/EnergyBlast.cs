@@ -133,24 +133,33 @@ public class EnergyBlast : Ability
     private void ActivateBlast() {
         powerActive = true;
         Controller.StopHorizontal();
+        Manager.FaceTarget();
         if (!_bodyAngler && _arm) {
             _arm.eulerAngles = new Vector3(0,0,45*Controller.GetFacingMult());
         }
         
         energyLine.enabled = true;
         energyLine.SetPosition(0, transform.position);
+        
         if(audioSource) audioSource.Play();
-        int facingDirectionMult = 1;
-        if (parentCharacter.transform.localScale.x > 0) {
-            facingDirectionMult = -1;
-        }
+        if(parentCharacter.CompareTag("Player")) CinemachineShake.Instance.ShakeCamera();
 
+        BlastHit();
+        
+        energyLine.enabled = true;
+        StartCoroutine(MakeLineInvisibleFor(lineVisibleFor));
+        NextCanUse = Time.time + abilityCooldown;
+        
+        _startPowEffect.Play();
+    }
+
+    private void BlastHit() {
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, _direction, 100, enemyLayer);
         if (rayHit.collider) {
             energyLine.SetPosition(1, rayHit.point);
             TakeDamage enemyHit = rayHit.collider.GetComponent<TakeDamage>();
             if (enemyHit) {
-                enemyHit.Damage(damage, facingDirectionMult);
+                enemyHit.Damage(damage, Controller.GetFacingMult());
             }
 
             _endPowEffect.transform.position = rayHit.point;
@@ -160,11 +169,6 @@ public class EnergyBlast : Ability
             Vector2 endTarget = transform.position + parentCharacter.transform.right * 100f;
             energyLine.SetPosition(1, endTarget);
         }
-        energyLine.enabled = true;
-        StartCoroutine(MakeLineInvisibleFor(lineVisibleFor));
-        NextCanUse = Time.time + abilityCooldown;
-        
-        _startPowEffect.Play();
     }
 
     IEnumerator MakeLineInvisibleFor(float seconds) {
@@ -198,8 +202,10 @@ public class EnergyBlast : Ability
 
     public override void UseAbility(Vector3 vectorToTarget) {
         if (!AbilityOn && CharacterStats.UseEnergy(energyRequired)) {
-            Manager.FaceTarget();
+            
             Manager.DisableFlip();
+            Manager.FaceTarget();
+            
             Controller.StopHorizontal();
             _direction = vectorToTarget;
             

@@ -9,7 +9,8 @@ public class PowerIconsManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] powerIcons;
     [SerializeField] private UI_Overlay _uiOverlay;
-    
+    [SerializeField] private Slider[] cooldownSliders;
+
     private Image[] _powerIconsImage;
     private Animator[] _powerIconsAnimators;
 
@@ -64,6 +65,7 @@ public class PowerIconsManager : MonoBehaviour
             powerToIcon.Remove(_managerAbilities[i]);
             _managerAbilities[i].AbilityOnEvent -= OnAbilityOnEvent;
             _managerAbilities[i].AbilityOffEvent -= OnAbilityOffEvent;
+            cooldownSliders[i].value = 0f;
         }
         
         // Reget the active powers
@@ -85,9 +87,21 @@ public class PowerIconsManager : MonoBehaviour
         if(_powerIconsAnimators[i]) _powerIconsAnimators[i].SetBool("On", true);
     }
     
-    private void OnAbilityOffEvent(object sender, EventArgs e) {
+    private void OnAbilityOffEvent(object sender, float cooldown) {
         int i = powerToIcon[(Ability) sender];
         if(_powerIconsAnimators[i]) _powerIconsAnimators[i].SetBool("On", false);
+        StartCoroutine(Cooldown(cooldownSliders[i], cooldown));
+    }
+
+    IEnumerator Cooldown(Slider slider, float cooldown) {
+        if (cooldown <= 0) yield break;
+        
+        float cooldownDone = Time.time + cooldown;
+        slider.value = 1;
+        while (slider.value > 0f) {
+            slider.value = Math.Max(0, (cooldownDone - Time.time)/cooldown);
+            yield return true;
+        }
     }
 
     private void ClearIcons() {

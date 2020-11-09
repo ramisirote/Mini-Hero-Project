@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  powerCooldown: 0
+  abilityCooldown: 0
   energyRequired: 0
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
-  powerIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 0}
   damageMult: 2
   sizeMult: 1.2
@@ -58,6 +58,7 @@ MonoBehaviour:
   thrower: {fileID: 6416785329247545306, guid: 6d9e7d9609a3cf344b82e7a500085783, type: 3}
   strengthAttack: {fileID: -4396563306339706799}
   attackCooldown: 0.2
+  cameraShake: 5
 --- !u!114 &-4396563306339706799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,5 +80,5 @@ MonoBehaviour:
   pushForce: {x: 0, y: 0}
   cooldown: 0
   _animator: {fileID: 0}
-  _stats: {fileID: 0}
+  characterStats: {fileID: 0}
   _controller: {fileID: 0}

@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -2942423210981212740
     second: ChargeBall
+  - first:
+      213: -417117072856043440
+    second: simple_white_glow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -244,7 +247,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,6 +255,27 @@ TextureImporter:
       bones: []
       spriteID: cbdb992eda96a27d0800000000000000
       internalID: -2942423210981212740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: simple_white_glow
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 69
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0503aa27b3a163af0800000000000000
+      internalID: -417117072856043440
       vertices: []
       indices: 
       edges: []

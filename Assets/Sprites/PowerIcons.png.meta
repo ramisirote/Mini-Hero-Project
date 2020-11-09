@@ -35,6 +35,12 @@ TextureImporter:
   - first:
       213: -3752968103342854351
     second: PowerIcons_Blast
+  - first:
+      213: 4536963938692999483
+    second: PowerIcons_Dash
+  - first:
+      213: -4690957340573238928
+    second: PowerIcons_TornadoRun
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -348,6 +354,48 @@ TextureImporter:
       bones: []
       spriteID: 13fa0e2e467caebc0800000000000000
       internalID: -3752968103342854351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerIcons_Dash
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 87
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39ad841aa886fe30800000000000000
+      internalID: 4536963938692999483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerIcons_TornadoRun
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 11
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079fe9a072f56eeb0800000000000000
+      internalID: -4690957340573238928
       vertices: []
       indices: 
       edges: []

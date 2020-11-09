@@ -48,6 +48,10 @@ public class EnergyBoltCharge : Ability
 
         if (AbilityOn && _chargeProjectile) {
             _chargeProjectile.AddCharge(chargePerSecond * Time.deltaTime);
+            if (IsPlayer) {
+                CinemachineShake.Instance.ShakeCamera(1.5f*_chargeProjectile.GetChargeNormalized());
+            }
+
         }
         
         // // move to arm position
@@ -99,7 +103,8 @@ public class EnergyBoltCharge : Ability
         _curentChaging = Instantiate(projectile, transform);
         _curentChaging.transform.position = effectPointTransform.position;
         _chargeProjectile = _curentChaging.GetComponent<EnergyChargeProjectile>();
-        _chargeProjectile.SetUp(maxCharge, enemyLayers, damagePerCharge, _color1, _color2, _color3);
+        _chargeProjectile.SetUp(maxCharge, enemyLayers, damagePerCharge, _color1, _color2, _color3,
+            IsPlayer);
     }
     
     public override void UseAbilityRelease(Vector3 direction) {

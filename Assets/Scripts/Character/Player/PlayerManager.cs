@@ -75,6 +75,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     public void SetRunSpeed(float speed) {
         _runSpeed = speed;
+        animator.SetFloat(AnimRefarences.SpeedMult, speed/characterStats.GetCharacterStats().MoveSpeed);
     }
 
     public void SetAttackSpeed(float newSpeed) {

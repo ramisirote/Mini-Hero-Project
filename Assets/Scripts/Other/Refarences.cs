@@ -54,6 +54,9 @@ public class AnimRefarences
     public static string WalkReverse = "WalkReverse";
     public static string Burst = "Burst";
     public static string Dash = "Dash";
+    public static string Smash = "Smash";
+    public static string TornadoRun = "TornadoRun";
+    public static string SpeedMult = "SpeedMult";
 
 
     public static void ResetAnimatorBools(Animator anim) {

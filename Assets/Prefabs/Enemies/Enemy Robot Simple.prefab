@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7286271099382546578}
   m_Layer: 10
-  m_Name: Punch Point
+  m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   characterStats: {fileID: 6931872555705970681}
   controller2D: {fileID: 5432537355353751961}
   pushBackForce: 300
-  hitInvonerableTime: 0.3
+  hitInvonerableTime: 0.2
   animator: {fileID: 2682703136511595927}
   soundManager: {fileID: 381063581410409141}
 --- !u!210 &3634640761261301152
@@ -764,6 +764,7 @@ MonoBehaviour:
   _controller: {fileID: 5432537355353751961}
   resetStateTimeLength: 0
   secondaryCooldown: 0.3
+  cameraShake: 0
 --- !u!1 &2682703136515261232
 GameObject:
   m_ObjectHideFlags: 0

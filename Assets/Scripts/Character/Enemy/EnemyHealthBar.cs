@@ -13,7 +13,7 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private GameObject healthBarCanves;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         var transformLocalScale = transform.localScale;
         if (baseCharacter.transform.localScale.x >= 0 && transformLocalScale.x >= 0) {

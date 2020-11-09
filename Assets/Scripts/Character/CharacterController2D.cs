@@ -263,10 +263,10 @@ public class CharacterController2D : MonoBehaviour
 
 		if (canTurn==true) {
 			// If the input is moving the player right and the player is facing left...
-			if (canTurn 
-			    && (horizontalMove > 0 && !m_FacingRight) 
-			    || (horizontalMove < 0 && m_FacingRight)) {
-				Flip();
+			if (canTurn){
+				if (horizontalMove > 0 && !m_FacingRight || horizontalMove < 0 && m_FacingRight) {
+					Flip();
+				}
 			}
 		}
 		m_Rigidbody2D.AddForce(new Vector2(horizontalMove, verticalMove));
@@ -286,10 +286,10 @@ public class CharacterController2D : MonoBehaviour
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || _coyoteTime || m_AirControl) {
-			if (canTurn 
-				&& (move > 0 && !m_FacingRight) 
-				|| (move < 0 && m_FacingRight)) {
-				Flip();
+			if (canTurn){
+				if (move > 0 && !m_FacingRight || move < 0 && m_FacingRight) {
+					Flip();
+				}
 			}
 			
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);

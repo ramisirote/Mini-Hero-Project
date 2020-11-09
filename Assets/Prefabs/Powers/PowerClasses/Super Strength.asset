@@ -16,4 +16,5 @@ MonoBehaviour:
   powerIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   abilitiesInClass:
   - {fileID: 11400000, guid: c8102e6f62d56034798e333352db6534, type: 2}
-  isSinglePower: 1
+  - {fileID: 11400000, guid: 6087afa6305b006478ac275546d1d3f6, type: 2}
+  isSinglePower: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
+  m_Name: Tornado Run
+  m_EditorClassIdentifier: 
+  abilityName: Tornado Run
+  abilityEnum: 0
+  icon: {fileID: -4690957340573238928, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 4556485749308130964, guid: 9204d807d9a7ff34f83eb4fefc4b2629, type: 3}
+  powerClassName: Super Speed
+  description: 
+  upgrades:
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 

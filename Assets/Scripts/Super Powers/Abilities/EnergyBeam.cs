@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 /*
@@ -18,6 +19,7 @@ public class EnergyBeam : Ability
     [SerializeField] private float OnForTime;
     [SerializeField] private float chargeTime;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float cameraShake;
 
     private Animator _animator;
     private Coroutine _coroutine;
@@ -97,6 +99,7 @@ public class EnergyBeam : Ability
             var position = effectPointTransform.position;
             chargingParticles.transform.position = position;
             HandleLineHit();
+            if (parentCharacter.CompareTag("Player")) CinemachineShake.Instance.ShakeCamera(cameraShake);
         }
     }
 

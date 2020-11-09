@@ -19,6 +19,7 @@ public class EnergyBurst : Ability
     [SerializeField] private ParticleSystem blastParticle;
     [SerializeField] private ParticleSystem chargeParticle;
     [SerializeField] private LayerMask layersToHit;
+    [SerializeField] private float cameraShake;
     
     protected override void AdditionalInit() {
         _animator = parentCharacter.GetComponent<Animator>();
@@ -98,6 +99,7 @@ public class EnergyBurst : Ability
         blastParticle.Play();
         
         if(audioSource) audioSource.Play();
+        if(IsPlayer) CinemachineShake.Instance.ShakeCamera(cameraShake, 0.5f);
         
         BlastHit();
         

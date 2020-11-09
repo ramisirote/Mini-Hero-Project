@@ -41,6 +41,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 
         characterStats.GetCharacterStats()?.ChangeHpBy(-1*damage);
         StartCoroutine(HitRecolor());
+        if(gameObject.CompareTag("Player")) CinemachineShake.Instance.ShakeCamera();
         soundManager.PlayAudio(SoundManager.SoundClips.TakeDamage);
         
         OnDamage?.Invoke(this, damage);

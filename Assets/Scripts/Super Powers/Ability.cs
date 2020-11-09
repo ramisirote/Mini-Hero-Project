@@ -12,7 +12,7 @@ public abstract class Ability: MonoBehaviour
 {
     public event EventHandler AbilitySetupEvent;
     public event EventHandler AbilityOnEvent;
-    public event EventHandler AbilityOffEvent;
+    public event EventHandler<float> AbilityOffEvent;
     
     [SerializeField] protected GameObject parentCharacter = null;
     [SerializeField] protected float abilityCooldown;
@@ -32,6 +32,7 @@ public abstract class Ability: MonoBehaviour
     protected IManager Manager;
     protected CharacterController2D Controller;
     protected CharacterStats CharacterStats;
+    protected bool IsPlayer;
 
     protected bool[] unlocks = new bool[4];
 
@@ -59,6 +60,7 @@ public abstract class Ability: MonoBehaviour
         
         if (parentCharacter) return;
         parentCharacter = parent;
+        IsPlayer = parent.CompareTag("Player");
         
         Manager = parentCharacter.GetComponent<PlayerManager>();
         
@@ -148,7 +150,7 @@ public abstract class Ability: MonoBehaviour
     
     // Event that the ability turned off
     protected void AbilityOffInvoke() {
-        AbilityOffEvent?.Invoke(this, EventArgs.Empty);
+        AbilityOffEvent?.Invoke(this, NextCanUse-Time.time);
     }
     
     // Event when the ability is first set up

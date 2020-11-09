@@ -105,6 +105,8 @@ MonoBehaviour:
   explodeParticals: {fileID: 5880306402473360922, guid: fcb93b18a9c44544d959a5b575e5b89c, type: 3}
   spriteRenderer: {fileID: 3271351537886094499}
   trailRenderer: {fileID: 7415627503550109181}
+  baseRadius: 0.1
+  maxRadius: 0.5
 --- !u!198 &7785841719870352951
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4979,7 +4981,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.0036414266}
   serializedVersion: 2
-  m_Radius: 0.09
+  m_Radius: 0.001
 --- !u!96 &7415627503550109181
 TrailRenderer:
   serializedVersion: 2
