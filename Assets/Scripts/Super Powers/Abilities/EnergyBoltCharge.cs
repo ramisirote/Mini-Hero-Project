@@ -42,6 +42,7 @@ public class EnergyBoltCharge : Ability
         SetUpParticleSystem();
         SetUpArmAngler();
         _animator = parentCharacter.GetComponent<Animator>();
+        
     }
     
     private void Update() {
@@ -144,7 +145,14 @@ public class EnergyBoltCharge : Ability
     }
 
     public override void SetAbilityOff() {
-        SetPowerOff(Manager.GetDirectionToTarget());
+        CancelCharge();
+        SetPowerOff(Vector3.zero);
+    }
+
+    private void CancelCharge() {
+        Destroy(_curentChaging);
+        _curentChaging = null;
+        _chargeProjectile = null;
     }
     
     public override void UpdateDirection(Vector3 direction) {

@@ -142,6 +142,7 @@ public class AIBase : MonoBehaviour, IManager
     public void SetAttackSpeed(float newAttackSpeed) {
         _attackSpeed = newAttackSpeed;
         animator.SetFloat(AnimRefarences.AttackSpeed, newAttackSpeed);
+        attackManager.SetAttackSpeed(newAttackSpeed);
     }
     
     public float GetAttackSpeed() {
@@ -185,7 +186,13 @@ public class AIBase : MonoBehaviour, IManager
             MoveSelf();
         }
 
+        AdditionalUpdateLogic();
+
         animator.SetFloat(AnimRefarences.Speed,Math.Abs(_horizontalSpeed));
+    }
+
+    protected virtual void AdditionalUpdateLogic() {
+        return;
     }
 
     /*

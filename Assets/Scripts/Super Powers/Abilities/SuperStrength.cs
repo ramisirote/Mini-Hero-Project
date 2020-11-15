@@ -14,6 +14,14 @@ public class SuperStrength : Ability
     [SerializeField] private SuperStrangthAttack strengthAttack;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float cameraShake;
+    
+    [Header("Thrower Properties")] 
+    [SerializeField] private float throwerDamage;
+    [SerializeField] private float flyTime;
+    [SerializeField] private float flyForce;
+    [SerializeField] private LayerMask enemyLayer;
+    
+    
     private EffectPoints _effectPoints;
     private Transform torso;
     private Transform head;
@@ -29,6 +37,7 @@ public class SuperStrength : Ability
         _attackDefault = parentCharacter.GetComponent<AttackManagerBase>();
         strengthAttack.Init(parentCharacter.GetComponent<Animator>(), Controller, CharacterStats,
                             Manager, attackCooldown, thrower, damageMult, cameraShake, IsPlayer);
+        strengthAttack.InitThrower(enemyLayer, throwerDamage, flyTime, flyForce);
     }
 
     public override void UseAbility(Vector3 direction) {

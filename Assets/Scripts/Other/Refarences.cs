@@ -57,6 +57,8 @@ public class AnimRefarences
     public static string Smash = "Smash";
     public static string TornadoRun = "TornadoRun";
     public static string SpeedMult = "SpeedMult";
+    public static string BullRun = "BullRun";
+    public static string FlurryPunches = "FlurryPunches";
 
 
     public static void ResetAnimatorBools(Animator anim) {

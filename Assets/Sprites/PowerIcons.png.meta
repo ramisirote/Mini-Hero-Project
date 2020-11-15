@@ -41,6 +41,12 @@ TextureImporter:
   - first:
       213: -4690957340573238928
     second: PowerIcons_TornadoRun
+  - first:
+      213: -405982779749024810
+    second: PowerIcons_BullRun
+  - first:
+      213: -2703109551042691996
+    second: PowerIcons_FlurryPunches
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -388,7 +394,7 @@ TextureImporter:
         width: 33
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -396,6 +402,48 @@ TextureImporter:
       bones: []
       spriteID: 079fe9a072f56eeb0800000000000000
       internalID: -4690957340573238928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerIcons_BullRun
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 52
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db322410d8ad5af0800000000000000
+      internalID: -405982779749024810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerIcons_FlurryPunches
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 25
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c722d5f20ac7ad0800000000000000
+      internalID: -2703109551042691996
       vertices: []
       indices: 
       edges: []

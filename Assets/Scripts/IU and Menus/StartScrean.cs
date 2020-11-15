@@ -15,7 +15,6 @@ public class StartScrean : MonoBehaviour
     void Start()
     {
         string path = Application.persistentDataPath + "/SavedGame.sav";
-        Debug.Log(path);
         if (!File.Exists(path)) {
             loadButton.SetActive(false);
         }

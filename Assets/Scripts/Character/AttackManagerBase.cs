@@ -21,7 +21,7 @@ public abstract class AttackManagerBase: MonoBehaviour
     [FormerlySerializedAs("_stats")] [SerializeField] protected CharacterStats characterStats;
     [SerializeField] protected CharacterController2D _controller;
 
-    protected float _attackSpeed;
+    protected float _attackSpeed = 1;
     
     protected float timeCanNextAttack;
 

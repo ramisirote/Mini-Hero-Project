@@ -59,6 +59,12 @@ MonoBehaviour:
   strengthAttack: {fileID: -4396563306339706799}
   attackCooldown: 0.2
   cameraShake: 5
+  throwerDamage: 15
+  flyTime: 1
+  flyForce: 2000
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &-4396563306339706799
 MonoBehaviour:
   m_ObjectHideFlags: 0

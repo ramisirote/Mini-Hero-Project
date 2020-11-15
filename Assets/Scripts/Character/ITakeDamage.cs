@@ -4,9 +4,9 @@ using UnityEngine;
 
 public interface ITakeDamage
 { 
-    void Damage(float damage, int pushDirectionMult, float pushForceUp = 70f, float pushForceSide = 70f);
+    void Damage(float damage, int pushDirectionMult, float pushForceUp = 70f, float pushForceSide = 70f, bool ignoreInvonerable = false);
 
-    void Damage(float damage, Vector2 push);
+    void Damage(float damage, Vector2 push, bool ignoreInvonerable = false);
 
     void DamageOverTime(float damage, float ticks);
 

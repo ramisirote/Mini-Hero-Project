@@ -9,30 +9,47 @@ using UnityEngine;
  */
 public class StrengthThrower : MonoBehaviour
 {
+    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float flyTime;
     [SerializeField] private float throwForce;
     [SerializeField] private float damage;
+
     private GameObject parent;
     private IManager parentManager;
     private float doneTime;
     private Rigidbody2D rb;
-    private Vector3 m_Velocity = Vector3.zero;
+    private Vector3 _velocity = Vector3.zero;
+    private CharacterStats _stats;
 
-    private bool pushed = false;
+    private bool pushed;
 
-    [HideInInspector] public Vector2 direction;
+    private Vector2 _direction;
+
     
-    private void Awake() {
+    public void Init(LayerMask oEnemyLayer, float oDamage, float oFlytime, float oThrowForce, Vector2 oDirection) {
+        enemyLayer = oEnemyLayer;
+        damage = oDamage;
+        flyTime = oFlytime;
+        throwForce = oThrowForce;
+        _direction = oDirection;
+        
         parent = transform.parent.gameObject;
         parentManager = parent.GetComponent<IManager>();
         parentManager.DisableManager();
-        doneTime = Time.time + flyTime * Time.deltaTime;
+        doneTime = Time.time + flyTime;
+        pushed = false;
         rb = parent.GetComponent<Rigidbody2D>();
+        _stats = parent.GetComponent<CharacterStats>();
     }
 
     private void Update() {
         if (Time.time > doneTime) {
-            parentManager.EnableManager();
+            if (_stats.IsDead()) {
+                rb.velocity = Vector2.zero;
+            }
+            else {
+                parentManager.EnableManager();
+            }
             Destroy(gameObject);
         }
         else {
@@ -43,18 +60,18 @@ public class StrengthThrower : MonoBehaviour
     private void FixedUpdate() {
         if (!pushed) {
             pushed = true;
-            rb.AddForce(throwForce*direction/direction.magnitude);
+            rb.AddForce(throwForce*_direction/_direction.magnitude);
         }
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
         var g = other.gameObject;
         int facing;
-        facing = direction.x > 0 ? 1 : 0;
+        facing = _direction.x > 0 ? 1 : 0;
         
         // The tag should be changed in the inspector so that in can work on players too.
         // Or not. Could be interesting if enemies could friendly fire with this?
-        if (g != parent && g.CompareTag("Enemy")) {
+        if (g != parent && g.CompareTag(parent.tag)) {
             g.GetComponent<TakeDamage>().Damage(damage, facing);
         }
     }

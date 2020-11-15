@@ -21,7 +21,7 @@ MonoBehaviour:
   controller: {fileID: 6363451803515084398}
   animator: {fileID: 3895994144579570272}
   punch: {fileID: 8517910772458135397}
-  attackManager: {fileID: 8322463865478392746}
+  attackManager: {fileID: 8888683707875839482}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -36,6 +36,7 @@ MonoBehaviour:
   startWalkingDirectionRight: 0
   timeToForgetPlayer: 3
   chargeTime: 2.5
+  maxChargeTime: 3.5
   timeBetweenCharges: 1
 --- !u!1001 &824858099218458589
 PrefabInstance:
@@ -439,15 +440,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df41106ba3cba4049b93912130ad84e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8322463865478392746 stripped
+--- !u!114 &8888683707875839482 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6941435197039473757, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7525876710949949965, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
   m_PrefabInstance: {fileID: 1381402504879890423}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3895994144579570303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2d37da67fbb514386037cbb2c6512e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7928d5458018288448f6aa4d5c112395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3895994143973538332 stripped

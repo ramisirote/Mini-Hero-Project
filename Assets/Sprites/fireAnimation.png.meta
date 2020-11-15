@@ -26,6 +26,9 @@ TextureImporter:
   - first:
       213: -417117072856043440
     second: simple_white_glow
+  - first:
+      213: -7076051340403512906
+    second: airCushinFX
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -276,6 +279,27 @@ TextureImporter:
       bones: []
       spriteID: 0503aa27b3a163af0800000000000000
       internalID: -417117072856043440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: airCushinFX
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 69
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b962d2ebc0dccd90800000000000000
+      internalID: -7076051340403512906
       vertices: []
       indices: 
       edges: []

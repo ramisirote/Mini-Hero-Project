@@ -117,6 +117,16 @@ public class AI_Flyer : AIBase
             _verticalSpeed = 0f;
         }
         _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+
+        var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
+        moveVector.Normalize();
+        var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2f, whatIsGround);
+        
+        if (wallCheck.collider != null) {
+            Debug.Log(wallCheck);
+            _verticalSpeed = _horizontalSpeed = 0;
+        }
+        
         animator.SetFloat(AnimRefarences.Speed, Math.Abs(_horizontalSpeed));
     }
     
@@ -138,7 +148,7 @@ public class AI_Flyer : AIBase
 
         return false;
     }
-    
+
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.green;
         
@@ -171,5 +181,9 @@ public class AI_Flyer : AIBase
         
         Gizmos.DrawLine(new Vector3(_moveEdgeLeftGizmo, transform.position.y,0),
             new Vector3(_moveEdgeRightGizmo, transform.position.y,0));
+        
+        var v = new Vector3(_horizontalSpeed, _verticalSpeed, 0);
+        v.Normalize();
+        Gizmos.DrawLine(transform.position, transform.position+v*2);
     }
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
   controller: {fileID: 7549620766748479573}
   animator: {fileID: 476110170348029019}
   punch: {fileID: 5097955011140669790}
-  attackManager: {fileID: 4896949292238661009}
+  attackManager: {fileID: 5463098455609869249}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -237,6 +237,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Center.y
       value: -0.32434794
       objectReference: {fileID: 0}
+    - target: {fileID: 2682703137999793102, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.07290003
+      objectReference: {fileID: 0}
     - target: {fileID: 2682703138053999103, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.y
       value: -0.002570182
@@ -313,15 +317,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df41106ba3cba4049b93912130ad84e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4896949292238661009 stripped
+--- !u!114 &5463098455609869249 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6941435197039473757, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7525876710949949965, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
   m_PrefabInstance: {fileID: 2567504680763658700}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476110170348028996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2d37da67fbb514386037cbb2c6512e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7928d5458018288448f6aa4d5c112395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &5097955011140669790 stripped

@@ -9,12 +9,15 @@ using UnityEngine;
 public class AI_ChargeBolt : AIBase
 {
 
+    [Header("Specific Settings")]
     [SerializeField] private float chargeTime;
+    [SerializeField] private float maxChargeTime;
     [SerializeField] private float timeBetweenCharges;
 
     private float _doneChargingTime = 0;
 
-    private float nextCanUseAbility = 0;
+    private float _nextCanUseAbility = 0;
+    private float _timeMustTurnOff;
 
     private TakeDamage damager;
 
@@ -29,10 +32,20 @@ public class AI_ChargeBolt : AIBase
 
     private void OnDamage(object sender, float e) {
         if (ability.IsAbilityOn()) {
-            nextCanUseAbility = Time.time + timeBetweenCharges;
+            _nextCanUseAbility = Time.time + timeBetweenCharges;
             ability.UseAbilityRelease(GetDirectionToTarget());
         }
             
+    }
+
+    protected override void AdditionalUpdateLogic() {
+        if (ability.IsAbilityOn()) {
+            if (Time.time > _timeMustTurnOff) {
+                ability.UseAbilityRelease(GetDirectionToTarget());
+                _nextCanUseAbility = Time.time + timeBetweenCharges;
+                _doneChargingTime = Time.time + chargeTime;
+            }
+        }
     }
 
 
@@ -45,7 +58,7 @@ public class AI_ChargeBolt : AIBase
                 whatIsGround+playerLayer);
             if (Time.time > _doneChargingTime && playerHit.collider.gameObject.CompareTag("Player")) {
                 ability.UseAbilityRelease(GetDirectionToTarget());
-                nextCanUseAbility = Time.time + timeBetweenCharges;
+                _nextCanUseAbility = Time.time + timeBetweenCharges;
                 _doneChargingTime = Time.time + chargeTime;
             }
             else {
@@ -61,7 +74,7 @@ public class AI_ChargeBolt : AIBase
                 DoAttack();
             }
             else {
-                if (Time.time > nextCanUseAbility) {
+                if (Time.time > _nextCanUseAbility) {
                     UseAbility(GetDirectionToTarget());
                 }
                 else {
@@ -77,8 +90,9 @@ public class AI_ChargeBolt : AIBase
         if(_actionDisabled || characterStats.IsDead() ) return;
         
         ability.UseAbilityStart(direction);
-        nextCanUseAbility = Time.time + timeBetweenCharges;
+        _nextCanUseAbility = Time.time + timeBetweenCharges;
         _doneChargingTime = Time.time + chargeTime;
+        _timeMustTurnOff = Time.time + maxChargeTime;
     }
     
 }

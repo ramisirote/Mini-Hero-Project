@@ -60,7 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c6dbd44add587428b1210521bf0bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyTime: 50
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  flyTime: 1
   throwForce: 2000
   damage: 15
-  direction: {x: 0, y: 0}

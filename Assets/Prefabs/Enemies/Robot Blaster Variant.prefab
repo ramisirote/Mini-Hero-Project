@@ -21,7 +21,7 @@ MonoBehaviour:
   controller: {fileID: 4355665072798009961}
   animator: {fileID: 5921303277786144359}
   punch: {fileID: 1299386669168937826}
-  attackManager: {fileID: 1676112256975994797}
+  attackManager: {fileID: 2262805108060035581}
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -490,15 +490,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df41106ba3cba4049b93912130ad84e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1676112256975994797 stripped
+--- !u!114 &2262805108060035581 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6941435197039473757, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7525876710949949965, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
   m_PrefabInstance: {fileID: 8581136022632729584}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5921303277786144376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2d37da67fbb514386037cbb2c6512e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7928d5458018288448f6aa4d5c112395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5921303275976338971 stripped

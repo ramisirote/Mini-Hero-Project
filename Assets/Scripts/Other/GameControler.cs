@@ -126,6 +126,11 @@ public class GameControler : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.T)
+            || Input.GetKeyDown(KeyCode.T) && Input.GetKey(KeyCode.R)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         
         
     }

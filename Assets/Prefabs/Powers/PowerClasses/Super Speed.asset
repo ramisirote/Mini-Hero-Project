@@ -18,4 +18,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a21b503fec110447a1c380b58f5a53a, type: 2}
   - {fileID: 11400000, guid: 6c435d5015b7c11429a9ab48ae50aa1e, type: 2}
   - {fileID: 11400000, guid: 87a779acf6ee41641b3dddb835dd877b, type: 2}
+  - {fileID: 11400000, guid: 18fd7e6cc8330e74eb366bf5ef2066c9, type: 2}
   isSinglePower: 0

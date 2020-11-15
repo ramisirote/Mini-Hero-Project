@@ -16,6 +16,8 @@ public class TornadoRun : Ability
     [SerializeField] private Vector2 push;
     [SerializeField] private LayerMask whatToHit;
 
+    private float fadeTime = 0.1f;
+    
     private Animator _animator;
     private float abilityOffTimer;
     private TakeDamage _takeDamage;
@@ -65,28 +67,32 @@ public class TornadoRun : Ability
             tornadoCollider.enabled = true;
             CharacterStats.DisableEnergyRecharge(true);
             abilityReleased = false;
+            StartCoroutine(FadeAlphaIn());
         }
         
     }
 
-    // private IEnumerator FadeInFadeOut() {
-    //     // float inOutTime = onForTime/2;
-    //     float startTime = Time.time;
-    //     Color clear = new Color(1,1,1,0);
-    //     tornadoSprite.color = clear;
-    //     while (tornadoSprite.color.a < 0.9f) {
-    //         tornadoSprite.color = Color.Lerp(clear, Color.white, (startTime-Time.time)/onForTime);
-    //         Debug.Log((tornadoSprite.color));
-    //         yield return true;
-    //     }
+    private IEnumerator FadeAlphaIn() {
+        var clear = new Color(1,1,1,0);
+        tornadoSprite.color = clear;
+        for(float t=0.01f; t<fadeTime; t+=0.01f)
+        {
+            tornadoSprite.color = Color.Lerp(clear, Color.white, t/fadeTime);
+            yield return null;
+        }
+    }
 
-        // yield return new WaitForSeconds(inOutTime * 3);
+    private IEnumerator FadeAlphaOut() {
+        var clear = new Color(1,1,1,0);
+        tornadoSprite.color = Color.white;
+        for(float t=0.01f; t<fadeTime; t+=0.01f)
+        {
+            tornadoSprite.color = Color.Lerp(Color.white, clear , t/fadeTime);
+            yield return null;
+        }
         
-        // while (tornadoSprite.color != white) {
-        //     tornadoSprite.color = Color.Lerp(tornadoSprite.color, Color.white, inOutTime);
-        //     yield return true;
-        // }
-    // }
+        tornadoImageObject.SetActive(false);
+    }
 
     public override void UseAbilityRelease(Vector3 direction) {
         abilityReleased = true;
@@ -132,10 +138,9 @@ public class TornadoRun : Ability
 
     public override void SetAbilityOff() {
         if(!AbilityOn) return;
-        
         NextCanUse = Time.time + abilityCooldown;
         AbilityOffInvoke();
-        tornadoImageObject.SetActive(false);
+        StartCoroutine(FadeAlphaOut());
         _canTurnOff = false;
         Manager.EnableManager();
         _animator.SetBool(AnimRefarences.TornadoRun, false);

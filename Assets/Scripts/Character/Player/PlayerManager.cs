@@ -178,13 +178,13 @@ public class PlayerManager : MonoBehaviour, IManager
 
         if (!actionDisabled) {
             // Use power input returns true if used. When a power is used the update loop is stopped for that frame.
-            if (UseAbilityInput(_ability1, "Fire2")) return;
-            if (UseAbilityInput(_ability2, "Fire3")) return;
+            if (UseAbilityInput(_ability1, "Ability 1")) return;
+            if (UseAbilityInput(_ability2, "Ability 2")) return;
         }
         
         // update the direction for On abilities
-        if(_ability1 && _ability1.IsAbilityOn()) AbilityInputUpdate(_ability1, "Fire2");
-        if(_ability2 && _ability2.IsAbilityOn()) AbilityInputUpdate(_ability2, "Fire3");
+        if(_ability1 && _ability1.IsAbilityOn()) AbilityInputUpdate(_ability1, "Ability 1");
+        if(_ability2 && _ability2.IsAbilityOn()) AbilityInputUpdate(_ability2, "Ability 2");
         
 
         // Move. (Actual movement is done in fixedUpdate, here the input to move is gotten)
@@ -255,7 +255,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     // Remember that the player input an attack but could not do one now.
     private void RememberAttackInput() {
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Punch")) {
             _attackRemember = true;
             _attackRememberTime = Time.time + jumpRememberTime;
         }
@@ -266,7 +266,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     // If action is disabled or the attack manager cant attack again, remember the input
     private void AttackInput() {
-        if (Input.GetButtonDown("Fire1") || _attackRemember) {
+        if (Input.GetButtonDown("Punch") || _attackRemember) {
             if (!actionDisabled && attackManager.CanAttack()) {
                 attackManager.Attack();
             }

@@ -9,11 +9,18 @@ using UnityEngine;
  */
 public class SuperStrangthAttack : AttackManagerBase
 {
-    private float direction;
-    private IManager manager;
-    private GameObject thrower;
+    private float _direction;
+    private IManager _manager;
+    private GameObject _thrower;
     private float _cameraShake;
     private bool _isPlayer;
+    
+    private float _throwerDamage;
+    private float _flyTime;
+    private float _flyForce;
+    private LayerMask _enemyLayer;
+
+    private float _actualDamage;
     
     /*
      * This Attack Manager is set up by the super strength ability, not from the inspector
@@ -24,12 +31,21 @@ public class SuperStrangthAttack : AttackManagerBase
         _animator = newAnimator;
         _controller = newController;
         characterStats = newCharacterStats;
-        this.manager = manager;
+        _manager = manager;
         cooldown = newCooldown;
-        thrower = newThrower;
+        _thrower = newThrower;
         damageMult = newDamageMult;
         _isPlayer = isPlayer;
         _cameraShake = cameraShake;
+
+        _actualDamage = characterStats.GetCharacterStats().PunchDamage * damageMult;
+    }
+
+    public void InitThrower(LayerMask oEnemyLayer, float oDamage, float oFlytime, float oThrowForce) {
+        _throwerDamage = oDamage;
+        _flyForce = oThrowForce;
+        _enemyLayer = oEnemyLayer;
+        _flyTime = oFlytime;
     }
 
     /*
@@ -38,7 +54,7 @@ public class SuperStrangthAttack : AttackManagerBase
     protected override void AttackStart() {
         _animator.SetTrigger(AnimRefarences.Punch03);
         _controller.StopHorizontal();
-        manager.FaceTarget();
+        // _manager.FaceTarget();
     }
     
     /*
@@ -49,16 +65,17 @@ public class SuperStrangthAttack : AttackManagerBase
         _controller.StopHorizontal();
         var hit = Physics2D.OverlapCircle(punch.position, hitRadius, enemyLayer);
         if (hit) {
-            hit.GetComponent<TakeDamage>().Damage(characterStats.GetCharacterStats().PunchDamage * damageMult, Vector2.zero);
+            if (hit.GetComponent<CharacterStats>().IsDead()) return;
+            
+            hit.GetComponent<TakeDamage>().Damage(_actualDamage, Vector2.zero);
             if(_isPlayer) CinemachineShake.Instance.ShakeCamera(_cameraShake);
             
-            if (!hit.GetComponent<CharacterStats>().IsDead()) { // is the hit target is dead, dont push it
-                // The thrower handles the push and damage parts of the super strength hit, as well as
-                // the collision with other enemies
-                hit.GetComponent<IManager>().DisableManager();
-                var throwerInstance = Instantiate(thrower, hit.gameObject.transform);
-                throwerInstance.GetComponent<StrengthThrower>().direction = manager.GetDirectionToTarget();
-            }
+            // The thrower handles the push and damage parts of the super strength hit, as well as
+            // the collision with other enemies
+            hit.GetComponent<IManager>().DisableManager();
+            var throwerInstance = Instantiate(_thrower, hit.gameObject.transform);
+            throwerInstance.GetComponent<StrengthThrower>().Init(_enemyLayer, _actualDamage, _flyTime, 
+                _flyForce, _manager.GetDirectionToTarget());
         }
     }
 

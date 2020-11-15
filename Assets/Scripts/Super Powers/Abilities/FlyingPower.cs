@@ -20,7 +20,7 @@ public class FlyingPower : Ability
     }
 
     protected override void OnDamageTaken(object o, float damageAmount) {
-        CharacterStats.UseEnergy(energyCostOnDamage);
+        if(AbilityOn) CharacterStats.UseEnergy(energyCostOnDamage);
     }
 
     public override void UseAbility(Vector3 direction) {

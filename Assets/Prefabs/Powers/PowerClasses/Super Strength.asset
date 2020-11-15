@@ -17,4 +17,5 @@ MonoBehaviour:
   abilitiesInClass:
   - {fileID: 11400000, guid: c8102e6f62d56034798e333352db6534, type: 2}
   - {fileID: 11400000, guid: 6087afa6305b006478ac275546d1d3f6, type: 2}
+  - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
   isSinglePower: 0

@@ -27,14 +27,18 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 
     private bool _playAnimation = true;
 
+    private SpriteHandler _spriteHandler;
+
     private void Start() {
         _manager = GetComponent<IManager>();
+        _spriteHandler = GetComponent<SpriteHandler>();
     }
 
 
-    public void Damage(float damage, int pushDirectionMult, float pushForceUp = 70f, float pushForceSide = 70f) {
+    public void Damage(float damage, int pushDirectionMult, float pushForceUp = 70f, float pushForceSide = 70f,
+        bool ignoreInvonerable = false) {
         if (characterStats.IsDead()) return;
-        if (Time.time < _nextCanBeHitTime) return;
+        if (!ignoreInvonerable && Time.time < _nextCanBeHitTime) return;
         
         controller2D.StopHorizontal();
         controller2D.Push(pushForceSide * pushDirectionMult, pushForceUp);
@@ -57,9 +61,9 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         _nextCanBeHitTime = Time.time + hitInvonerableTime;
     }
     
-    public void Damage(float damage, Vector2 push) {
+    public void Damage(float damage, Vector2 push, bool ignoreInvonerable = false) {
         if (characterStats.IsDead()) return;
-        if (Time.time < _nextCanBeHitTime) return;
+        if (!ignoreInvonerable && Time.time < _nextCanBeHitTime) return;
         
         controller2D.StopHorizontal();
         controller2D.Push(push);
@@ -125,13 +129,12 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     }
 
     IEnumerator HitRecolor() {
-        var spriteHandler = GetComponent<SpriteHandler>();
-        if (spriteHandler) {
-            spriteHandler.ColorizeAllSprites(new Color(1f,0.7f, 0.7f, 1f));
+        if (_spriteHandler) {
+            _spriteHandler.ColorizeAllSprites(new Color(1f,0.7f, 0.7f, 1f));
             
             yield return new WaitForSeconds(0.1f);
             
-            spriteHandler.ColorizeAllSprites(Color.white);
+            _spriteHandler.ColorizeAllSprites(Color.white);
         }
         yield return null;
     }
