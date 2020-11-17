@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: hitInvonerableTime
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1056687781, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2096103050176179825, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
