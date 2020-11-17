@@ -82,15 +82,34 @@ public class AI_Flyer : AIBase
             FaceTarget();
             stopHorizontal = true;
         }
+        
+        if (AtWall2D()) {
+            _verticalSpeed = _horizontalSpeed = 0;
+            controller.StopAll();
+        }
 
         _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
         // at this point, horizontal speed is 0 (see beginning of update)
-        if (AtWall() || stopHorizontal) {
+        if (stopHorizontal) {
             _horizontalSpeed = 0;
+            controller.StopHorizontal();
         }
+    }
+    
+    private bool AtWall2D() {
+        var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
+        moveVector.Normalize();
+        var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2.5f, whatIsGround);
+
+        if (wallCheck.collider) {
+            return true;
+        }
+
+        return false;
     }
 
     // Move to the player
+    // NOT USED AT THE MOMENT
     protected override void MoveToPlayer() {
         Vector2 checkPosition = transform.position;
         Vector2 closestPoint = playerCollider.bounds.ClosestPoint(checkPosition);
@@ -118,14 +137,14 @@ public class AI_Flyer : AIBase
         }
         _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
 
-        var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
-        moveVector.Normalize();
-        var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2f, whatIsGround);
-        
-        if (wallCheck.collider != null) {
-            Debug.Log(wallCheck);
-            _verticalSpeed = _horizontalSpeed = 0;
-        }
+        // var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
+        // moveVector.Normalize();
+        // var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2f, whatIsGround);
+        //
+        // if (wallCheck.collider != null) {
+        //     Debug.Log(wallCheck);
+        //     _verticalSpeed = _horizontalSpeed = 0;
+        // }
         
         animator.SetFloat(AnimRefarences.Speed, Math.Abs(_horizontalSpeed));
     }
@@ -133,7 +152,7 @@ public class AI_Flyer : AIBase
     // Move the character based on horizontal and vertical speed, flying.
     private void FixedUpdate() {
         if(_disabled) return;
-        controller.FlyingMove(_horizontalSpeed,_verticalSpeed);
+        controller.FlyingMove(_horizontalSpeed, _verticalSpeed);
     }
 
     // Check if you passed the end of the patrol points.
@@ -184,6 +203,6 @@ public class AI_Flyer : AIBase
         
         var v = new Vector3(_horizontalSpeed, _verticalSpeed, 0);
         v.Normalize();
-        Gizmos.DrawLine(transform.position, transform.position+v*2);
+        Gizmos.DrawLine(transform.position, transform.position+v*1.5f);
     }
 }

@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour, IManager
     
     private Ability _ability1;
     private Ability _ability2;
+    private PowersInstance _powersInstance;
 
     private Ability _activePower;
 
@@ -56,6 +57,7 @@ public class PlayerManager : MonoBehaviour, IManager
         
         SetAttackSpeed(characterStats.GetCharacterStats().AttackSpeed);
         _runSpeed = characterStats.GetCharacterStats().MoveSpeed;
+        _powersInstance = gameObject.GetComponent<PowersInstance>();
         _mainCam = Camera.main;
     }
 
@@ -176,6 +178,8 @@ public class PlayerManager : MonoBehaviour, IManager
     private void Update() {
         if(_paused) return;
 
+        CheckActiveAbilityChange();
+
         if (!actionDisabled) {
             // Use power input returns true if used. When a power is used the update loop is stopped for that frame.
             if (UseAbilityInput(_ability1, "Ability 1")) return;
@@ -195,6 +199,16 @@ public class PlayerManager : MonoBehaviour, IManager
         
         // Check attack input.
         AttackInput();
+    }
+
+    private void CheckActiveAbilityChange() {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            _powersInstance.RotateAbility(1);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E)) {
+            _powersInstance.RotateAbility(2);
+        }
     }
 
     // Update the direction of the ability. Also check if the ability button was released.

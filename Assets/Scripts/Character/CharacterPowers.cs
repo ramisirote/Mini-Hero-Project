@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -87,6 +88,20 @@ public class CharacterPowers : ScriptableObject
                 break;
             case 2: 
                 activeAbility2 = positionInList;
+                break;
+        }
+    }
+    
+    public void SetAbilityAsActive(AbilityData.AbilityEnum abilityType, int whichActive) {
+        var abilityIndex = abilities.FindIndex(ability => ability.abilityEnum == abilityType);
+        if(abilityIndex == -1) return;
+
+        switch (whichActive) {
+            case 1:
+                activeAbility1 = abilityIndex;
+                break;
+            case 2: 
+                activeAbility2 = abilityIndex;
                 break;
         }
     }

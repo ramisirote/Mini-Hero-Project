@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a1dccc1596ff7a43b117fc7b39d7402, type: 3}
-  m_Name: Super Strength
+  m_Name: Martial Arts
   m_EditorClassIdentifier: 
-  powerName: Super Strangth
-  powerIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  powerName: Martial Arts
+  powerIcon: {fileID: -5612695987946839547, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   abilitiesInClass:
-  - {fileID: 11400000, guid: 0ce6677e63c33cf4e9d6c066443cf9e2, type: 2}
-  - {fileID: 11400000, guid: 6087afa6305b006478ac275546d1d3f6, type: 2}
-  - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
-  isSinglePower: 0
+  - {fileID: 11400000, guid: b53854e16932ea44bacecc6544e734a2, type: 2}
+  isSinglePower: 1

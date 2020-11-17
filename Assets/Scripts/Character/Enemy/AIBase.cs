@@ -23,6 +23,7 @@ public class AIBase : MonoBehaviour, IManager
     [SerializeField] protected Transform punch;
     [SerializeField] protected AttackManagerBase attackManager;
     [SerializeField] protected LayerMask playerLayer;
+    [SerializeField] protected LayerMask playerInvisibleLayer;
     [SerializeField] protected float detectRadius;
     [SerializeField] protected float attackDetectRadius;
     [SerializeField] protected float maintainDistance;
@@ -52,10 +53,14 @@ public class AIBase : MonoBehaviour, IManager
     protected bool _moveDisabled = false;
     protected bool _actionDisabled = false;
     
+    protected float _width;
+    protected float _hight;
+    
     
     protected float forgetPlayerTime;
     protected Collider2D playerCollider;
     private Collider2D[] PlayerColliderNoneAlloc = new Collider2D[1];
+
     
     /*
      * Start is called at the beginning of the scene.
@@ -65,12 +70,17 @@ public class AIBase : MonoBehaviour, IManager
      **/
     private void Start() {
         SetAttackSpeed(characterStats.GetCharacterStats().AttackSpeed);
-        _walkingSpeed = characterStats.GetCharacterStats().MoveSpeed;
+        _walkingSpeed = characterStats.GetCharacterStats().MoveSpeed * (float)(_random.NextDouble()*0.4+0.8);
         if (!startWalkingDirectionRight) {
             _walkDirectionMult = -1;
             controller.Flip();
         }
         animator.SetBool(AnimRefarences.IsEnemy, true);
+        
+        _width = Math.Abs(transform.position.x - frontCheck.position.x)*2;
+        _hight = Math.Abs(transform.position.y - groundCheck.position.y)*2;
+        
+        
         AdditionalStart();
     }
 
@@ -175,7 +185,7 @@ public class AIBase : MonoBehaviour, IManager
         // DetectPlayer sets the playerCollider if found.
         DetectPlayer();
         
-        if (Time.time > forgetPlayerTime && playerCollider!=null) {
+        if (Time.time > forgetPlayerTime && playerCollider) {
             playerCollider = null;
         }
         
@@ -229,14 +239,21 @@ public class AIBase : MonoBehaviour, IManager
     protected void DetectPlayer() {
         bool wasKnown = playerCollider;
         
-        PlayerColliderNoneAlloc[0] = null;
-        Physics2D.OverlapCircleNonAlloc(frontCheck.position, detectRadius, PlayerColliderNoneAlloc, playerLayer);
+        // PlayerColliderNoneAlloc[0] = null;
         
-        if (PlayerColliderNoneAlloc[0]) {
-            playerCollider = PlayerColliderNoneAlloc[0];
+        var playerColliderTemp = Physics2D.OverlapCircle(frontCheck.position, detectRadius, playerLayer);
+        
+        if (playerColliderTemp) {
+            playerCollider = playerColliderTemp;
             forgetPlayerTime = Time.time + timeToForgetPlayer;
             if (!wasKnown) {
                 soundManager.PlayAudio(SoundManager.SoundClips.EnemyDetected);
+            }
+        }
+        else if (wasKnown) {
+            // target lost
+            if (Utils.IsObjectInLayerMask(playerCollider.gameObject, playerInvisibleLayer)) {
+                forgetPlayerTime -= 5f*Time.deltaTime;
             }
         }
     }
@@ -340,22 +357,25 @@ public class AIBase : MonoBehaviour, IManager
 
     // Check if the character is at a wall
     protected bool AtWall() {
-        Collider2D rayCastForward = Physics2D.OverlapCircle(frontCheck.position, 0.1f, whatIsGround);
+        
+        Collider2D rayCastForward = Physics2D.OverlapCircle(
+            (Vector2)transform.position + Vector2.right*(_walkDirectionMult*(_width/2)), 0.2f, whatIsGround);
+        
         return rayCastForward;
     }
 
     // Check is the character is at an edge of the ground
     protected bool AtEdge() {
         // Front check is a bit in front of the collider
-        var frontCheckPosition = frontCheck.position + Vector3.right * (controller.GetFacingMult() * 0.2f);
+        var frontCheckPosition = transform.position + Vector3.right * (_walkDirectionMult*(_width/2));
         // ground check is at the bottom edge of the collider
         var groundCheckPosition = groundCheck.position;
         
-        float height = frontCheckPosition.y - groundCheckPosition.y;
+        // float height = frontCheckPosition.y - groundCheckPosition.y;
         
         var rayCastFrontDown = Physics2D.Raycast(frontCheckPosition, 
-            Vector2.down, height + 0.5f, whatIsGround);
-        
+            Vector2.down, _hight/2 + 0.5f, whatIsGround);
+
 
         //Check if the ground is by the front of your feet and you are just on a slope, if not you may be on an edge.
         // Using this so that slopes will not count as an edge but steps will.
@@ -380,6 +400,7 @@ public class AIBase : MonoBehaviour, IManager
             soundManager.StopAudio(SoundManager.SoundClips.Walk);
             return;
         }
+        
         controller.Move(_horizontalSpeed * Time.fixedDeltaTime, false, _shouldJump);
         
         if ((_horizontalSpeed > .01 || _horizontalSpeed < -.01) && controller.IsGrounded()) {
@@ -410,10 +431,15 @@ public class AIBase : MonoBehaviour, IManager
         Gizmos.DrawWireSphere(position, maintainDistance - maintainErrorRange);
         
         Gizmos.color = Color.yellow;
-        var frontCheckPosition = frontCheck.position + Vector3.right*controller.GetFacingMult()*0.2f;
+        var frontCheckPosition = transform.position + Vector3.right * (_walkDirectionMult*(_width/2));
         var groundCheckPosition = groundCheck.position;
         float hight = frontCheckPosition.y - groundCheckPosition.y;
         Gizmos.DrawLine(frontCheckPosition, frontCheckPosition + Vector3.down*(hight + 0.5f));
+
+
+        Gizmos.color = Color.green;
+        var p = (Vector2) transform.position + Vector2.right * (_walkDirectionMult * (_width / 2));
+        Gizmos.DrawWireSphere(p, 0.2f);
     }
 
     // In order to stop the enemy from going crazy when the player is right on top of it, set a cooldown for flipping

@@ -25,6 +25,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerInvisibleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   detectRadius: 8
   attackDetectRadius: 0.9
   maintainDistance: 7.09
@@ -104,6 +107,14 @@ PrefabInstance:
     - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
       propertyPath: damagePerCharge
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+      propertyPath: chargePerSecond
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+      propertyPath: maxCharge
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
       propertyPath: m_Name
@@ -255,11 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 724cb9ded77f8c74d87cae92839b2eb7, type: 2}
     - target: {fileID: 2682703136515261236, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: -0.003872037
+      value: -0.0038725138
       objectReference: {fileID: 0}
     - target: {fileID: 2682703136515261236, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.14008765
+      value: 0.14008766
       objectReference: {fileID: 0}
     - target: {fileID: 2682703136515261236, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.y
@@ -359,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138053999103, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0025704205
+      value: -0.0025704503
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x

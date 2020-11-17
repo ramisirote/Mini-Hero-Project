@@ -17,6 +17,8 @@ public class Invisibility : Ability
     private int defaultLayerValue;
     private int _invisibleLayerNumber;
 
+    private Coroutine _timerCoroutine;
+
     protected override void AdditionalInit() {
         _spriteHandler = parentCharacter.GetComponent<SpriteHandler>();
         // if(_stats)
@@ -25,7 +27,7 @@ public class Invisibility : Ability
     }
 
     protected override void OnDamageTaken(object o, float damageTaken) {
-        // if(AbilityOn) SetAbilityOff();
+        if(AbilityOn) SetAbilityOff();
     }
 
     public override void UseAbility(Vector3 direction) {
@@ -37,7 +39,7 @@ public class Invisibility : Ability
 
             NextCanUse = Time.time + (abilityCooldown + powerDuration) * Time.deltaTime;
 
-            StartCoroutine(TurnOffAfterDuration());
+            _timerCoroutine = StartCoroutine(TurnOffAfterDuration());
         }
         else {
             // SetPowerOff();
@@ -59,7 +61,7 @@ public class Invisibility : Ability
             return;
         }
         
-        
+        StopCoroutine(_timerCoroutine);
         parentCharacter.layer = defaultLayerValue;
 
         _spriteHandler.ColorizeAllSprites(Color.white);

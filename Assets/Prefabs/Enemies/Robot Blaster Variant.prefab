@@ -25,6 +25,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  playerInvisibleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   detectRadius: 5
   attackDetectRadius: 0.3
   maintainDistance: 7.9

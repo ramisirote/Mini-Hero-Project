@@ -16,8 +16,9 @@ public class PowerSelectHandler : MonoBehaviour
     [SerializeField] private Dropdown secAbilityDropDown;
 
     [SerializeField] private CharacterPowers powers;
+    [SerializeField] private SuperPowerLibrary powerLibrary;
 
-    [SerializeField] private PowersClass[] powersOptions;
+    private List<PowersClass> powersOptions;
 
 
     private List<Dropdown.OptionData> allPowerOptions = new List<Dropdown.OptionData>();
@@ -28,6 +29,8 @@ public class PowerSelectHandler : MonoBehaviour
     private void Awake() {
         
         powers.Clear();
+
+        powersOptions = powerLibrary.powersClasses;
 
         foreach (var option in powersOptions){
             allPowerOptions.Add(new Dropdown.OptionData(option.GetName(), option.GetIcon()));
@@ -90,8 +93,10 @@ public class PowerSelectHandler : MonoBehaviour
 
     public void SelectMainPower() {
 
-        PowersClass p = Array.Find(powersOptions,option 
-            => option.GetName() == mainPowerDropdown.options[mainPowerDropdown.value].text);
+        PowersClass p = powersOptions.Find(option =>
+            option.GetName() == mainPowerDropdown.options[mainPowerDropdown.value].text);
+        // PowersClass p = Array.Find(powersOptions,option 
+        //     => option.GetName() == mainPowerDropdown.options[mainPowerDropdown.value].text);
         
         powers.SetPowerClass(p, true);
         
@@ -106,8 +111,10 @@ public class PowerSelectHandler : MonoBehaviour
     
     public void SelectSecPower() {
 
-        PowersClass p = Array.Find(powersOptions,option 
-            => option.GetName() == secPowerDropdown.options[secPowerDropdown.value].text);
+        PowersClass p = powersOptions.Find(option =>
+            option.GetName() == secPowerDropdown.options[secPowerDropdown.value].text);
+        // PowersClass p = Array.Find(powersOptions,option 
+        //     => option.GetName() == secPowerDropdown.options[secPowerDropdown.value].text);
         
         powers.SetPowerClass(p, false);
         SetUpAbilityDropDown(p, secAbilityDropDown);

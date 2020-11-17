@@ -17031,14 +17031,7 @@ MonoBehaviour:
   mainAbilityDropDown: {fileID: 337905750}
   secAbilityDropDown: {fileID: 704837853}
   powers: {fileID: 11400000, guid: e316b44e31b40e74db379fb208e03b07, type: 2}
-  powersOptions:
-  - {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
-  - {fileID: 11400000, guid: 9816808f5b964994d9802bdf411650e9, type: 2}
-  - {fileID: 11400000, guid: bfda14939b87f1d4089c9f9232c54cac, type: 2}
-  - {fileID: 11400000, guid: 37604ea57c202c046bb6d61ff951e077, type: 2}
-  - {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
-  - {fileID: 11400000, guid: fabac1b14b20e1e4c9ac6a28b94c1d5f, type: 2}
-  - {fileID: 11400000, guid: fe7ff625b0f59394faec0ea72cb06185, type: 2}
+  powerLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
 --- !u!1 &1348205723
 GameObject:
   m_ObjectHideFlags: 0

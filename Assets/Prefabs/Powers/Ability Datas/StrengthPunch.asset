@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
+  m_Name: StrengthPunch
+  m_EditorClassIdentifier: 
+  abilityName: Strength Punch
+  abilityEnum: 5
+  icon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 3170358597876350239, guid: 75e18158669c6424f9814d13de15730c, type: 3}
+  powerClassName: Super Strength
+  description: 
+  upgrades:
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 

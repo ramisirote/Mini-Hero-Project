@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: -7076051340403512906
     second: airCushinFX
+  - first:
+      213: -4565112174387337862
+    second: Shader_test
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -292,7 +295,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -300,6 +303,27 @@ TextureImporter:
       bones: []
       spriteID: 6b962d2ebc0dccd90800000000000000
       internalID: -7076051340403512906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shader_test
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 69
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a75e4d51aa675a0c0800000000000000
+      internalID: -4565112174387337862
       vertices: []
       indices: 
       edges: []

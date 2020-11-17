@@ -13,28 +13,17 @@ MonoBehaviour:
   m_Name: PlayerPowers
   m_EditorClassIdentifier: 
   powersLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
-  mainPowers: {fileID: 11400000, guid: 77da7fb08ebc7c44e973cc8ad443576f, type: 2}
-  secondaryPowers: {fileID: 11400000, guid: bfda14939b87f1d4089c9f9232c54cac, type: 2}
+  mainPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
+  secondaryPowers: {fileID: 11400000, guid: 0834799cfd944d9409bba9af93eb9e83, type: 2}
   abilities:
-  - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
   - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
+  - {fileID: 11400000, guid: b53854e16932ea44bacecc6544e734a2, type: 2}
   - {fileID: 11400000, guid: 21d08b554b01fc94ca76239949afbb15, type: 2}
-  - {fileID: 11400000, guid: a835299b902279445936319813b20a19, type: 2}
   - {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
-  - {fileID: 11400000, guid: a99fecb4aa84ba24fa4197cf95cecaa0, type: 2}
-  - {fileID: 11400000, guid: 18fd7e6cc8330e74eb366bf5ef2066c9, type: 2}
-  - {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
-  - {fileID: 11400000, guid: 89b8a3716a247904788dc07b41e31704, type: 2}
-  - {fileID: 11400000, guid: 6c435d5015b7c11429a9ab48ae50aa1e, type: 2}
-  - {fileID: 11400000, guid: 6087afa6305b006478ac275546d1d3f6, type: 2}
-  - {fileID: 11400000, guid: 9a21b503fec110447a1c380b58f5a53a, type: 2}
-  - {fileID: 11400000, guid: c8102e6f62d56034798e333352db6534, type: 2}
-  - {fileID: 11400000, guid: ea94f24e64ad363489521965d8c9487b, type: 2}
-  - {fileID: 11400000, guid: 87a779acf6ee41641b3dddb835dd877b, type: 2}
-  activeAbility1: 11
-  activeAbility2: 6
+  activeAbility1: 3
+  activeAbility2: 1
   hasAbilities: 1
-  secondaryAbility: {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
+  secondaryAbility: {fileID: 11400000, guid: b53854e16932ea44bacecc6544e734a2, type: 2}
   mainColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.44072777, b: 0, a: 1}

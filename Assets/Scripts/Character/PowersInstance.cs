@@ -39,29 +39,98 @@ public class PowersInstance : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.E) && active1 > -1) {
-            abilitiesList[active1].SetAbilityOff();
-            
-            active1 = (active1+1)%abilitiesList.Count;
-            if(active1 == active2) active1 = (active1+1)%abilitiesList.Count;
-            
-            powers.SetAbilityAsActive(active1, 1);
-            manager.SetAbility(abilitiesList[active1], 1);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Q) && active2 > -1) {
-            abilitiesList[active2].SetAbilityOff();
-            
-            active2 = (active2+1)%abilitiesList.Count;
-            if(active2 == active1) active2 = (active2+1)%abilitiesList.Count;
-            
-            powers.SetAbilityAsActive(active2, 2);
-            manager.SetAbility(abilitiesList[active2], 2);
-        }
-        
         if (Input.GetKeyDown(KeyCode.P)) {
             ClearPowers();
         }
+    }
+
+    public void RotateAbility(int whichOne) {
+        switch (whichOne) {
+            case 1: 
+                if(active1 > -1) SetActiveAbility(active1 + 1, 1); 
+                break;
+            case 2: 
+                if(active2 > -1) SetActiveAbility(active2 + 1, 2); 
+                break;
+        }
+    }
+
+    public void SetActiveAbility(AbilityData.AbilityEnum abilityType, int whichOne) {
+        powers.SetAbilityAsActive(abilityType, whichOne);
+
+        switch (whichOne) {
+            case 1:
+            {
+                int index = powers.activeAbility1;
+                abilitiesList[active1].SetAbilityOff();
+                active1 = index;
+                if (active1 == active2) {
+                    SetActiveAbility(active2+1, 2);
+                }
+                manager.SetAbility(abilitiesList[active1], 1);
+                break;
+            }
+            case 2:
+            {
+                int index = powers.activeAbility2;
+                abilitiesList[active2].SetAbilityOff();
+                active2 = index;
+                if (active1 == active2) {
+                    SetActiveAbility(active1+1, 1);
+                }
+                manager.SetAbility(abilitiesList[active2], 2);
+                break;
+            }
+        }
+    }
+
+    private void SetActiveAbility(int index, int whichOne) {
+        if (abilitiesList.Count <= 2) {
+            SwapActives();
+        }
+        switch (whichOne) {
+            case 1:
+            {
+                abilitiesList[active1].SetAbilityOff();
+            
+                active1 = index%abilitiesList.Count;
+                if (active1 == active2) {
+                    active1 = (active1+1)%abilitiesList.Count;
+                }
+            
+                powers.SetAbilityAsActive(active1, 1);
+                manager.SetAbility(abilitiesList[active1], 1);
+                break;
+            }
+            case 2:
+            {
+                abilitiesList[active2].SetAbilityOff();
+            
+                active2 = (active2+1)%abilitiesList.Count;
+                if (active1 == active2) {
+                    active2 = (active2+1) % abilitiesList.Count;
+                }
+                
+            
+                powers.SetAbilityAsActive(active2, 2);
+                manager.SetAbility(abilitiesList[active2], 2);
+                break;
+            }
+        }
+    }
+
+    private void SwapActives() {
+        if(active1 > -1) abilitiesList[active1].SetAbilityOff();
+        if(active2 > -1) abilitiesList[active2].SetAbilityOff();
+        manager.ClearPowers();
+        
+        var temp = active1;
+        active1 = active2;
+        active2 = temp;
+        powers.SetAbilityAsActive(active2, 2);
+        powers.SetAbilityAsActive(active1, 1);
+        if(active1 > -1) manager.SetAbility(abilitiesList[active1], 1);
+        if(active2 > -1) manager.SetAbility(abilitiesList[active2], 2);
     }
 
     private void SetUpAbility(AbilityData abilityData) {

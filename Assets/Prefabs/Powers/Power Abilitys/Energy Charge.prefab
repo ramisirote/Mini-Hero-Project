@@ -56,7 +56,7 @@ MonoBehaviour:
   damagePerCharge: 9
   chargeParticle: {fileID: 3552919036651096067}
   projectile: {fileID: 274633043615382883, guid: d598808bd361de040a5437434bf77506, type: 3}
-  chargePerSecond: 1
+  chargePerSecond: 1.7
   maxCharge: 5
   projectileSpeed: 20
   enemyLayers:

@@ -47,6 +47,9 @@ TextureImporter:
   - first:
       213: -2703109551042691996
     second: PowerIcons_FlurryPunches
+  - first:
+      213: -5612695987946839547
+    second: PowerIcons_MartialArts
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -444,6 +447,27 @@ TextureImporter:
       bones: []
       spriteID: 46c722d5f20ac7ad0800000000000000
       internalID: -2703109551042691996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PowerIcons_MartialArts
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5022b2e7cb2bb12b0800000000000000
+      internalID: -5612695987946839547
       vertices: []
       indices: 
       edges: []

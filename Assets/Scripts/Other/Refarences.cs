@@ -40,6 +40,8 @@ public class AnimRefarences
     public static string Punch01 = "Punch01";
     public static string Punch02 = "Punch02";
     public static string Punch03 = "Punch03";
+    public static string Punch04 = "Punch04";
+    public static string Punch05 = "Punch05";
     public static string Flying = "Flying";
     public static string Hit = "Hit";
     public static string Jumping = "jumping";
@@ -59,6 +61,7 @@ public class AnimRefarences
     public static string SpeedMult = "SpeedMult";
     public static string BullRun = "BullRun";
     public static string FlurryPunches = "FlurryPunches";
+    public static string StrengthPunch = "StrengthPunch";
 
 
     public static void ResetAnimatorBools(Animator anim) {

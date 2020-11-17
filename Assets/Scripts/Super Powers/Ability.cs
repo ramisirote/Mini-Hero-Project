@@ -33,6 +33,7 @@ public abstract class Ability: MonoBehaviour
     protected CharacterController2D Controller;
     protected CharacterStats CharacterStats;
     protected bool IsPlayer;
+    protected Animator Animator;
 
     protected bool[] unlocks = new bool[4];
 
@@ -48,6 +49,8 @@ public abstract class Ability: MonoBehaviour
         CharacterStats = parentCharacter.GetComponent<CharacterStats>();
         var takeDamage = parentCharacter.GetComponent<TakeDamage>();
         if (takeDamage) { takeDamage.OnDamage += OnDamageTaken; }
+
+        Animator = parentCharacter.GetComponent<Animator>();
         
         AdditionalInit();
     }

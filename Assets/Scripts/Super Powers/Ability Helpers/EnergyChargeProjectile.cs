@@ -119,7 +119,7 @@ public class EnergyChargeProjectile : MonoBehaviour
         p.Clear();
         p.Play();
         
-        if(_isPlayer) CinemachineShake.Instance.ShakeCamera(2*GetChargeNormalized());
+        if(_isPlayer) CinemachineShake.Instance.ShakeCamera(2f*GetChargeNormalized());
         
         Destroy(gameObject);
     }

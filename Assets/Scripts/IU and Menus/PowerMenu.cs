@@ -57,6 +57,8 @@ public class PowerMenu : MonoBehaviour
         if (!_powersInstance.IsAbilityUnlocked(ability)) {
             powerImages[i].color = new Color(1,1,1,0.5f);
             unlockButtons[i].SetActive(true);
+            // unlockButtons[i].GetComponent<Button>().onClick.AddListener();
+            
         }
         else {
             powerImages[i].color = Color.white;
@@ -64,13 +66,22 @@ public class PowerMenu : MonoBehaviour
         }
     }
 
+    public void SelectAbility(int abilityIndex) {
+        if (abilityIndex < 4) {
+            _powersInstance.SetActiveAbility(_powerAbilitiesMain[abilityIndex].abilityEnum, 1);
+        }
+        else {
+            _powersInstance.SetActiveAbility(_secondaryPowerAbility.abilityEnum, 2);
+        }
+    }
 
-    public void UnlockPowerMain(int abilityNum) {
+
+    public void UnlockPowerMain(int abilityIndex) {
         if (!(_statsData.UnlockPoints > 0)) return;
         
         _statsData.UnlockPoints--;
-        if (abilityNum < 4) {
-            _powersInstance.AddPowerAbility(_powerAbilitiesMain[abilityNum].abilityEnum, true);
+        if (abilityIndex < 4) {
+            _powersInstance.AddPowerAbility(_powerAbilitiesMain[abilityIndex].abilityEnum, true);
         }
         else {
             _powersInstance.AddPowerAbility(_secondaryPowerAbility.abilityEnum, false);

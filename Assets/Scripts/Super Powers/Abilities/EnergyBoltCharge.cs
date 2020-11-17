@@ -50,7 +50,7 @@ public class EnergyBoltCharge : Ability
         if (AbilityOn && _chargeProjectile) {
             _chargeProjectile.AddCharge(chargePerSecond * Time.deltaTime);
             if (IsPlayer) {
-                CinemachineShake.Instance.ShakeCamera(1.5f*_chargeProjectile.GetChargeNormalized());
+                CinemachineShake.Instance.ShakeCamera(0.2f*_chargeProjectile.GetChargeNormalized());
             }
 
         }
@@ -97,6 +97,7 @@ public class EnergyBoltCharge : Ability
             }
             
             NextCanUse = Time.time + abilityCooldown * Time.deltaTime;
+            AbilityOnInvoke();
         }
     }
 
