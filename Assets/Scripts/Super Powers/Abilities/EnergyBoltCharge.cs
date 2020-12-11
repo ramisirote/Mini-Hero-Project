@@ -18,6 +18,9 @@ public class EnergyBoltCharge : Ability
     [SerializeField] private float maxCharge;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private int maxProjectiles;
+
+    private Queue<EnergyChargeProjectile> projectilesPool = new Queue<EnergyChargeProjectile>();
     
     private Transform effectPointTransform;
     private Animator _animator;
@@ -31,10 +34,10 @@ public class EnergyBoltCharge : Ability
 
     private EnergyChargeProjectile _chargeProjectile = null;
 
-    private GameObject _curentChaging;
+    // private GameObject _curentChaging;
 
     protected override void OnDamageTaken(object o, float damageAmount) {
-        if(AbilityOn && _curentChaging) _animator.SetBool(AnimRefarences.IsFireingContinues, false);
+        if(AbilityOn && _chargeProjectile) _animator.SetBool(AnimRefarences.IsFireingContinues, false);
         SetAbilityOff();
     }
 
@@ -42,7 +45,13 @@ public class EnergyBoltCharge : Ability
         SetUpParticleSystem();
         SetUpArmAngler();
         _animator = parentCharacter.GetComponent<Animator>();
-        
+
+        for (int i = 0; i < maxProjectiles; ++i) {
+            var projectileTemp = Instantiate(projectile, transform).GetComponent<EnergyChargeProjectile>();
+            projectilesPool.Enqueue(projectileTemp);
+            projectileTemp.SetUp(maxCharge, enemyLayers, damagePerCharge, _color1, _color2, _color3, IsPlayer);
+            projectileTemp.gameObject.SetActive(false);
+        }
     }
     
     private void Update() {
@@ -52,14 +61,13 @@ public class EnergyBoltCharge : Ability
             if (IsPlayer) {
                 CinemachineShake.Instance.ShakeCamera(0.2f*_chargeProjectile.GetChargeNormalized());
             }
-
         }
         
         // // move to arm position
         if (effectPointTransform) {
             transform.position = effectPointTransform.position;
-            if (_curentChaging) {
-                _curentChaging.transform.position = transform.position;
+            if (_chargeProjectile) {
+                _chargeProjectile.transform.position = transform.position;
             }
         }
     }
@@ -80,8 +88,9 @@ public class EnergyBoltCharge : Ability
         }
         
         _bodyAngler = parentCharacter.GetComponent<BodyAngler>();
-        transform.parent = effectPointTransform;
-        transform.position = effectPointTransform.position;
+        var mTransform = transform;
+        mTransform.SetParent(_arm);
+        mTransform.position = _arm.position;
     }
 
     public override void UseAbility(Vector3 direction) {
@@ -102,11 +111,18 @@ public class EnergyBoltCharge : Ability
     }
 
     private void CreateProjectile() {
-        _curentChaging = Instantiate(projectile, transform);
-        _curentChaging.transform.position = effectPointTransform.position;
-        _chargeProjectile = _curentChaging.GetComponent<EnergyChargeProjectile>();
-        _chargeProjectile.SetUp(maxCharge, enemyLayers, damagePerCharge, _color1, _color2, _color3,
-            IsPlayer);
+        if (projectilesPool.Count <= 0) return;
+
+        _chargeProjectile = projectilesPool.Dequeue();
+
+        var mTransform = transform;
+        _chargeProjectile.transform.position = mTransform.position;
+        _chargeProjectile.transform.SetParent(mTransform);
+        
+        _chargeProjectile.Reset();
+        _chargeProjectile.gameObject.SetActive(true);
+        
+        projectilesPool.Enqueue(_chargeProjectile);
     }
     
     public override void UseAbilityRelease(Vector3 direction) {
@@ -118,9 +134,7 @@ public class EnergyBoltCharge : Ability
         
         _animator.SetBool(AnimRefarences.IsFireingContinues, false);
         
-        if (_curentChaging && _chargeProjectile) {
-            _curentChaging.transform.parent = null;
-            _curentChaging = null;
+        if (_chargeProjectile) {
             _chargeProjectile.Releace(direction, projectileSpeed);
             _chargeProjectile = null;
         }
@@ -135,13 +149,13 @@ public class EnergyBoltCharge : Ability
         if (_bodyAngler && _arm && !CharacterStats.IsDead()) {
             _bodyAngler.RotatePart(_arm, _armDefaultRotationAngle);
         }
+
+        NextCanUse = Time.time + abilityCooldown;
         
         Manager.EnableManager();
         
         AbilityOffInvoke();
-        
-        
-        
+
         AbilityOn = false;
     }
 
@@ -151,9 +165,10 @@ public class EnergyBoltCharge : Ability
     }
 
     private void CancelCharge() {
-        Destroy(_curentChaging);
-        _curentChaging = null;
-        _chargeProjectile = null;
+        if (_chargeProjectile) {
+            _chargeProjectile.gameObject.SetActive(false);
+            _chargeProjectile = null;
+        }
     }
     
     public override void UpdateDirection(Vector3 direction) {

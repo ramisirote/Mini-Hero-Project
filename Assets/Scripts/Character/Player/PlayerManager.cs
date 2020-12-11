@@ -382,4 +382,8 @@ public class PlayerManager : MonoBehaviour, IManager
     public void SetPause(bool pause) {
         _paused = pause;
     }
+    
+    public void PermanentDisable() {
+        enabled = false;
+    }
 }

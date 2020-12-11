@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  abilityCooldown: 0
+  abilityCooldown: 0.1
   energyRequired: 1
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
@@ -62,6 +62,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1536
+  maxProjectiles: 7
 --- !u!198 &3552919036651096067
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     [SerializeField] private Animator animator;
     [SerializeField] private SoundManager soundManager;
     
-    public event EventHandler OnDeathEvent;
+    public event EventHandler<IManager> OnDeathEvent;
     public event EventHandler<float> OnDamage;
 
     private float _nextCanBeHitTime = 0f;
@@ -140,14 +140,15 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     }
 
     private void Die() {
-        OnDeathEvent?.Invoke(gameObject, EventArgs.Empty);
+        OnDeathEvent?.Invoke(gameObject, _manager);
         controller2D.MakeFlying(false);
         controller2D.StopAll();
         controller2D.enabled = false;
         AnimRefarences.ResetAnimatorBools(animator);
         animator.SetBool(AnimRefarences.Dead, true);
         soundManager.PlayAudio(SoundManager.SoundClips.Die);
-        this.enabled = false;
+        enabled = false;
+        _manager.PermanentDisable();
         gameObject.layer = LayerMask.NameToLayer("Dead");
     }
     

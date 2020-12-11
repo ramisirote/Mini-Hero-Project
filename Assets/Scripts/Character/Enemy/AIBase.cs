@@ -58,8 +58,10 @@ public class AIBase : MonoBehaviour, IManager
     
     
     protected float forgetPlayerTime;
-    protected Collider2D playerCollider;
-    private Collider2D[] PlayerColliderNoneAlloc = new Collider2D[1];
+    protected PlayerManager _player;
+
+    private float _detectPlayerRefreshRate = 0.1f;
+    private float _detectPlayerTimer;
 
     
     /*
@@ -84,6 +86,10 @@ public class AIBase : MonoBehaviour, IManager
         AdditionalStart();
     }
 
+    protected virtual void OnEnable() {
+        return;
+    }
+
     // On base do nothing. Inheriting AIs can use this to set up stuff on start.
     protected virtual void AdditionalStart() {
         return;
@@ -93,7 +99,11 @@ public class AIBase : MonoBehaviour, IManager
     public int GetXp() {
         return xpWorth;
     }
-    
+
+    public void PermanentDisable() {
+        enabled = false;
+    }
+
     public void DisableManager() {
         _disabled = true;
         _moveDisabled = true;
@@ -185,11 +195,11 @@ public class AIBase : MonoBehaviour, IManager
         // DetectPlayer sets the playerCollider if found.
         DetectPlayer();
         
-        if (Time.time > forgetPlayerTime && playerCollider) {
-            playerCollider = null;
+        if (Time.time > forgetPlayerTime && _player) {
+            _player = null;
         }
         
-        if (playerCollider) {
+        if (_player) {
             PlayerDetectedLogic();
         }
         else{
@@ -237,32 +247,45 @@ public class AIBase : MonoBehaviour, IManager
      * Also, set the timer to forget the player.
      */
     protected void DetectPlayer() {
-        bool wasKnown = playerCollider;
+        // Only run once per refresh rate
+        if (Time.time < _detectPlayerTimer) return;
+        _detectPlayerTimer = Time.time + _detectPlayerRefreshRate;
+
+        var playerManager = GameControler.GetPlayerManager();
+        var playerPosition = playerManager.transform.position;
+        var position = transform.position;
+        bool wasKnown = _player;
         
-        // PlayerColliderNoneAlloc[0] = null;
-        
-        var playerColliderTemp = Physics2D.OverlapCircle(frontCheck.position, detectRadius, playerLayer);
-        
-        if (playerColliderTemp) {
-            playerCollider = playerColliderTemp;
-            forgetPlayerTime = Time.time + timeToForgetPlayer;
-            if (!wasKnown) {
-                soundManager.PlayAudio(SoundManager.SoundClips.EnemyDetected);
-            }
-        }
-        else if (wasKnown) {
-            // target lost
-            if (Utils.IsObjectInLayerMask(playerCollider.gameObject, playerInvisibleLayer)) {
+        if (Vector2.Distance(playerPosition, position) > detectRadius) {
+
+            // player was not close and player is not close
+            if(!wasKnown) return;
+            
+            // Player was close and now its to far
+            if (Utils.IsObjectInLayerMask(_player.gameObject, playerInvisibleLayer)) {
                 forgetPlayerTime -= 5f*Time.deltaTime;
             }
+        }
+        // player is close
+        else {
+            // only see the player if a raycast can be drawn to it
+            var rayHit = Physics2D.Raycast(transform.position+Vector3.up*_hight/4,(playerPosition - position).normalized, 
+                detectRadius, whatIsGround+playerLayer);
+            //
+            if (rayHit.collider.gameObject == playerManager.gameObject) {
+                _player = playerManager;
+                forgetPlayerTime = Time.time + timeToForgetPlayer;
+                if (!wasKnown) {
+                    soundManager.PlayAudio(SoundManager.SoundClips.EnemyDetected);
+                }
+            }
+            
         }
     }
 
     // Check if player is in attack range but not too close
     protected bool IsPlayerInAttackRange() {
-        Vector2 checkPosition = transform.position;
-        Vector2 closestPointToPlayer = playerCollider.bounds.ClosestPoint(checkPosition);
-        float distanceFromPlayer = Vector2.Distance(closestPointToPlayer, checkPosition);
+        float distanceFromPlayer = Vector2.Distance(_player.transform.position, transform.position);
         if (distanceFromPlayer <= attackDetectRadius) {
             FaceTarget();
             return true;
@@ -272,11 +295,11 @@ public class AIBase : MonoBehaviour, IManager
     }
 
     protected virtual void MaintainDistanceFromPlayer(float distance) {
-        if(_moveDisabled || playerCollider==null) return;
+        if(_moveDisabled || !_player) return;
         bool stopWalking = false;
 
         var position = transform.position;
-        var playerPosition = playerCollider.transform.position;
+        var playerPosition = _player.transform.position;
         if (position.x > playerPosition.x + distance + maintainErrorRange ||
             (position.x < playerPosition.x && position.x > playerPosition.x - distance + maintainErrorRange)) {
             _walkDirectionMult = -1;
@@ -305,7 +328,7 @@ public class AIBase : MonoBehaviour, IManager
     protected virtual void MoveToPlayer() {
         
         Vector3 checkPosition = transform.position;
-        Vector3 playerPosition = playerCollider.transform.position;
+        Vector3 playerPosition = _player.transform.position;
         
         // if not facing the player, and not too close to the player, and enough time has passed since last flip: Flip
         if ((transform.position.x - playerPosition.x) * controller.GetFacingMult() >= 0 && 
@@ -359,7 +382,7 @@ public class AIBase : MonoBehaviour, IManager
     protected bool AtWall() {
         
         Collider2D rayCastForward = Physics2D.OverlapCircle(
-            (Vector2)transform.position + Vector2.right*(_walkDirectionMult*(_width/2)), 0.2f, whatIsGround);
+            transform.position + Vector3.right*(_walkDirectionMult*(_width/2)), 0.2f, whatIsGround);
         
         return rayCastForward;
     }
@@ -450,16 +473,16 @@ public class AIBase : MonoBehaviour, IManager
     }
 
     public void FaceTarget() {
-        if(!playerCollider) return;
+        if(!_player) return;
 
         if (controller.GetFacingMult() > 0) {
-            if (playerCollider.transform.position.x < transform.position.x) {
+            if (_player.transform.position.x < transform.position.x) {
                 _walkDirectionMult *= -1;
                 controller.Flip();
             }
         }
         else {
-            if (playerCollider.transform.position.x > transform.position.x) {
+            if (_player.transform.position.x > transform.position.x) {
                 _walkDirectionMult *= -1;
                 controller.Flip();
             }
@@ -467,8 +490,8 @@ public class AIBase : MonoBehaviour, IManager
     }
 
     public Vector3 GetDirectionToTarget() {
-        if (playerCollider) {
-            return playerCollider.transform.position - transform.position;
+        if (_player) {
+            return _player.transform.position - transform.position;
         }
         return new Vector3(controller.GetFacingMult(), 0, 0);
     }

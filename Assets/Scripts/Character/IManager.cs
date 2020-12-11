@@ -63,4 +63,6 @@ public interface IManager
 
      // Get a trigger from the animator that a basic attack is triggered to do the hit.
      void AttackAnimationTrigger();
+
+     void PermanentDisable();
 }

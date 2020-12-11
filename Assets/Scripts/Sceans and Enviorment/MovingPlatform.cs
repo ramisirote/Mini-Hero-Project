@@ -87,8 +87,10 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Collectable")) {
-            
-            other.transform.parent = _parentsTransforms[other.gameObject.name];
+
+            if (other.gameObject.activeSelf) {
+                other.transform.parent = _parentsTransforms[other.gameObject.name];
+            }
         }
     }
 

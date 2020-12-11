@@ -21,7 +21,7 @@ public class AllEnemiesDefeated : MonoBehaviour
         }
     }
 
-    private void EnemyOnDeathEvent(object sender, EventArgs e) {
+    private void EnemyOnDeathEvent(object sender, IManager manager) {
         numberOfEnemiesDead++;
         if (numberOfEnemies == numberOfEnemiesDead) {
             allEnemiesDeadEvent?.Invoke(this, EventArgs.Empty);

@@ -14,16 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powersLibrary: {fileID: 11400000, guid: 5662ba0c5ec43cf4c8ce4e7bb9c7f43d, type: 2}
   mainPowers: {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
-  secondaryPowers: {fileID: 11400000, guid: 0834799cfd944d9409bba9af93eb9e83, type: 2}
+  secondaryPowers: {fileID: 11400000, guid: bfda14939b87f1d4089c9f9232c54cac, type: 2}
   abilities:
   - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
-  - {fileID: 11400000, guid: b53854e16932ea44bacecc6544e734a2, type: 2}
-  - {fileID: 11400000, guid: 21d08b554b01fc94ca76239949afbb15, type: 2}
+  - {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
   - {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
-  activeAbility1: 3
+  activeAbility1: 0
   activeAbility2: 1
   hasAbilities: 1
-  secondaryAbility: {fileID: 11400000, guid: b53854e16932ea44bacecc6544e734a2, type: 2}
+  secondaryAbility: {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
   mainColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.44072777, b: 0, a: 1}

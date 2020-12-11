@@ -32,12 +32,15 @@ public class EnergyChargeProjectile : MonoBehaviour
     private float scalePerCharge;
     private float hitRadiusPerCharge;
 
-    private bool _wasReleased = false;
+    private bool _wasReleased;
     private float _startTrailWidth;
     private bool _detonated;
+
+    private float _startingScale;
     
 
     public void Releace(Vector2 direction, float speed) {
+        gameObject.transform.SetParent(null);
         flyDirection = speed * (direction / direction.magnitude);
         rb.velocity = flyDirection;
         _wasReleased = true;
@@ -49,8 +52,8 @@ public class EnergyChargeProjectile : MonoBehaviour
         _damagePerCharge = damage;
         _isPlayer = isPlayer;
         
-        var startingScale = transform.localScale.x;
-        scalePerCharge = (maxScale - startingScale) / _maxCharges;
+        _startingScale = transform.localScale.x;
+        scalePerCharge = (maxScale - _startingScale) / _maxCharges;
         hitRadiusPerCharge = (maxRadius - baseRadius) / _maxCharges;
 
         _c1 = c1;
@@ -85,10 +88,21 @@ public class EnergyChargeProjectile : MonoBehaviour
         scale.x += scalePerCharge*addAmount;
         scale.y += scalePerCharge*addAmount;
         
-        
-        trailRenderer.startWidth = _startTrailWidth*scale.x;
-        
         transform.localScale = scale;
+
+        trailRenderer.startWidth = _startTrailWidth*scale.x;
+    }
+
+    public void Reset() {
+        
+        trailRenderer.Clear();
+        _charges = 0f;
+        _detonated = false;
+        _wasReleased = false;
+        
+        transform.localScale = new Vector3(_startingScale,_startingScale, 1);
+
+        trailRenderer.startWidth = _startTrailWidth;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -121,7 +135,7 @@ public class EnergyChargeProjectile : MonoBehaviour
         
         if(_isPlayer) CinemachineShake.Instance.ShakeCamera(2f*GetChargeNormalized());
         
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public float GetChargeNormalized() {
@@ -137,5 +151,9 @@ public class EnergyChargeProjectile : MonoBehaviour
         
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxRadius);
+    }
+
+    private void OnDisable() {
+        Reset();
     }
 }

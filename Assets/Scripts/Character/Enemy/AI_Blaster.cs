@@ -14,18 +14,17 @@ public class AI_Blaster : AIBase
             }
         }
         else if(PlayerInBlastRang() && CanUseAbility()) {
-            var direction = playerCollider.transform.position - transform.position;
+            var direction = _player.transform.position - transform.position;
             UseAbility(direction);
         }
         else {
             MaintainDistanceFromPlayer();
         }
-        
     }
 
     private bool PlayerInBlastRang() {
         var position = transform.position;
-        var direction = playerCollider.transform.position - position;
+        var direction = _player.transform.position - position;
         var ray = Physics2D.Raycast(position, direction, playerLayer);
 
         return ray.collider;

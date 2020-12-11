@@ -25,12 +25,15 @@ public class AI_Flyer : AIBase
     // Set controller and animation to flying.
     // Set up flying patrol border
     protected override void AdditionalStart() {
-        animator.SetBool(AnimRefarences.Flying, true);
         controller.MakeFlying(true);
 
         var startPositionX = transform.position.x;
         patrolBorderLeft = startPositionX - leftPatrolDistance;
         patrolBorderRight = startPositionX + rightPatrolDistance;
+    }
+
+    protected override void OnEnable() {
+        animator.SetBool(AnimRefarences.Flying, true);
     }
     
     protected override void MoveSelf() {
@@ -51,12 +54,12 @@ public class AI_Flyer : AIBase
     }
     
     protected override void MaintainDistanceFromPlayer() {
-        if(_moveDisabled || playerCollider==null) return;
+        if(_moveDisabled || !_player) return;
         bool stopHorizontal = false;
 
         // Maintain vertical distance
         var position = transform.position;
-        var playerPosition = playerCollider.transform.position;
+        var playerPosition = _player.transform.position;
         if (position.y > playerPosition.y + verticalMaintainDistance + maintainErrorRange ||
             (position.y < playerPosition.y && position.y > playerPosition.y - verticalMaintainDistance + maintainErrorRange)) {
             _verticalSpeed = -1 * _walkingSpeed;
@@ -82,76 +85,72 @@ public class AI_Flyer : AIBase
             FaceTarget();
             stopHorizontal = true;
         }
-        
-        if (AtWall2D()) {
-            _verticalSpeed = _horizontalSpeed = 0;
-            controller.StopAll();
-        }
 
         _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
-        // at this point, horizontal speed is 0 (see beginning of update)
-        if (stopHorizontal) {
+        
+        if (AtWall() || stopHorizontal) {
             _horizontalSpeed = 0;
             controller.StopHorizontal();
         }
+
+        if (AtWallVertical()) {
+            _verticalSpeed = 0;
+            controller.StopVertical();
+        }
     }
     
-    private bool AtWall2D() {
-        var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
-        moveVector.Normalize();
-        var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2.5f, whatIsGround);
-
-        if (wallCheck.collider) {
-            return true;
-        }
-
-        return false;
+    private bool AtWallVertical() {
+        Collider2D rayCastForward = Physics2D.OverlapCircle(
+            transform.position + Vector3.up*(_walkDirectionMult*(_hight/2)), 0.2f, whatIsGround);
+        
+        return rayCastForward;
     }
 
     // Move to the player
     // NOT USED AT THE MOMENT
-    protected override void MoveToPlayer() {
-        Vector2 checkPosition = transform.position;
-        Vector2 closestPoint = playerCollider.bounds.ClosestPoint(checkPosition);
-
-        // Horizontal
-        if ((transform.position.x - closestPoint.x) * controller.GetFacingMult() >= 0) {
-            if (Vector2.Distance(closestPoint, checkPosition) >= minMoveToDistance) {
-                if (canFlip) {
-                    canFlip = false;
-                    _walkDirectionMult *= -1;
-                    StartCoroutine(FlipCooldown());
-                }
-            }
-        }
-
-        // Vertical
-        if (transform.position.y - playerCollider.transform.position.y >= minMoveToDistance) {
-            _verticalSpeed = -1*_walkingSpeed;
-        }
-        else if (transform.position.y - playerCollider.transform.position.y <= minMoveToDistance) {
-            _verticalSpeed = _walkingSpeed;
-        }
-        else {
-            _verticalSpeed = 0f;
-        }
-        _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
-
-        // var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
-        // moveVector.Normalize();
-        // var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2f, whatIsGround);
-        //
-        // if (wallCheck.collider != null) {
-        //     Debug.Log(wallCheck);
-        //     _verticalSpeed = _horizontalSpeed = 0;
-        // }
-        
-        animator.SetFloat(AnimRefarences.Speed, Math.Abs(_horizontalSpeed));
-    }
+    // protected override void MoveToPlayer() {
+    //     
+    //     // Horizontal
+    //     if ((transform.position.x - closestPoint.x) * controller.GetFacingMult() >= 0) {
+    //         if (Vector2.Distance(closestPoint, checkPosition) >= minMoveToDistance) {
+    //             if (canFlip) {
+    //                 canFlip = false;
+    //                 _walkDirectionMult *= -1;
+    //                 StartCoroutine(FlipCooldown());
+    //             }
+    //         }
+    //     }
+    //
+    //     // Vertical
+    //     if (transform.position.y - _player.transform.position.y >= minMoveToDistance) {
+    //         _verticalSpeed = -1*_walkingSpeed;
+    //     }
+    //     else if (transform.position.y - _player.transform.position.y <= minMoveToDistance) {
+    //         _verticalSpeed = _walkingSpeed;
+    //     }
+    //     else {
+    //         _verticalSpeed = 0f;
+    //     }
+    //     _horizontalSpeed = _walkingSpeed * _walkDirectionMult;
+    //
+    //     // var moveVector = new Vector2(_horizontalSpeed, _verticalSpeed);
+    //     // moveVector.Normalize();
+    //     // var wallCheck = Physics2D.Raycast(transform.position, moveVector, 2f, whatIsGround);
+    //     //
+    //     // if (wallCheck.collider != null) {
+    //     //     Debug.Log(wallCheck);
+    //     //     _verticalSpeed = _horizontalSpeed = 0;
+    //     // }
+    //     
+    //     animator.SetFloat(AnimRefarences.Speed, Math.Abs(_horizontalSpeed));
+    // }
     
     // Move the character based on horizontal and vertical speed, flying.
     private void FixedUpdate() {
         if(_disabled) return;
+        
+        // if(_verticalSpeed < 0.01f) controller.StopVertical();
+        // if(_horizontalSpeed < 0.01f) controller.StopHorizontal();
         controller.FlyingMove(_horizontalSpeed, _verticalSpeed);
     }
 

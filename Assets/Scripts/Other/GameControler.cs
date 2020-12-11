@@ -12,10 +12,11 @@ public class GameControler : MonoBehaviour
 {
     [SerializeField] private CharacterAppearance playerAppearance;
     [SerializeField] private CharacterPowers playerPowers;
-    
+
     private static GameControler _gameControler = null;
-    
+
     private GameObject _player;
+    private PlayerManager _playerManager;
     private GameObject _uiOverlay;
 
     private CharacterStatsData _characterStatsData = null;
@@ -27,6 +28,14 @@ public class GameControler : MonoBehaviour
 
     private int _screenshotFileSaveNum = 0;
     private float _nextTimeCanScreenshot;
+    
+    public static GameControler GetGameControler() {
+        return _gameControler;
+    }
+
+    public static PlayerManager GetPlayerManager() {
+        return _gameControler._playerManager;
+    }
 
     private void Awake() {
         if (_gameControler == null) {
@@ -61,6 +70,7 @@ public class GameControler : MonoBehaviour
 
     private void FindPlayerAndOverlay() {
         _player = GameObject.FindWithTag("Player");
+        _playerManager = _player.GetComponent<PlayerManager>();
         _uiOverlay = GameObject.FindWithTag("UI");
     }
 
@@ -135,10 +145,10 @@ public class GameControler : MonoBehaviour
         
     }
 
-    public void EnemyDeathAddXpToPlayer(object sender, EventArgs e) {
+    public void EnemyDeathAddXpToPlayer(object sender, IManager manager) {
         if (sender == null) return;
         int xp = 0;
-        AIBase enemyAI = ((GameObject) sender).GetComponent<AIBase>();
+        AIBase enemyAI = (AIBase)manager;
         if (enemyAI) {
             xp = enemyAI.GetXp();
         }

@@ -13,24 +13,26 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private float deathDownTime;
     private Transform _checkPoint = null;
     private CharacterStatsData _checkPointStatsData = null;
+    
+    private PlayerManager _manager;
+    private TakeDamage _takeDamage;
+    private CharacterController2D _controller;
+    private Animator _animator;
 
     private int _checkPointValue;
     
     private float restartTime;
 
     private void Awake() {
-        // if (_player == null) {
-        //     _player = gameObject;
-        //     DontDestroyOnLoad(gameObject);
-        // }
-        // else {
-        //     Destroy(_player);
-        // }
-        GetComponent<TakeDamage>().OnDeathEvent += PlayerDead;
+        _manager = gameObject.GetComponent<PlayerManager>();
+        _takeDamage = gameObject.GetComponent<TakeDamage>();
+        _controller = gameObject.GetComponent<CharacterController2D>();
+        _animator = gameObject.GetComponent<Animator>();
+        _takeDamage.OnDeathEvent += PlayerDead;
 
     }
 
-    public void PlayerDead(object obj, EventArgs e) {
+    public void PlayerDead(object obj, IManager e) {
         StartCoroutine(_checkPoint ? RestartCheckpoint() : RestartLevel());
     }
 
@@ -43,18 +45,18 @@ public class PlayerDeath : MonoBehaviour
 
     private void MakeNotDead() {
         // Set Animator to not dead
-        transform.gameObject.GetComponent<Animator>()?.SetBool(AnimRefarences.Dead, false);
+        if (_animator) _animator.SetBool(AnimRefarences.Dead, false);
         
         // activate controller
-        CharacterController2D controller2D = transform.gameObject.GetComponent<CharacterController2D>();
-        if (controller2D) {
-            controller2D.enabled = true;
-        }
+        if (_controller) _controller.enabled = true;
 
-        GetComponent<TakeDamage>().enabled = true;
+        if (_takeDamage) _takeDamage.enabled = true;
         
         // activate manager
-        GetComponent<IManager>()?.EnableManager();
+        if (_manager) {
+            _manager.enabled = true;
+            _manager.EnableManager();
+        }
         
         // return to player layer
         gameObject.layer = LayerMask.NameToLayer("Player");

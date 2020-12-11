@@ -116,6 +116,18 @@ PrefabInstance:
       propertyPath: maxCharge
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+      propertyPath: _color1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+      propertyPath: _color2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 46938174941224993, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
+      propertyPath: _color3.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
       propertyPath: m_Name
       value: Energy Charge
@@ -391,6 +403,10 @@ PrefabInstance:
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.16179782
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931872555705970681, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: characterStatsData.<MoveSpeed>k__BackingField
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9146110530796499620, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: points.Array.data[0].name
