@@ -30,4 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87a779acf6ee41641b3dddb835dd877b, type: 2}
   - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
   - {fileID: 11400000, guid: 18fd7e6cc8330e74eb366bf5ef2066c9, type: 2}
+  - {fileID: 11400000, guid: 2a8f02912c0302748a01929f9ba383f3, type: 2}
+  - {fileID: 11400000, guid: 903b589061af32d4b843f160b3449a23, type: 2}
   isSinglePower: 0

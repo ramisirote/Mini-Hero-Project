@@ -30,6 +30,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     private SpriteHandler _spriteHandler;
 
     private void Start() {
+        HitManager.AddTakeDamage(gameObject, this);
         _manager = GetComponent<IManager>();
         _spriteHandler = GetComponent<SpriteHandler>();
     }
@@ -53,7 +54,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         if (characterStats.IsDead()) {
             Die();
         }
-        else if(_playAnimation){
+        else if(_playAnimation && !_manager.IsStunned()){
             animator.SetTrigger(AnimRefarences.Hit);
             _manager.DisableManager();
         }
@@ -61,6 +62,12 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         _nextCanBeHitTime = Time.time + hitInvonerableTime;
     }
     
+    public void Damage(float damage, Vector2 awayFromPos, float pushAmount, bool ignoreInvonerable = false) {
+        Vector2 pos = transform.position;
+        var toHitVec = (pos - awayFromPos).normalized * pushAmount;
+        Damage(damage, toHitVec, ignoreInvonerable);
+    }
+
     public void Damage(float damage, Vector2 push, bool ignoreInvonerable = false) {
         if (characterStats.IsDead()) return;
         if (!ignoreInvonerable && Time.time < _nextCanBeHitTime) return;
@@ -140,7 +147,8 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     }
 
     private void Die() {
-        OnDeathEvent?.Invoke(gameObject, _manager);
+        var ob = gameObject;
+        OnDeathEvent?.Invoke(ob, _manager);
         controller2D.MakeFlying(false);
         controller2D.StopAll();
         controller2D.enabled = false;
@@ -149,7 +157,9 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         soundManager.PlayAudio(SoundManager.SoundClips.Die);
         enabled = false;
         _manager.PermanentDisable();
-        gameObject.layer = LayerMask.NameToLayer("Dead");
+        ob.layer = LayerMask.NameToLayer("Dead");
+        
+        HitManager.RemoveTakeDamage(ob);
     }
     
 }

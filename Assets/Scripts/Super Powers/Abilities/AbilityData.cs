@@ -11,8 +11,9 @@ public class AbilityData : ScriptableObject
 {
     public enum AbilityEnum
     {
-        FlameThrower, Blast, Flying, Teleportation, SuperSpeed, Strength, Invisibility, EnergyBurst, EnergyCharge,
-        EnergyBeam, SpeedDash, StrengthSmash, TornadoRun, BullRun, FlurryPunches, MartialArts
+        FlameThrower, FireBody, FireBolts, Blast, Flying, Teleportation, SuperSpeed, Strength, Invisibility, EnergyBurst, EnergyCharge,
+        EnergyBeam, SpeedDash, StrengthSmash, TornadoRun, BullRun, FlurryPunches, MartialArts, PickupThrow, Detonate,
+        SuperPunch, Telekinesis, TelekineticBurst, TelekineticShield, TelekineticBlast
     }
 
     public string abilityName;

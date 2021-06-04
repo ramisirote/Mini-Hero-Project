@@ -837,7 +837,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.0072095613, y: 0.14208248, z: 0}
+        value: {x: 0.00033622302, y: 0.0022660415, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -846,16 +846,16 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.1
-        value: {x: -0.07407946, y: 0.13468766, z: 0}
-        inSlope: {x: -0.43983114, y: -0.076364815, z: 0}
-        outSlope: {x: -0.43983114, y: -0.076364815, z: 0}
+        value: {x: -0.06636932, y: -0.012216434, z: 0}
+        inSlope: {x: -0.08269801, y: -0.13187751, z: 0}
+        outSlope: {x: -0.08269801, y: -0.13187751, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: -0.09240576, y: 0.12935501, z: 0}
+        value: {x: -0.06981507, y: -0.019713543, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -864,7 +864,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.33333334
-        value: {x: -0.0072095613, y: 0.14208248, z: 0}
+        value: {x: 0.00033622302, y: 0.0022660415, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -2246,7 +2246,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.0072095613
+        value: 0.00033622302
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2255,16 +2255,16 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.1
-        value: -0.07407946
-        inSlope: -0.43983114
-        outSlope: -0.43983114
+        value: -0.06636932
+        inSlope: -0.08269801
+        outSlope: -0.08269801
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -0.09240576
+        value: -0.06981507
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2273,7 +2273,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: -0.0072095613
+        value: 0.00033622302
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2293,7 +2293,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.14208248
+        value: 0.0022660415
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2302,16 +2302,16 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.1
-        value: 0.13468766
-        inSlope: -0.076364815
-        outSlope: -0.076364815
+        value: -0.012216434
+        inSlope: -0.13187751
+        outSlope: -0.13187751
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 0.12935501
+        value: -0.019713543
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2320,7 +2320,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 0.14208248
+        value: 0.0022660415
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -6210,8 +6210,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
-      Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6221,8 +6220,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
-      Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6232,8 +6230,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
-      Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6273,7 +6270,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
+      Upper/Arm R Bone Lower
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6283,7 +6281,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
+      Upper/Arm R Bone Lower
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6293,7 +6292,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
+      Upper/Arm R Bone Lower
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6423,7 +6423,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Leg R/Leg Bone R Upper
+    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6433,7 +6433,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Leg R/Leg Bone R Upper
+    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6443,7 +6443,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Leg R/Leg Bone R Upper
+    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6453,7 +6453,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6463,7 +6464,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6473,7 +6475,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm L/Arm L Bone
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6513,7 +6516,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
+    path: Player Leg R/Leg Bone R Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6523,7 +6526,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
+    path: Player Leg R/Leg Bone R Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6533,7 +6536,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
+    path: Player Leg R/Leg Bone R Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6543,7 +6546,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Leg L/Leg Bone L Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6553,7 +6556,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Leg L/Leg Bone L Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6563,7 +6566,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Leg L/Leg Bone L Upper
+    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Head/Head Bone
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6667,7 +6670,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
     path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper/Arm R Bone Lower
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6678,7 +6681,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
     path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper/Arm R Bone Lower
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6689,7 +6692,7 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
     path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper/Arm R Bone Lower
+      Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6699,7 +6702,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
+    path: Player Leg L/Leg Bone L Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6709,7 +6712,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
+    path: Player Leg L/Leg Bone L Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6719,7 +6722,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Leg L/Leg Bone L Upper/Leg Bone L Lower/Foot Bone L
+    path: Player Leg L/Leg Bone L Upper
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6759,8 +6762,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper
+    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6770,8 +6772,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper
+    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -6781,8 +6782,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player Chest/Chest Bone Lower/Chest Bone Upper/Player Arm R/Arm R Bone
-      Upper
+    path: Player Leg R/Leg Bone R Upper/Leg Bone R Lower
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
@@ -6802,7 +6802,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
+  - time: 0.1
     functionName: AttackAnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

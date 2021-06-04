@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+
 using UnityEngine.UI;
 
 public class SwichGender : MonoBehaviour
 {
-    public SpriteResolver[] spritesToChangeGender;
+    public UnityEngine.U2D.Animation.SpriteResolver[] spritesToChangeGender;
     public CharacterAppearance appearance;
     [SerializeField] private Slider slider;
 

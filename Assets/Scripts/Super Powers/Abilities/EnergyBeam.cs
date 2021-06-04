@@ -28,6 +28,33 @@ public class EnergyBeam : Ability
     private float _armDefaultRotationAngle;
     private BodyAngler _bodyAngler;
     private ParticleSystem hitParticlesInstance;
+    private bool _isActive;
+    private bool _released;
+    private Vector3 _setTarget;
+    private float _minChangeTime = 0.1f;
+    
+    // Upgrades
+    [Header("Upgrades")] 
+    [SerializeField] private float reducedEnergy;
+    [SerializeField] private float reducedCooldown;
+    [SerializeField] private float increasedKnockback;
+    [SerializeField] private float shortOnTime;
+    private bool _reducedEnergy;
+    private bool _reducedCooldown;
+    private bool _increasedKnockback;
+    private bool _isHold;
+    
+    protected override void UnlockAbilityMap() {
+        _reducedEnergy = upgrades[0];
+        _reducedCooldown = upgrades[1];
+        _increasedKnockback = upgrades[2];
+        _isHold = upgrades[3];
+        
+        abilityCooldown = _reducedCooldown ? reducedCooldown : abilityCooldown;
+        energyRequired = _reducedEnergy ? reducedEnergy : energyRequired;
+        //OnForTime = !_isHold ? shortOnTime : OnForTime;
+    }
+
     
     protected override void AdditionalInit() {
         lineRenderer.colorGradient = Utils.CreateGradient(new[] {_color3,_color2, _color1}, new[] {0.8f});
@@ -67,26 +94,40 @@ public class EnergyBeam : Ability
     public override void UseAbility(Vector3 direction) {
         if (!AbilityOn) {
             AbilityOn = true;
+            _isActive = false;
+            _released = false;
             chargingParticles.Play();
             _animator.SetBool(AnimRefarences.IsFireingContinues, true);
             _coroutine = StartCoroutine(DelayOn());
             Manager.DisableMove();
             Manager.DisableActions();
             Controller.StopHorizontal();
+            if (!_isHold) {
+                UseAbilityRelease(Manager.GetDirectionToTarget());
+            }
             AbilityOnInvoke();
         }
         else {
-            SetAbilityOff();
+            StartCoroutine(DelayOff());
         }
     }
 
     IEnumerator DelayOn() {
-        yield return new WaitForSeconds(chargeTime);
+        var timer = chargeTime;
+        while (true) {
+            if (timer <= 0) break;
+            if (_released && timer <= chargeTime - _minChangeTime) break;
+            if (_isActive) break;
+            yield return null;
+            timer -= Time.deltaTime;
+        }
         
         Activate();
     }
 
     private void Activate() {
+        if (_isActive) return;
+        _isActive = true;
         Controller.StopHorizontal();
         lineRenderer.enabled = true;
         HandleLineHit();
@@ -108,15 +149,14 @@ public class EnergyBeam : Ability
         if (lineRenderer.enabled) {
             // set the start of the line to the effect point
             lineRenderer.SetPosition(0, position);
-            
-            //
-            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, Manager.GetDirectionToTarget(), 100, layerMask);
+
+            var target = _released ? _setTarget : Manager.GetDirectionToTarget();
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position,target , 100, layerMask);
             if (rayHit.collider) {
                 lineRenderer.SetPosition(1, rayHit.point);
-                TakeDamage enemyHit = rayHit.collider.GetComponent<TakeDamage>();
-                if (enemyHit) {
-                    enemyHit.Damage(damage, Controller.GetFacingMult(), 0, 0);
-                }
+                var enemyHit = HitManager.GetTakeDamage(rayHit.collider.gameObject);
+                var knockBack = _increasedKnockback ? increasedKnockback : 0;
+                enemyHit?.Damage(damage, effectPointTransform.position, knockBack);
 
                 hitParticlesInstance.transform.position = rayHit.point;
                 hitParticlesInstance.Play();
@@ -129,7 +169,8 @@ public class EnergyBeam : Ability
     }
 
     IEnumerator DelayOff() {
-        yield return new WaitForSeconds(OnForTime);
+        var onTimer = _isHold && !_released ? OnForTime : shortOnTime;
+        yield return new WaitForSeconds(onTimer);
         
         SetAbilityOff();
     }
@@ -158,13 +199,21 @@ public class EnergyBeam : Ability
     }
     
     public override void UseAbilityRelease(Vector3 direction) {
-        SetAbilityOff();
+        if (!AbilityOn) return;
+        if (_isActive) {
+            SetAbilityOff();
+        }
+        else {
+            _released = true;
+            _setTarget = direction;
+            Manager.FaceTarget();
+        }
     }
     
     public override void UpdateDirection(Vector3 direction) {
-        float angle;
-        Manager.FaceTarget();
-        angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90 )* -Controller.GetFacingMult();
+        if (_released) direction = _setTarget;
+        else Manager.FaceTarget();
+        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90 )* -Controller.GetFacingMult();
 
         // var transformLocalRotation = transform.localRotation;
         // transformLocalRotation.eulerAngles = new Vector3(0,0,angle);

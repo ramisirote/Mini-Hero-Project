@@ -14,7 +14,7 @@ public class Refarences
     
     public enum EBodyParts
     {
-        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack
+        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack, punch
     }
     
     public enum BodyJoints
@@ -62,6 +62,11 @@ public class AnimRefarences
     public static string BullRun = "BullRun";
     public static string FlurryPunches = "FlurryPunches";
     public static string StrengthPunch = "StrengthPunch";
+    public static string HandsOut = "HandsOut";
+    public static string Grab = "Grab";
+    public static string Stunned = "Stunned";
+    public static string PunchLoad = "PunchLoad";
+    //public static string PunchRelease;
 
 
     public static void ResetAnimatorBools(Animator anim) {
@@ -70,5 +75,7 @@ public class AnimRefarences
         anim.SetBool(Crouching, false);
         anim.SetBool(Dead, false);
         anim.SetBool(IsFireingContinues, false);
+        anim.SetBool(HandsOut, false);
+        anim.SetBool(Stunned, false);
     }
 }

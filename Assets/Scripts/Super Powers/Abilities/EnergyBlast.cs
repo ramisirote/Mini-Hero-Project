@@ -157,8 +157,8 @@ public class EnergyBlast : Ability
         RaycastHit2D rayHit = Physics2D.Raycast(transform.position, _direction, 100, enemyLayer);
         if (rayHit.collider) {
             energyLine.SetPosition(1, rayHit.point);
-            TakeDamage enemyHit = rayHit.collider.GetComponent<TakeDamage>();
-            if (enemyHit) {
+            var enemyHit = HitManager.GetTakeDamage(rayHit.collider.gameObject);
+            if (enemyHit != null) {
                 enemyHit.Damage(damage, Controller.GetFacingMult());
             }
 

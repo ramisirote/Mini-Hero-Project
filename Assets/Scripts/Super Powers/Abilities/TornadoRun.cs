@@ -157,7 +157,7 @@ public class TornadoRun : Ability
         if (Utils.IsObjectInLayerMask(other.gameObject, whatToHit)) {
             var pushAway = Vector2.one;
             pushAway.x = other.transform.position.x > transform.position.x ? -1 : 1;
-            other.gameObject.GetComponent<ITakeDamage>()?.Damage(damage, push*pushAway);
+            HitManager.GetTakeDamage(other.gameObject)?.Damage(damage, push*pushAway);
         }
     }
 }

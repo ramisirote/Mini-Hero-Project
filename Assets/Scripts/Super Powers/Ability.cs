@@ -35,7 +35,9 @@ public abstract class Ability: MonoBehaviour
     protected bool IsPlayer;
     protected Animator Animator;
 
-    protected bool[] unlocks = new bool[4];
+    protected Color[] Colors;
+
+    protected bool[] upgrades = new bool[4];
 
     // Uses the start function if ability isn't Given through the instance class
     public void Start() {
@@ -61,6 +63,8 @@ public abstract class Ability: MonoBehaviour
         _color2 = color2;
         _color3 = color3;
         
+        Colors = new Color[]{_color1, _color2, _color3};
+        
         if (parentCharacter) return;
         parentCharacter = parent;
         IsPlayer = parent.CompareTag("Player");
@@ -76,9 +80,7 @@ public abstract class Ability: MonoBehaviour
     // Init, but with unlockables.
     // Unlockables have to yet been implemented.
     public void Init(GameObject parent, Color color1, Color color2, Color color3, bool[] otherUnlocks) {
-        for (int i = 0; i < unlocks.Length && i<otherUnlocks.Length; i++) {
-            unlocks[i] = otherUnlocks[i];
-        }
+        UpdateUnlocks(otherUnlocks);
         Init(parent, color1, color2, color3);
     }
 
@@ -90,6 +92,23 @@ public abstract class Ability: MonoBehaviour
     // Run right after Init
     protected abstract void AdditionalInit();
 
+    protected void UpdateUnlocks(bool[] otherUnlocks) {
+        for (int i = 0; i < upgrades.Length && i < otherUnlocks.Length; i++) {
+            upgrades[i] = otherUnlocks[i];
+        }
+        UnlockAbilityMap();
+    }
+
+    public void Upgrade(int index) {
+        if (index < 0 || index >= upgrades.Length) return;
+        upgrades[index] = true;
+        UnlockAbilityMap();
+    }
+    
+    protected virtual void UnlockAbilityMap() {
+        return;
+    }
+
     // Return if the ability is currently on
     public bool IsAbilityOn() {
         return AbilityOn;
@@ -98,6 +117,10 @@ public abstract class Ability: MonoBehaviour
     // Get the ability icon
     public Sprite GetIconImage() {
         return abilityIcon;
+    }
+
+    public virtual void OnAbilitySwitchIn() {
+        return;
     }
 
     

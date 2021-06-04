@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+
 
 public class SpriteHandler : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class SpriteHandler : MonoBehaviour
             _powers = powerInstance.powers;
         }
         SpriteRenderer sp;
-        SpriteResolver sr;
+        UnityEngine.U2D.Animation.SpriteResolver sr;
         Material m;
         string label;
         string catagory;
@@ -39,7 +39,7 @@ public class SpriteHandler : MonoBehaviour
                 m.SetColor("_Color"+(j+1), _appearance.GetColor(i, j));
             }
 
-            sr = bodyParts[i].GetComponent<SpriteResolver>();
+            sr = bodyParts[i].GetComponent<UnityEngine.U2D.Animation.SpriteResolver>();
             catagory = sr.GetCategory();
             
             label = (_appearance.GetSelectedPart(catagory) + 1).ToString();

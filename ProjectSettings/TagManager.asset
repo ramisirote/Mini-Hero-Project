@@ -22,8 +22,8 @@ TagManager:
   - Enemy
   - Dead
   - PlayerInvisible
-  - 
-  - 
+  - ShieldPlayer
+  - ShieldEnemy
   - 
   - 
   - 

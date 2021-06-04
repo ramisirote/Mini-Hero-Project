@@ -58,7 +58,7 @@ public class StrengthPunch : Ability
         if (hit) {
             if (hit.GetComponent<CharacterStats>().IsDead()) return;
             
-            hit.GetComponent<TakeDamage>().Damage(damage, Vector2.zero);
+            HitManager.GetTakeDamage(hit.gameObject)?.Damage(damage, Vector2.zero);
             if(IsPlayer) CinemachineShake.Instance.ShakeCamera(cameraShake);
             
             // The thrower handles the push and damage parts of the super strength hit, as well as

@@ -10,6 +10,7 @@ public class PowerMenu : MonoBehaviour
     [SerializeField] private GameObject[] abilityIcons;
     [SerializeField] private GameObject secondaryAbilityIcons;
     [SerializeField] private GameObject[] unlockButtons;
+    [SerializeField] private GameObject[][] upgrades;
 
     [SerializeField] private Text unlockPointsText;
 
@@ -58,7 +59,7 @@ public class PowerMenu : MonoBehaviour
             powerImages[i].color = new Color(1,1,1,0.5f);
             unlockButtons[i].SetActive(true);
             // unlockButtons[i].GetComponent<Button>().onClick.AddListener();
-            
+
         }
         else {
             powerImages[i].color = Color.white;

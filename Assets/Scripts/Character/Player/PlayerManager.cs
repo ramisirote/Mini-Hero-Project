@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -35,6 +33,7 @@ public class PlayerManager : MonoBehaviour, IManager
     private float _nextAttackTime = 0f;
     private bool _canJump = true;
     private bool _hasLanded = true;
+    private bool _stunned = false;
 
     private bool _attackRemember = false;
 
@@ -142,6 +141,26 @@ public class PlayerManager : MonoBehaviour, IManager
         moveDisabled = true;
     }
 
+    public void TurnOffAbilities() {
+        if (_ability1 && _ability1.IsAbilityOn()) {
+            _ability1.SetAbilityOff();
+        }
+        if (_ability2 && _ability2.IsAbilityOn()) {
+            _ability2.SetAbilityOff();
+        }
+    }
+    
+    public void Stunned(bool value = true) {
+        _stunned = value;
+        animator.SetBool(AnimRefarences.Stunned, value);
+        if(_stunned) TurnOffAbilities();
+        else EnableManager();
+    }
+
+    public bool IsStunned() {
+        return _stunned;
+    }
+
     public void DisableFlip() {
         canTurn = false;
         controller.canTurn = false;
@@ -174,11 +193,20 @@ public class PlayerManager : MonoBehaviour, IManager
         return GetVectorToMouse();
     }
 
+    public Vector3 GetDirectionToTargetFromOther(Vector3 otherPosition) {
+        var mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+        
+        Vector3 toVec = mousePos - otherPosition;
+        return toVec;
+    }
+
     // The update loop check all the input types the player can use and acts accordingly.
     private void Update() {
         if(_paused) return;
 
         CheckActiveAbilityChange();
+        
+        if (_stunned) return;
 
         if (!actionDisabled) {
             // Use power input returns true if used. When a power is used the update loop is stopped for that frame.
@@ -204,10 +232,26 @@ public class PlayerManager : MonoBehaviour, IManager
     private void CheckActiveAbilityChange() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             _powersInstance.RotateAbility(1);
+            _ability1.OnAbilitySwitchIn();
         }
         
         if (Input.GetKeyDown(KeyCode.E)) {
             _powersInstance.RotateAbility(2);
+            _ability2.OnAbilitySwitchIn();
+        }
+        
+        // for debug only, a new system will be impelmented
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            _powersInstance.UpgradeAbility(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            _powersInstance.UpgradeAbility(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            _powersInstance.UpgradeAbility(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            _powersInstance.UpgradeAbility(3);
         }
     }
 
@@ -247,21 +291,21 @@ public class PlayerManager : MonoBehaviour, IManager
     private Vector3 GetVectorToMouse() {
         var mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
         
-        Vector3 lookDir = mousePos - transform.transform.position;
+        Vector3 lookDir = mousePos - transform.position;
         return lookDir;
     }
 
     
     // Flip the player to face the mouse
-    public void FaceTarget() {
-        var mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+    public void FaceTarget(Transform target=null) {
+        var targetPos = target ? target.position : _mainCam.ScreenToWorldPoint(Input.mousePosition);
         if (controller.GetFacingMult() > 0) {
-            if (mousePos.x < transform.position.x) {
+            if (targetPos.x < transform.position.x) {
                 controller.Flip();
             }
         }
         else {
-            if (mousePos.x > transform.position.x) {
+            if (targetPos.x > transform.position.x) {
                 controller.Flip();
             }
         }
@@ -320,9 +364,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     // Fixed update handles the moving. Uses the character controller.
     private void FixedUpdate() {
-        if(_paused) return;
-        
-        if(moveDisabled){ 
+        if(_paused || moveDisabled || _stunned){ 
             soundManager.StopAudio(SoundManager.SoundClips.Walk);
             return;
         }
@@ -380,6 +422,7 @@ public class PlayerManager : MonoBehaviour, IManager
 
     // Pause the player. As in pause menu is on.
     public void SetPause(bool pause) {
+        Debug.Log("Pause set to " + pause);
         _paused = pause;
     }
     

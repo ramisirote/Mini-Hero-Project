@@ -48,6 +48,7 @@ public class AIBase : MonoBehaviour, IManager
     private Coroutine _flipRoutine;
     protected float _attackSpeed;
     protected float _walkingSpeed;
+    protected bool _stunned = false;
 
 
     protected bool _moveDisabled = false;
@@ -102,6 +103,23 @@ public class AIBase : MonoBehaviour, IManager
 
     public void PermanentDisable() {
         enabled = false;
+    }
+    
+    public void TurnOffAbilities() {
+        if (ability && ability.IsAbilityOn()) {
+            ability.SetAbilityOff();
+        }
+    }
+
+    public void Stunned(bool value = true) {
+        _stunned = value;
+        if(animator) animator.SetBool(AnimRefarences.Stunned, value);
+        if(_stunned) TurnOffAbilities();
+        else EnableManager();
+    }
+
+    public bool IsStunned() {
+        return _stunned;
     }
 
     public void DisableManager() {
@@ -186,7 +204,7 @@ public class AIBase : MonoBehaviour, IManager
      *     - Otherwise, just move normally.
      */
     private void Update() {
-        if (_disabled) {
+        if (_disabled || _stunned) {
             return;
         }
         
@@ -272,7 +290,7 @@ public class AIBase : MonoBehaviour, IManager
             var rayHit = Physics2D.Raycast(transform.position+Vector3.up*_hight/4,(playerPosition - position).normalized, 
                 detectRadius, whatIsGround+playerLayer);
             //
-            if (rayHit.collider.gameObject == playerManager.gameObject) {
+            if (rayHit && rayHit.collider.gameObject == playerManager.gameObject) {
                 _player = playerManager;
                 forgetPlayerTime = Time.time + timeToForgetPlayer;
                 if (!wasKnown) {
@@ -419,7 +437,7 @@ public class AIBase : MonoBehaviour, IManager
 
     // On fixed update, send the current moving commands to the character controller. Also play moving audio
     private void FixedUpdate() {
-        if(_disabled){
+        if(_disabled || _stunned){
             soundManager.StopAudio(SoundManager.SoundClips.Walk);
             return;
         }
@@ -472,17 +490,25 @@ public class AIBase : MonoBehaviour, IManager
         canFlip = true;
     }
 
-    public void FaceTarget() {
+    public Vector3 GetDirectionToTargetFromOther(Vector3 otherPosition) {
+        if (_player) {
+            return _player.transform.position - otherPosition;
+        }
+        return new Vector3(controller.GetFacingMult(), 0, 0);
+    }
+
+    public void FaceTarget(Transform target=null) {
         if(!_player) return;
+        var targetPos = target ? target.position : _player.transform.position;
 
         if (controller.GetFacingMult() > 0) {
-            if (_player.transform.position.x < transform.position.x) {
+            if (targetPos.x < transform.position.x) {
                 _walkDirectionMult *= -1;
                 controller.Flip();
             }
         }
         else {
-            if (_player.transform.position.x > transform.position.x) {
+            if (targetPos.x > transform.position.x) {
                 _walkDirectionMult *= -1;
                 controller.Flip();
             }

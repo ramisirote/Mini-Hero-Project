@@ -45,6 +45,10 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
+    public bool HasRequiredEnergy(float amountNeeded) {
+        return characterStatsData.Energy >= amountNeeded;
+    }
+
     public void ResetFromStats(CharacterStatsData statsDataToResetTo) {
         characterStatsData.CopyStats(statsDataToResetTo);
     }

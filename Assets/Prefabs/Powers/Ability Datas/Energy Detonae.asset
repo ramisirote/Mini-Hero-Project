@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
+  m_Name: Energy Detonae
+  m_EditorClassIdentifier: 
+  abilityName: Energy Detonate
+  abilityEnum: 17
+  icon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  abilityGameObject: {fileID: 2386657458246045314, guid: 41d2e32dce2d5a543a383536a154f5b8, type: 3}
+  powerClassName: Energy Powers
+  description: 
+  upgrades:
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 
+  - upgradeName: 
+    upgradeDescription: 

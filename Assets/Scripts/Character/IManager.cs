@@ -57,12 +57,20 @@ public interface IManager
 
      // Get the direction to the target if one exists. Otherwise returns facing forward;
      Vector3 GetDirectionToTarget();
+     
+     Vector3 GetDirectionToTargetFromOther(Vector3 otherPosition);
 
      // Face the target. If there is not target, do nothing.
-     void FaceTarget();
+     void FaceTarget(Transform target=null);
 
      // Get a trigger from the animator that a basic attack is triggered to do the hit.
      void AttackAnimationTrigger();
+
+     void Stunned(bool value=true);
+
+     bool IsStunned();
+
+     void TurnOffAbilities();
 
      void PermanentDisable();
 }

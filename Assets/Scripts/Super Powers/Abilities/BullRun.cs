@@ -92,7 +92,7 @@ public class BullRun : Ability
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (Utils.IsObjectInLayerMask(other.gameObject, whatIsEnemy)) {
-            other.gameObject.GetComponent<ITakeDamage>().Damage(damage, new Vector2(pushForce.x*Controller.GetFacingMult(), pushForce.y));
+            HitManager.GetTakeDamage(other.gameObject).Damage(damage, new Vector2(pushForce.x*Controller.GetFacingMult(), pushForce.y));
         }
     }
 }

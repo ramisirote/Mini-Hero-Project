@@ -51,8 +51,7 @@ public class SpeedDash : Ability
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (Utils.IsObjectInLayerMask(other.gameObject, enemyLayer) && AbilityOn) {
-            var damager = other.gameObject.GetComponent<ITakeDamage>();
-            damager?.Damage(damage, pushForce*Controller.GetFacingMult());
+            HitManager.GetTakeDamage(other.gameObject)?.Damage(damage, pushForce*Controller.GetFacingMult());
         }
     }
 

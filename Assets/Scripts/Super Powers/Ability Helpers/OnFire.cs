@@ -19,11 +19,35 @@ public class OnFire : MonoBehaviour
     private float _damageAmount;
     private GameObject parent;
     private TakeDamage _damager;
-    
-    
+
+    public static void MakeOnFire(GameObject otherGameObject, float dotTicks, GameObject onFireGO,
+            float extraDamagePerSecond, float damageAmountOverTime, Material material) {
+        var takeDamage = HitManager.GetTakeDamage(otherGameObject);
+        if (takeDamage==null) return;
+        var onFire = otherGameObject.GetComponentInChildren<OnFire>();
+        if (onFire) {
+            if (onFire.IsTicking()) {
+                onFire.ExtendFireDuration(Time.fixedDeltaTime*2);
+                onFire.AddDamageAmount(extraDamagePerSecond*Time.fixedDeltaTime*2);
+            }
+            else {
+                onFire.ExtendFireDuration(dotTicks);
+                onFire.SetDamageAmount(damageAmountOverTime);
+            }
+        }
+        else if(onFireGO){
+            var onFireGOInst = Instantiate(onFireGO, otherGameObject.transform);
+            onFire = onFireGOInst.GetComponent<OnFire>();
+            onFire.SetDamageAmount(damageAmountOverTime);
+            onFire.ExtendFireDuration(dotTicks);
+            onFire.SetFireMaterial(material);
+        }
+    }
+
+
     private void Awake() {
         parent = transform.parent.gameObject;
-        _damager = parent.GetComponent<TakeDamage>();
+        _damager = (TakeDamage)HitManager.GetTakeDamage(parent.gameObject);
     }
 
     public void ExtendFireDuration(float ticks) {

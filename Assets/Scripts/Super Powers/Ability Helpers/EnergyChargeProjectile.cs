@@ -118,7 +118,7 @@ public class EnergyChargeProjectile : MonoBehaviour
         var hitsDetected = 
             Physics2D.OverlapCircleAll(transform.position, baseRadius + _charges*hitRadiusPerCharge, _stopLayers);
         foreach (var hit in hitsDetected) {
-            var damager = hit.gameObject.GetComponent<ITakeDamage>();
+            var damager = HitManager.GetTakeDamage(hit.gameObject);
             if (damager != null) {
                 int hitFacing = flyDirection.x > 0 ? 1 : -1;
                 damager.Damage(_damagePerCharge*_charges, hitFacing);

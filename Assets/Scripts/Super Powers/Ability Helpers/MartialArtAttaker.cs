@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,11 @@ public class MartialArtAttaker : AttackManagerBase
     private float _actualDamage;
     
     private int _numberOfStates = 4;
+
+    private void Start() {
+        _actualDamage = characterStats.GetCharacterStats().PunchDamage * damageMult;
+        _numberOfStates = cooldowns.Length;
+    }
 
     public void Init(Animator newAnimator, CharacterController2D newController, CharacterStats newCharacterStats,
         float[] newCooldown, Vector2[] newPushVectors, float newDamageMult, float newCameraShake,float hitJump, bool isPlayer) {
@@ -105,7 +111,7 @@ public class MartialArtAttaker : AttackManagerBase
         while (Time.time < windowDoneTime) {
             Collider2D[] hits = Physics2D.OverlapCircleAll(punch.position, hitRadius, enemyLayer);
             foreach (var hit in hits) {
-                hit.GetComponent<TakeDamage>().Damage(_actualDamage, hitPush);
+                HitManager.GetTakeDamage(hit.gameObject).Damage(_actualDamage, hitPush);
             }
             
             // only do this once

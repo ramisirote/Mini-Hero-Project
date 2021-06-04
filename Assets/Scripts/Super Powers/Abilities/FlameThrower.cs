@@ -175,29 +175,30 @@ public class FlameThrower : Ability
         //     damager.DamageOverTime(damageAmountOverTime, dotTicks);
         // }
 
-        MakeOnFire(otherGameObject);
+        OnFire.MakeOnFire(otherGameObject, dotTicks, onFirePartical, extraDamagePerSecond, 
+            damageAmountOverTime, particleSystemRenderer.material);
     }
 
-    private void MakeOnFire(GameObject otherGameObject) {
-        var onFire = otherGameObject.GetComponentInChildren<OnFire>();
-        if (onFire) {
-            if (onFire.IsTicking()) {
-                onFire.ExtendFireDuration(Time.fixedDeltaTime*2);
-                onFire.AddDamageAmount(extraDamagePerSecond*Time.fixedDeltaTime*2);
-            }
-            else {
-                onFire.ExtendFireDuration(dotTicks);
-                onFire.SetDamageAmount(damageAmountOverTime);
-            }
-        }
-        else if(onFirePartical){
-            var onFireParticalInst = Instantiate(onFirePartical, otherGameObject.transform);
-            onFire = onFireParticalInst.GetComponent<OnFire>();
-            onFire.SetDamageAmount(damageAmountOverTime);
-            onFire.ExtendFireDuration(dotTicks);
-            onFire.SetFireMaterial(particleSystemRenderer.material);
-        }
-    }
+    // private void MakeOnFire(GameObject otherGameObject) {
+    //     var onFire = otherGameObject.GetComponentInChildren<OnFire>();
+    //     if (onFire) {
+    //         if (onFire.IsTicking()) {
+    //             onFire.ExtendFireDuration(Time.fixedDeltaTime*2);
+    //             onFire.AddDamageAmount(extraDamagePerSecond*Time.fixedDeltaTime*2);
+    //         }
+    //         else {
+    //             onFire.ExtendFireDuration(dotTicks);
+    //             onFire.SetDamageAmount(damageAmountOverTime);
+    //         }
+    //     }
+    //     else if(onFirePartical){
+    //         var onFireParticalInst = Instantiate(onFirePartical, otherGameObject.transform);
+    //         onFire = onFireParticalInst.GetComponent<OnFire>();
+    //         onFire.SetDamageAmount(damageAmountOverTime);
+    //         onFire.ExtendFireDuration(dotTicks);
+    //         onFire.SetFireMaterial(particleSystemRenderer.material);
+    //     }
+    // }
 
     private void OnTriggerStay2D(Collider2D other) {
         GameObject otherGameObject = other.gameObject;
@@ -210,7 +211,8 @@ public class FlameThrower : Ability
         }
         if(!hasHitTag) return;
         
-        MakeOnFire(otherGameObject);
+        OnFire.MakeOnFire(otherGameObject, dotTicks, onFirePartical, extraDamagePerSecond, 
+            damageAmountOverTime, particleSystemRenderer.material);
     }
 
     protected override void OnDamageTaken(object o, float damageAmount) {

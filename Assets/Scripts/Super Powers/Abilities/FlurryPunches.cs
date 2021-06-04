@@ -36,7 +36,7 @@ public class FlurryPunches : Ability
 
         var hits = Physics2D.OverlapCircleAll(armPosition, radius, whatIsEnemy);
         foreach (var hit in hits) {
-            hit.gameObject.GetComponent<ITakeDamage>().Damage(damageTotal/numberOfPunches, Vector2.zero, true);
+            HitManager.GetTakeDamage(hit.gameObject)?.Damage(damageTotal/numberOfPunches, Vector2.zero, true);
         }
         
         if(_punchesDone >= numberOfPunches) SetAbilityOff();

@@ -6,6 +6,13 @@ public class UpgradeMask
 {
     public static int NUMBER_OF_UPGRADES = 4;
     private bool[] unlocks = new bool[NUMBER_OF_UPGRADES];
+    
+    public UpgradeMask() {
+        
+        for (int i = 0; i < NUMBER_OF_UPGRADES; i++) {
+            unlocks[i] = false;
+        }
+    }
 
     public UpgradeMask(bool[] setUnlocks) {
         if (setUnlocks.Length != NUMBER_OF_UPGRADES) {

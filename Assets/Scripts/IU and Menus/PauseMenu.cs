@@ -105,5 +105,9 @@ public class PauseMenu : MonoBehaviour
         activeMenu = powersMenusUI;
         activeMenu.SetActive(true);
     }
+
+    public void Quit() {
+        Quit();
+    }
     
 }

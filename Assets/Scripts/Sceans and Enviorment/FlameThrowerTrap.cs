@@ -19,7 +19,8 @@ public class FlameThrowerTrap : MonoBehaviour
 
     private Coroutine cycleCoroutine;
 
-    private void Start() {
+    private void OnEnable() {
+        if(cycleCoroutine!=null) StopCoroutine(cycleCoroutine);
         cycleCoroutine = StartCoroutine(Cycle());
         SetUpParticleSystem();
     }
@@ -50,16 +51,16 @@ public class FlameThrowerTrap : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        var damager = other.GetComponent<TakeDamage>();
-        if (damager) {
+        var damager = HitManager.GetTakeDamage(other.gameObject);
+        if (damager != null) {
             Vector2 vectorToOther = other.transform.position - transform.position;
             damager.Damage(damage, vectorToOther.normalized*pushForce);
         }
     }
     
     private void OnTriggerStay2D(Collider2D other) {
-        var damager = other.GetComponent<TakeDamage>();
-        if (damager) {
+        var damager = HitManager.GetTakeDamage(other.gameObject);
+        if (damager != null) {
             Vector2 vectorToOther = other.transform.position - transform.position;
             damager.Damage(damage, vectorToOther.normalized*pushForce);
         }

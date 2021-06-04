@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+
 using UnityEngine.UI;
  
 namespace Completed
@@ -30,13 +30,13 @@ namespace Completed
     {
         private CharacterAppearance _appearance;
         [SerializeField] Button button;
-        [SerializeField] SpriteResolver[] spriteResolver;
+        [SerializeField] UnityEngine.U2D.Animation.SpriteResolver[] spriteResolver;
         public int id;
         public int numberOfOptions;
 
         public bool canBeFemale = false;
  
-        public SpriteResolver[] SpriteResolver { get => spriteResolver; }
+        public UnityEngine.U2D.Animation.SpriteResolver[] SpriteResolver { get => spriteResolver; }
  
         //method to init the button callback
         public void Init(CharacterAppearance appearance) {

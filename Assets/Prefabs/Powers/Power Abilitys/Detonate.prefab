@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2386657458246045314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2783089759784067943}
+  - component: {fileID: 4922576320935193027}
+  m_Layer: 0
+  m_Name: Detonate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2783089759784067943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386657458246045314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 62.03821, y: -10.066634, z: -6.1065884}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4922576320935193027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386657458246045314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb3898184f35b94e8d30ac486f6ede5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentCharacter: {fileID: 0}
+  abilityCooldown: 2.5
+  energyRequired: 51
+  _color1: {r: 0, g: 0, b: 0, a: 0}
+  _color2: {r: 0, g: 0, b: 0, a: 0}
+  _color3: {r: 0, g: 0, b: 0, a: 0}
+  abilityIcon: {fileID: -7523504252425072492, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  audioSource: {fileID: 0}
+  timer: 2
+  damage: 20
+  detonateRadius: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  hitRadius: 0.7
+  detonator: {fileID: 8801839197162266253, guid: 4e2a4c556f2ba9a468864b6f22994dea, type: 3}
+  knockBack: 1000
+  reducedEnergy: 1
+  reducedCooldown: 1
+  reducedTimer: 1

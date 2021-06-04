@@ -70,7 +70,7 @@ public class GameControler : MonoBehaviour
 
     private void FindPlayerAndOverlay() {
         _player = GameObject.FindWithTag("Player");
-        _playerManager = _player.GetComponent<PlayerManager>();
+        _playerManager = _player?.GetComponent<PlayerManager>();
         _uiOverlay = GameObject.FindWithTag("UI");
     }
 
@@ -208,5 +208,31 @@ public class GameControler : MonoBehaviour
         public int levelBuildIndex;
         public CharacterAppearance.SerializedCharacterAppearance characterAppearance;
         public CharacterPowers.SerializedPowers serializedPowers;
+    }
+
+
+    public void LoadScenePrefab(GameObject currentScene, GameObject sceneToLoad, string pointName) {
+        StartCoroutine(LoadSceneCoroutine(currentScene, sceneToLoad, pointName));
+    }
+    public IEnumerator LoadSceneCoroutine(GameObject currentScene, GameObject sceneToLoad, string pointName) {
+        UI_Overlay.uiOverlay.Fade();
+        
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 0.1f;
+
+        GameObject newScene = currentScene;
+        if (currentScene != sceneToLoad) {
+            newScene = Instantiate(sceneToLoad);
+            Destroy(currentScene);
+        }
+        var points = newScene.GetComponentsInChildren<TransitionPoint>();
+        
+        var transferPointPos = Array.Find(points, p => p.IsPoint(pointName)).GetPosition();
+        var tranferPointRelativePos = transferPointPos - newScene.transform.position;
+
+        newScene.transform.position = _player.transform.position - tranferPointRelativePos;
+        
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 1f;
     }
 }

@@ -12,7 +12,6 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private bool startRight = true;
 
     private Vector3 _velocity;
-    private float _smoothing = 0.3f;
 
     private Vector3 _moveEdgeLeft;
     private Vector3 _moveEdgeRight;

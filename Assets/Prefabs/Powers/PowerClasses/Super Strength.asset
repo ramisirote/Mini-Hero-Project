@@ -15,7 +15,8 @@ MonoBehaviour:
   powerName: Super Strangth
   powerIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   abilitiesInClass:
-  - {fileID: 11400000, guid: 0ce6677e63c33cf4e9d6c066443cf9e2, type: 2}
+  - {fileID: 11400000, guid: 6d223b3ab00ef064caf9a97676e06fe2, type: 2}
   - {fileID: 11400000, guid: 6087afa6305b006478ac275546d1d3f6, type: 2}
   - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
+  - {fileID: 11400000, guid: 2a8f02912c0302748a01929f9ba383f3, type: 2}
   isSinglePower: 0

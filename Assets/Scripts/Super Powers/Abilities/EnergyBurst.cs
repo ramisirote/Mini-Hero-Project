@@ -116,7 +116,7 @@ public class EnergyBurst : Ability
             var toHitVec = hit.transform.position - pos;
             toHitVec.z = 0;
             toHitVec = (toHitVec / toHitVec.magnitude) * knockBack;
-            hit.GetComponent<TakeDamage>()?.Damage(damage, 1, toHitVec.y, toHitVec.x);
+            HitManager.GetTakeDamage(hit.gameObject)?.Damage(damage, 1, toHitVec.y, toHitVec.x);
         }
     }
 

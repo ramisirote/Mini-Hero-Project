@@ -57,7 +57,7 @@ MonoBehaviour:
   lineVisibleFor: 0.2
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 17920
   damage: 15
   powEffect: {fileID: 5880306402473360922, guid: 187eb1825bb723043a22919c2c93c7b3, type: 3}
 --- !u!120 &1614017693320500933
@@ -71,6 +71,7 @@ LineRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0

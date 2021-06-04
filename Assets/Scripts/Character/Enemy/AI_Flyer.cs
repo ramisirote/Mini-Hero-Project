@@ -147,7 +147,7 @@ public class AI_Flyer : AIBase
     
     // Move the character based on horizontal and vertical speed, flying.
     private void FixedUpdate() {
-        if(_disabled) return;
+        if(_disabled || _stunned) return;
         
         // if(_verticalSpeed < 0.01f) controller.StopVertical();
         // if(_horizontalSpeed < 0.01f) controller.StopHorizontal();

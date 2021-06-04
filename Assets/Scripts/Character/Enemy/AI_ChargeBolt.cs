@@ -33,7 +33,7 @@ public class AI_ChargeBolt : AIBase
     private void OnDamage(object sender, float e) {
         if (ability.IsAbilityOn()) {
             _nextCanUseAbility = Time.time + timeBetweenCharges;
-            ability.UseAbilityRelease(GetDirectionToTarget());
+            // ability.UseAbilityRelease(GetDirectionToTarget());
         }
             
     }

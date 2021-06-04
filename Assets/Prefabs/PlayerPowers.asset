@@ -19,9 +19,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}
   - {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
   - {fileID: 11400000, guid: 500ec34d8144ca14fa2e3eb04d243a14, type: 2}
-  activeAbility1: 0
+  activeAbility1: 2
   activeAbility2: 1
   hasAbilities: 1
+  abilityUpgrades:
+    m_Keys: 
+    m_Values: []
   secondaryAbility: {fileID: 11400000, guid: cecc478d4f4f87149bc1a32e5ad843a6, type: 2}
   mainColors:
   - {r: 1, g: 1, b: 1, a: 1}

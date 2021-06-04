@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 
@@ -25,7 +26,7 @@ public class CharacterPowers : ScriptableObject
 
     public bool hasAbilities = false;
 
-    public Dictionary<AbilityData.AbilityEnum, UpgradeMask> abilityUpgrades;
+    public SerializedDictionary<AbilityData.AbilityEnum, UpgradeMask> abilityUpgrades;
 
     public AbilityData secondaryAbility;
     
@@ -58,6 +59,7 @@ public class CharacterPowers : ScriptableObject
         if (!fromMain) secondaryAbility = ability;
         
         abilities.Add(ability);
+        abilityUpgrades[ability.abilityEnum] = new UpgradeMask();
         
         FirstSetUpAbility(abilities.Count-1);
 
@@ -73,6 +75,7 @@ public class CharacterPowers : ScriptableObject
         if (!fromMain) secondaryAbility = ability;
         
         abilities.Add(ability);
+        abilityUpgrades[ability.abilityEnum] = new UpgradeMask();
         
         FirstSetUpAbility(abilities.Count-1);
 
@@ -138,8 +141,12 @@ public class CharacterPowers : ScriptableObject
         return which == 1 ? abilities[activeAbility1] : abilities[activeAbility2];
     }
 
+    public AbilityData GetAbility(AbilityData.AbilityEnum abilityEnum) {
+        return abilities.Find(ab => ab.abilityEnum == abilityEnum);
+    }
+
     public bool IsAbilityUnlocked(AbilityData ability) {
-        return abilities.Exists(power => power.name == ability.name);
+        return abilities.Exists(ab => ab.name == ability.name);
     }
 
     public Color[] GetColorsOfAbility(AbilityData ability) {
@@ -173,6 +180,29 @@ public class CharacterPowers : ScriptableObject
         }
     }
 
+    public bool[] GetUnlocksArr(AbilityData.AbilityEnum abilityEnum) {
+        abilityUpgrades ??= new SerializedDictionary<AbilityData.AbilityEnum, UpgradeMask>();
+        if (!abilityUpgrades.ContainsKey(abilityEnum)) {
+            abilityUpgrades[abilityEnum] = new UpgradeMask();
+        }
+
+        return abilityUpgrades[abilityEnum].GetUnlocks();
+    }
+
+    public void UpgradeAbility(AbilityData.AbilityEnum abilityEnum, int index) {
+        if (!abilityUpgrades.ContainsKey(abilityEnum)) return;
+        abilityUpgrades[abilityEnum].UnlockUpgrade(index);
+    }
+    
+    public void UpgradeAbility(int index) {
+        var abilityEnum = abilities[activeAbility1].abilityEnum;
+        Debug.Log($"upgrading {abilityEnum} at index {index}");
+        if (!abilityUpgrades.ContainsKey(abilityEnum)) return;
+        abilityUpgrades[abilityEnum].UnlockUpgrade(index);
+    }
+    
+    
+//---------------------------------------------------Serialize--------------------------------------------------------//
 
     public SerializedPowers Serialize() {
         return new SerializedPowers(this);
@@ -191,7 +221,9 @@ public class CharacterPowers : ScriptableObject
 
         for (int i = 0; i < ser.abilityNamesEnum.Length; i++) {
             if (ser.abilityNamesEnum[i] != ser.secAbilityNameEnum) {
-                abilities.Add(mainPowers.GetPowerByEnum((AbilityData.AbilityEnum)ser.abilityNamesEnum[i]));
+                var abilityEnum = (AbilityData.AbilityEnum) ser.abilityNamesEnum[i];
+                abilities.Add(mainPowers.GetPowerByEnum(abilityEnum));
+                abilityUpgrades[abilityEnum] = new UpgradeMask(ser.abilityUpgradesArr[i]);
             }
             else {
                 abilities.Add(secondaryAbility);
@@ -212,7 +244,7 @@ public class CharacterPowers : ScriptableObject
         public string secPowerName;
 
         public int[] abilityNamesEnum;
-        // public bool[][] abilityUpgrades;
+        public bool[][] abilityUpgradesArr;
         
         public int secAbilityNameEnum;
 
@@ -227,10 +259,10 @@ public class CharacterPowers : ScriptableObject
             secPowerName = other.secondaryPowers.GetName();
             
             abilityNamesEnum = new int[other.abilities.Count];
-            // abilityUpgrades = new bool[other.abilities.Count][];
+            abilityUpgradesArr = new bool[other.abilities.Count][];
             for (int i = 0; i < other.abilities.Count; i++) {
                 abilityNamesEnum[i] = (int)other.abilities[i].abilityEnum;
-                // abilityUpgrades[i] = other.abilities[i].unlockes;
+                abilityUpgradesArr[i] = other.abilityUpgrades[other.abilities[i].abilityEnum].GetUnlocks();
             }
 
             secAbilityNameEnum = (int)other.secondaryAbility.abilityEnum;

@@ -80,7 +80,7 @@ public class StrengthSmash : Ability
         var hitDetect = Physics2D.OverlapCircleAll(impactPosition, radius, enemyLayerMask);
         
         foreach (var hit in hitDetect) {
-            var damager = hit.GetComponent<ITakeDamage>();
+            var damager = HitManager.GetTakeDamage(hit.gameObject);
             Vector2 directionMultVec = Vector2.one;
             var hitPosition = hit.transform.position;
             if (hitPosition.x < position.x) { directionMultVec.x = -1; }

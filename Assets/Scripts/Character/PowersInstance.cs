@@ -138,7 +138,8 @@ public class PowersInstance : MonoBehaviour
         var ability = abilityObject.GetComponent<Ability>();
         abilitiesList.Add(ability);
         Color[] abilityColors = powers.GetColorsOfAbility(abilityData);
-        ability.Init(gameObject,abilityColors[0], abilityColors[1], abilityColors[2]);
+        ability.Init(gameObject,abilityColors[0], abilityColors[1], abilityColors[2], 
+            powers.GetUnlocksArr(abilityData.abilityEnum));
     }
 
 
@@ -157,6 +158,16 @@ public class PowersInstance : MonoBehaviour
                 manager.SetAbility(abilitiesList[active2], 2); 
                 break;
         }
+    }
+
+    // public void UpgradeAbility(AbilityData.AbilityEnum abilityEnum, int index) {
+    //     powers.UpgradeAbility(abilityEnum, index);
+    // }
+    
+    public void UpgradeAbility(int index) {
+        var abilityData = powers.GetActive(1);
+        powers.UpgradeAbility(abilityData.abilityEnum, index);
+        abilitiesList[active1].Upgrade(index);
     }
 
     public void SetPowerClass(PowersClass powersClass, bool asMain) {

@@ -39,7 +39,7 @@ public class PlayerAttack : AttackManagerBase
         _controller.StopHorizontal();
         Collider2D[] hits = Physics2D.OverlapCircleAll(punch.position, hitRadius, enemyLayer);
         foreach (var hit in hits) {
-            hit.GetComponent<TakeDamage>().Damage(characterStats.GetCharacterStats().PunchDamage*damageMult, 
+            HitManager.GetTakeDamage(hit.gameObject).Damage(characterStats.GetCharacterStats().PunchDamage*damageMult, 
                 new Vector2(_controller.GetFacingMult()*pushForce.x, pushForce.y));
         }
         if (hits.Length > 0) {

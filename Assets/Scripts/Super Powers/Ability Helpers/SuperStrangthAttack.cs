@@ -67,7 +67,7 @@ public class SuperStrangthAttack : AttackManagerBase
         if (hit) {
             if (hit.GetComponent<CharacterStats>().IsDead()) return;
             
-            hit.GetComponent<TakeDamage>().Damage(_actualDamage, Vector2.zero);
+            HitManager.GetTakeDamage(hit.gameObject)?.Damage(_actualDamage, Vector2.zero);
             if(_isPlayer) CinemachineShake.Instance.ShakeCamera(_cameraShake);
             
             // The thrower handles the push and damage parts of the super strength hit, as well as
