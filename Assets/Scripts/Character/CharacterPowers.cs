@@ -19,16 +19,16 @@ public class CharacterPowers : ScriptableObject
     public PowersClass mainPowers;
     public PowersClass secondaryPowers;
 
-    public List<AbilityData> abilities;
+    public List<AbilityDataOld> abilities;
 
     public int activeAbility1 = -1;
     public int activeAbility2 = -1;
 
     public bool hasAbilities = false;
 
-    public SerializedDictionary<AbilityData.AbilityEnum, UpgradeMask> abilityUpgrades;
+    public Dictionary<AbilityDataOld.AbilityEnum, UpgradeMask> abilityUpgrades;
 
-    public AbilityData secondaryAbility;
+    public AbilityDataOld secondaryAbility;
     
     [SerializeField] private Color[] mainColors = new Color[3];
     [SerializeField] private Color[] secColors = new Color[3];
@@ -36,7 +36,7 @@ public class CharacterPowers : ScriptableObject
     
     public void SelectAbility(GameObject abilityObject, int position) {
         if (position >= abilities.Count) return;
-        abilities[position] = new AbilityData{abilityGameObject = abilityObject};
+        abilities[position] = new AbilityDataOld{abilityGameObject = abilityObject};
         hasAbilities = true;
         
         FirstSetUpAbility(position);
@@ -51,7 +51,7 @@ public class CharacterPowers : ScriptableObject
         }
     }
 
-    public AbilityData AddAbilityFromClass(AbilityData.AbilityEnum abilityEnum, bool fromMain) {
+    public AbilityDataOld AddAbilityFromClass(AbilityDataOld.AbilityEnum abilityEnum, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
         var ability = powersClass.GetPowerByEnum(abilityEnum);
@@ -66,7 +66,7 @@ public class CharacterPowers : ScriptableObject
         return ability;
     }
     
-    public AbilityData AddAbilityFromClass(int abilityIndex, bool fromMain) {
+    public AbilityDataOld AddAbilityFromClass(int abilityIndex, bool fromMain) {
         var powersClass = fromMain ? mainPowers : secondaryPowers;
         
         var ability = powersClass.GetAbilityAt(abilityIndex);
@@ -95,7 +95,7 @@ public class CharacterPowers : ScriptableObject
         }
     }
     
-    public void SetAbilityAsActive(AbilityData.AbilityEnum abilityType, int whichActive) {
+    public void SetAbilityAsActive(AbilityDataOld.AbilityEnum abilityType, int whichActive) {
         var abilityIndex = abilities.FindIndex(ability => ability.abilityEnum == abilityType);
         if(abilityIndex == -1) return;
 
@@ -137,19 +137,19 @@ public class CharacterPowers : ScriptableObject
     }
 
 
-    public AbilityData GetActive(int which) {
+    public AbilityDataOld GetActive(int which) {
         return which == 1 ? abilities[activeAbility1] : abilities[activeAbility2];
     }
 
-    public AbilityData GetAbility(AbilityData.AbilityEnum abilityEnum) {
+    public AbilityDataOld GetAbility(AbilityDataOld.AbilityEnum abilityEnum) {
         return abilities.Find(ab => ab.abilityEnum == abilityEnum);
     }
 
-    public bool IsAbilityUnlocked(AbilityData ability) {
+    public bool IsAbilityUnlocked(AbilityDataOld ability) {
         return abilities.Exists(ab => ab.name == ability.name);
     }
 
-    public Color[] GetColorsOfAbility(AbilityData ability) {
+    public Color[] GetColorsOfAbility(AbilityDataOld ability) {
         if (ability.abilityEnum == secondaryAbility.abilityEnum) {
             return secColors;
         }
@@ -180,8 +180,8 @@ public class CharacterPowers : ScriptableObject
         }
     }
 
-    public bool[] GetUnlocksArr(AbilityData.AbilityEnum abilityEnum) {
-        abilityUpgrades ??= new SerializedDictionary<AbilityData.AbilityEnum, UpgradeMask>();
+    public bool[] GetUnlocksArr(AbilityDataOld.AbilityEnum abilityEnum) {
+        abilityUpgrades ??= new Dictionary<AbilityDataOld.AbilityEnum, UpgradeMask>();
         if (!abilityUpgrades.ContainsKey(abilityEnum)) {
             abilityUpgrades[abilityEnum] = new UpgradeMask();
         }
@@ -189,7 +189,7 @@ public class CharacterPowers : ScriptableObject
         return abilityUpgrades[abilityEnum].GetUnlocks();
     }
 
-    public void UpgradeAbility(AbilityData.AbilityEnum abilityEnum, int index) {
+    public void UpgradeAbility(AbilityDataOld.AbilityEnum abilityEnum, int index) {
         if (!abilityUpgrades.ContainsKey(abilityEnum)) return;
         abilityUpgrades[abilityEnum].UnlockUpgrade(index);
     }
@@ -217,11 +217,11 @@ public class CharacterPowers : ScriptableObject
         
         abilities.Clear();
 
-        secondaryAbility = secondaryPowers.GetPowerByEnum((AbilityData.AbilityEnum) ser.secAbilityNameEnum);
+        secondaryAbility = secondaryPowers.GetPowerByEnum((AbilityDataOld.AbilityEnum) ser.secAbilityNameEnum);
 
         for (int i = 0; i < ser.abilityNamesEnum.Length; i++) {
             if (ser.abilityNamesEnum[i] != ser.secAbilityNameEnum) {
-                var abilityEnum = (AbilityData.AbilityEnum) ser.abilityNamesEnum[i];
+                var abilityEnum = (AbilityDataOld.AbilityEnum) ser.abilityNamesEnum[i];
                 abilities.Add(mainPowers.GetPowerByEnum(abilityEnum));
                 abilityUpgrades[abilityEnum] = new UpgradeMask(ser.abilityUpgradesArr[i]);
             }

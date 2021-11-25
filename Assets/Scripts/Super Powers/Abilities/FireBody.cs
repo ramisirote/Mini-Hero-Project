@@ -76,8 +76,7 @@ public class FireBody : Ability
         }
         if(!hasHitTag) return;
 
-        OnFire.MakeOnFire(otherGameObject, dotTicks, onFireGameObject, extraDamagePerSecond, 
-            damageAmountOverTime, particleSystemRenderer.material);
+        OnFire.MakeOnFire(otherGameObject, onFireGameObject, Colors, true);
     }
     
     private void OnTriggerStay2D(Collider2D other) {
@@ -91,8 +90,7 @@ public class FireBody : Ability
         }
         if(!hasHitTag) return;
         
-        OnFire.MakeOnFire(otherGameObject, dotTicks, onFireGameObject, extraDamagePerSecond, 
-            damageAmountOverTime, particleSystemRenderer.material);
+        OnFire.MakeOnFire(otherGameObject, onFireGameObject, Colors, true);
     }
 
     // Update is called once per frame

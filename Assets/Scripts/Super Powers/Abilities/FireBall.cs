@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBolts : Ability
+public class FireBall : Ability
 {
-    [SerializeField] private GameObject fireBolt;
-    [SerializeField] private int numberOfBolts;
+    [SerializeField] private GameObject fireBallProjectile;
     [SerializeField] private Material material;
 
     [Header("Projectile")] 
@@ -15,15 +14,20 @@ public class FireBolts : Ability
     [SerializeField] private float dotTicks;
     [SerializeField] private float damageAmountOverTime;
     [SerializeField] private float extraDamagePerSecond;
-
-    private int _boltsThrown;
+    [SerializeField] private float radius;
+    [SerializeField] private float bonFireLifeTime;
+    
     private Transform armEffect;
     private Vector3 directionToTarget;
     private BodyAngler bodyAngler;
     private Animator _animator;
     private bool throwing;
-    
-    
+
+    protected override void OnDamageTaken(object o, float damageAmount) {
+        if(AbilityOn) SetAbilityOff();
+    }
+
+
     protected override void AdditionalInit() {
         armEffect = parentCharacter.GetComponent<EffectPoints>().GetPointTransform(Refarences.EBodyParts.ArmR);
         bodyAngler = parentCharacter.GetComponent<BodyAngler>();
@@ -35,44 +39,36 @@ public class FireBolts : Ability
         if (!AbilityOn) {
             AbilityOn = true;
             AbilityOnInvoke();
-        }
-        if (AbilityOn && _boltsThrown < numberOfBolts && !throwing) {
-            Controller.StopHorizontal();
             _animator.SetTrigger(AnimRefarences.Blast);
             directionToTarget = Manager.GetDirectionToTarget();
             Manager.FaceTarget();
             Manager.DisableFlip();
             direction = Manager.GetDirectionToTarget();
             var angle = -Controller.GetFacingMult()* Mathf.Atan2(direction.y, direction.x) *
-                                                         Mathf.Rad2Deg + 90 + 90*Controller.GetFacingMult();
-            Debug.Log(angle);
+                Mathf.Rad2Deg + 90 + 90*Controller.GetFacingMult();
             bodyAngler.RotatePart(Refarences.EBodyParts.ArmR, angle);
-            _boltsThrown++;
             throwing = true;
         }
     }
 
     public override void AnimationTrigger() {
         if (throwing) {
-            Controller.StopHorizontal();
-            var fireBoltInstance = Instantiate(fireBolt);
-            fireBoltInstance.transform.position = armEffect.position;
-            var bolt = fireBoltInstance.GetComponent<FireBolt>();
-            bolt.Init(directionToTarget, speed, layerMask, hitDamage, dotTicks, damageAmountOverTime, 
-                extraDamagePerSecond, material, Colors);
+            if(Controller.IsGrounded())Controller.StopHorizontal();
+            var fireBallInstance = Instantiate(fireBallProjectile);
+            fireBallInstance.transform.position = armEffect.position;
+            var bolt = fireBallInstance.GetComponent<FireBallProjectile>();
+            bolt.Init(directionToTarget, speed, layerMask, hitDamage, dotTicks, radius, damageAmountOverTime, 
+                extraDamagePerSecond, material, Colors, bonFireLifeTime);
             throwing = false;
         }
         else {
-            bodyAngler.ResetAngle(Refarences.EBodyParts.ArmR);
-            if (_boltsThrown >= numberOfBolts) {
-                SetAbilityOff();
-            }
+            SetAbilityOff();
         }
     }
 
     public override void SetAbilityOff() {
+        bodyAngler.ResetAngle(Refarences.EBodyParts.ArmR);
         AbilityOn = false;
-        _boltsThrown = 0;
         NextCanUse = Time.time + abilityCooldown;
         throwing = false;
         AbilityOffInvoke();

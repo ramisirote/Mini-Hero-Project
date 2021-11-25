@@ -300,7 +300,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: f09e737039ea602498f7d834ec30157b, type: 2}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6993a893a2cda774ea0dd3aed28ed1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 750
+  m_JumpForce: 800
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -482,8 +482,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e8c36f714f2e1489ccc7fbf8c627f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powers: {fileID: 11400000, guid: e316b44e31b40e74db379fb208e03b07, type: 2}
+  abilities: []
+  actives: 00000000
   manager: {fileID: 546178443}
+  LoadData: 0
 --- !u!114 &1858255493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,7 +686,7 @@ MonoBehaviour:
   - 0.3
   - 0.3
   - 0.4
-  jumpHit: 400
+  jumpHit: 350
 --- !u!1 &2682703136515261232
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class FireBolt : MonoBehaviour
     [SerializeField] private GameObject onFireObject;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private ParticleSystemRenderer particleSystemRenderer;
 
     private LayerMask layerMask;
     private float hitDamage;
@@ -24,7 +23,7 @@ public class FireBolt : MonoBehaviour
         if (direction == Vector3.zero) {
             direction = Vector3.forward;
         }
-        direction /= direction.magnitude;
+        direction /= ((Vector2)direction).magnitude;
         transform.eulerAngles = Vector3.forward*(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         rigidBody.velocity = direction * speed;
 
@@ -40,11 +39,15 @@ public class FireBolt : MonoBehaviour
         material = spriteRenderer.material;
     }
 
+    private void Update() {
+        var velocity = rigidBody.velocity;
+        transform.eulerAngles = Vector3.forward*(Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         var go = other.gameObject;
         if (Utils.IsObjectInLayerMask(go, layerMask)) {
-            OnFire.MakeOnFire(go, dotTicks, onFireObject, extraDamagePerSecond, damageAmountOverTime, 
-                material);
+            OnFire.MakeOnFire(go, onFireObject, colors);
             HitManager.GetTakeDamage(go)?.Damage(hitDamage, transform.position, 10f, true);
             Destroy(gameObject);
         }

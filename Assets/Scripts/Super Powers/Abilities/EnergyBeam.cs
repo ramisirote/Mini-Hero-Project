@@ -101,7 +101,7 @@ public class EnergyBeam : Ability
             _coroutine = StartCoroutine(DelayOn());
             Manager.DisableMove();
             Manager.DisableActions();
-            Controller.StopHorizontal();
+            // Controller.StopHorizontal();
             if (!_isHold) {
                 UseAbilityRelease(Manager.GetDirectionToTarget());
             }
@@ -113,7 +113,7 @@ public class EnergyBeam : Ability
     }
 
     IEnumerator DelayOn() {
-        var timer = chargeTime;
+        var timer = chargeTime/2;
         while (true) {
             if (timer <= 0) break;
             if (_released && timer <= chargeTime - _minChangeTime) break;
@@ -125,18 +125,43 @@ public class EnergyBeam : Ability
         Activate();
     }
 
-    private void Activate() {
-        if (_isActive) return;
-        _isActive = true;
-        Controller.StopHorizontal();
+    IEnumerator LineToTarget() {
         lineRenderer.enabled = true;
+        var position = effectPointTransform.position;
+        lineRenderer.SetPosition(0, position);
+        var target = _released ? _setTarget : Manager.GetDirectionToTarget();
+        var timer = chargeTime / 2;
+        while (timer > 0) {
+            target = _released ? _setTarget : Manager.GetDirectionToTarget();
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position,target , 100, layerMask);
+            if (rayHit.collider) {
+                lineRenderer.SetPosition(1, Vector3.Lerp(position, rayHit.point, 1-timer/(chargeTime/2)));
+            }
+            else {
+                Vector2 endTarget = transform.position + parentCharacter.transform.right * 100f;
+                lineRenderer.SetPosition(1, endTarget);
+            }
+
+            yield return null;
+            timer -= Time.deltaTime;
+        }
         HandleLineHit();
         _coroutine = StartCoroutine(DelayOff());
     }
 
+    private void Activate() {
+        if (_isActive) return;
+        _isActive = true;
+        if(Controller.IsGrounded()) {
+            Controller.StopHorizontal();
+        }
+        lineRenderer.enabled = true;
+        StartCoroutine(LineToTarget());
+    }
+
     private void Update() {
         if (AbilityOn) {
-            Controller.StopHorizontal();
+            // Controller.StopHorizontal();
             var position = effectPointTransform.position;
             chargingParticles.transform.position = position;
             HandleLineHit();
@@ -200,10 +225,10 @@ public class EnergyBeam : Ability
     
     public override void UseAbilityRelease(Vector3 direction) {
         if (!AbilityOn) return;
-        if (_isActive) {
+        if (_isActive && _isHold) {
             SetAbilityOff();
         }
-        else {
+        else if(!_released) {
             _released = true;
             _setTarget = direction;
             Manager.FaceTarget();

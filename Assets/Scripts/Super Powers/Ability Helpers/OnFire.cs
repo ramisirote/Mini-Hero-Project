@@ -13,34 +13,40 @@ using UnityEngine;
  */
 public class OnFire : MonoBehaviour
 {
+    [SerializeField] private float damagePerSecond;
+    [SerializeField] private float seconds;
+    [SerializeField] private float stackMultiplier;
     [SerializeField] private ParticleSystem particleSys;
-    [SerializeField] private ParticleSystemRenderer particleSystemRenderer;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Material material;
+    
     private float _damageAmount;
     private GameObject parent;
     private TakeDamage _damager;
+    private ParticleSystemRenderer particleSystemRenderer;
 
-    public static void MakeOnFire(GameObject otherGameObject, float dotTicks, GameObject onFireGO,
-            float extraDamagePerSecond, float damageAmountOverTime, Material material) {
-        var takeDamage = HitManager.GetTakeDamage(otherGameObject);
+    public static void MakeOnFire(GameObject target, GameObject onFirePrefab, Color[] colors, bool scale=false) {
+        var takeDamage = HitManager.GetTakeDamage(target);
         if (takeDamage==null) return;
-        var onFire = otherGameObject.GetComponentInChildren<OnFire>();
+        var mult = scale ? Time.deltaTime*2 : 1;
+        var onFire = target.GetComponentInChildren<OnFire>();
         if (onFire) {
             if (onFire.IsTicking()) {
-                onFire.ExtendFireDuration(Time.fixedDeltaTime*2);
-                onFire.AddDamageAmount(extraDamagePerSecond*Time.fixedDeltaTime*2);
+                onFire.ExtendFireDuration(onFire.seconds*mult);
+                onFire.AddDamageAmount(onFire._damageAmount*onFire.stackMultiplier*mult);
             }
             else {
-                onFire.ExtendFireDuration(dotTicks);
-                onFire.SetDamageAmount(damageAmountOverTime);
+                onFire.SetDamageAmount(onFire.damagePerSecond);
+                onFire.ExtendFireDuration(onFire.seconds);
             }
         }
-        else if(onFireGO){
-            var onFireGOInst = Instantiate(onFireGO, otherGameObject.transform);
+        else if(onFirePrefab){
+            var onFireGOInst = Instantiate(onFirePrefab, target.transform);
             onFire = onFireGOInst.GetComponent<OnFire>();
-            onFire.SetDamageAmount(damageAmountOverTime);
-            onFire.ExtendFireDuration(dotTicks);
-            onFire.SetFireMaterial(material);
+            if(!onFire) return;
+            onFire.SetDamageAmount(onFire.damagePerSecond);
+            onFire.ExtendFireDuration(onFire.seconds);
+            onFire.SetFireColors(colors);
         }
     }
 
@@ -48,6 +54,9 @@ public class OnFire : MonoBehaviour
     private void Awake() {
         parent = transform.parent.gameObject;
         _damager = (TakeDamage)HitManager.GetTakeDamage(parent.gameObject);
+        _damageAmount = damagePerSecond;
+        particleSystemRenderer = particleSys.GetComponent<ParticleSystemRenderer>();
+        particleSystemRenderer.material = material;
     }
 
     public void ExtendFireDuration(float ticks) {
@@ -78,8 +87,8 @@ public class OnFire : MonoBehaviour
     }
 
 
-    public void SetFireMaterial(Material m) {
-        particleSystemRenderer.material = m;
+    public void SetFireColors(Color[] colors) {
+        Utils.SetUpSpriteRenderedShaderColors(particleSystemRenderer, colors);
     }
 
     public bool IsTicking() {

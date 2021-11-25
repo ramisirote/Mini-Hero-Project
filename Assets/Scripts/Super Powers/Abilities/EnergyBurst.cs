@@ -8,23 +8,10 @@
  *
  * This ability uses the animation trigger to tell when to do the burst.
  */
-public class EnergyBurst : Ability
+public class EnergyBurst : BurstAbility
 {
-
-    private bool powerActive;
-    private Animator _animator;
     [SerializeField] private float damage;
     [SerializeField] private float knockBack;
-    [SerializeField] private float blastRadius;
-    [SerializeField] private ParticleSystem blastParticle;
-    [SerializeField] private ParticleSystem chargeParticle;
-    [SerializeField] private LayerMask layersToHit;
-    [SerializeField] private float cameraShake;
-    
-    protected override void AdditionalInit() {
-        _animator = parentCharacter.GetComponent<Animator>();
-        SetUpParticleColors();
-    }
     
     private Gradient ColorGradientBurst() {
         var gradient = new Gradient();
@@ -73,89 +60,23 @@ public class EnergyBurst : Ability
     }
 
 
-    private void SetUpParticleColors() {
+    protected override void SetUpParticleColors() {
         var col = blastParticle.colorOverLifetime;
         col.color = ColorGradientBurst();
 
         var chargeCol = chargeParticle.colorOverLifetime;
         chargeCol.color = ColorGradientCharge();
     }
-    
-    public override void AnimationTrigger() {
-        if (!blastParticle) return;
 
-        if (powerActive) {
-            SetAbilityOff();
-        }
-        else {
-            ActivateBlast();
-        }
-    }
-    
-    private void ActivateBlast() {
-        powerActive = true;
-        Controller.StopHorizontal();
-        chargeParticle.Stop();
-        blastParticle.Play();
-        
-        if(audioSource) audioSource.Play();
-        if(IsPlayer) CinemachineShake.Instance.ShakeCamera(cameraShake, 0.5f);
-        
-        BlastHit();
-        
-        SetAbilityOff();
-        NextCanUse = Time.time + abilityCooldown * Time.deltaTime;
+    protected override void DoHitEffect(Collider2D hit) {
+        HitManager.GetTakeDamage(hit.gameObject)?.Damage(damage, parentCharacter.transform.position, knockBack);
     }
 
-    private void BlastHit() {
-        var pos = transform.position;
-
-        var hits = Physics2D.OverlapCircleAll(pos, blastRadius, layersToHit);
-
-        foreach (var hit in hits) {
-            var toHitVec = hit.transform.position - pos;
-            toHitVec.z = 0;
-            toHitVec = (toHitVec / toHitVec.magnitude) * knockBack;
-            HitManager.GetTakeDamage(hit.gameObject)?.Damage(damage, 1, toHitVec.y, toHitVec.x);
-        }
+    protected override void AdditionalUseAbility() {
+        return;
     }
 
-    public override void UseAbility(Vector3 direction) {
-        if (!AbilityOn && CharacterStats.UseEnergy(energyRequired)) {
-            
-            Controller.StopHorizontal();
-            _animator.SetTrigger(AnimRefarences.Burst);
-            
-            chargeParticle.Play();
-
-            AbilityOn = true;
-            AbilityOnInvoke();
-        }
-        else {
-            AbilityOn = false;
-        }
-    }
-
-    public override void SetAbilityOff() {
-        if(!AbilityOn) return;
-
-        chargeParticle.Stop();
-        chargeParticle.Clear();
-        
-        powerActive = false;
-        
-        AbilityOn = false;
-        
-        AbilityOffInvoke();
-    }
-
-    protected override void OnDamageTaken(object o, float damageAmount) {
-        SetAbilityOff();
-    }
-
-    void OnDrawGizmosSelected() {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, blastRadius);
+    protected override void AdditionalSetOff() {
+        return;
     }
 }

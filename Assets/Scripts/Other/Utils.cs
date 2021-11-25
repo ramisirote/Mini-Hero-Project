@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Utils
 {
@@ -79,10 +80,17 @@ public class Utils
     }
 
 
-    public static void SetUpSpriteRenderedShaderColors(SpriteRenderer sr, Color[] colors) {
+    public static void SetUpSpriteRenderedShaderColors(Renderer sr, Color[] colors) {
         var material = sr.material;
         for (var i = 0; i < 3 && i < colors.Length; i++) {
             material.SetColor("_Color" + (i + 1), colors[i]);
         }
+    }
+
+    public static void SetOutlineAmount(Outline outline, int amount=4){
+        var outlineDistance = outline.effectDistance;
+        outlineDistance.x = amount;
+        outlineDistance.y = -amount;
+        outline.effectDistance = outlineDistance;
     }
 }

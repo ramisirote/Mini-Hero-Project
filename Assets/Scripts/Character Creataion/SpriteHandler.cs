@@ -11,7 +11,7 @@ public class SpriteHandler : MonoBehaviour
     public Material mat;
 
     private CharacterAppearance _appearance;
-    private CharacterPowers _powers;
+    private CharacterPowerManager _powerManager;
     private SpriteRenderer[] _spriteRenderers;
 
     private void Start() {
@@ -22,10 +22,7 @@ public class SpriteHandler : MonoBehaviour
             _spriteRenderers[i] = bodyParts[i].GetComponent<SpriteRenderer>();
         }
 
-        PowersInstance powerInstance = GetComponent<PowersInstance>();
-        if (powerInstance) {
-            _powers = powerInstance.powers;
-        }
+        _powerManager = GetComponent<CharacterPowerManager>();
         SpriteRenderer sp;
         UnityEngine.U2D.Animation.SpriteResolver sr;
         Material m;
@@ -58,16 +55,16 @@ public class SpriteHandler : MonoBehaviour
         }
     }
 
-    public void SetColor(string partName, Color c, int subColor) {
+    public void SetColor(string partName, Color color, int subColorIndex) {
         if (partName != "Power1" && partName != "Power2") {
             int partNum = _appearance.bodyPartKeys[partName];
             SpriteRenderer sp = _spriteRenderers[partNum];
             Material m = sp.material;
-            m.SetColor("_Color"+(subColor+1), c);
+            m.SetColor("_Color"+(subColorIndex+1), color);
         }
-        else if(_powers) {
-            _powers.SetSubColor(c, partName == "Power1", subColor);
+        else if(_powerManager) {
+            _powerManager.SetSubColor(color, partName == "Power1", subColorIndex);
         }
-        _appearance.SetColor(partName, subColor, c);
+        _appearance.SetColor(partName, subColorIndex, color);
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
  * Power Instance is the mono behaviour that links up the instance of the player and the Character Powers.
  * This class creates the ability objects and inits the abilities scripts, attaching them to the player.  
  */
-public class PowersInstance : MonoBehaviour
+public class PowerInstanceold : MonoBehaviour
 {
     public CharacterPowers powers;
 
@@ -55,7 +55,7 @@ public class PowersInstance : MonoBehaviour
         }
     }
 
-    public void SetActiveAbility(AbilityData.AbilityEnum abilityType, int whichOne) {
+    public void SetActiveAbility(AbilityDataOld.AbilityEnum abilityType, int whichOne) {
         powers.SetAbilityAsActive(abilityType, whichOne);
 
         switch (whichOne) {
@@ -133,17 +133,16 @@ public class PowersInstance : MonoBehaviour
         if(active2 > -1) manager.SetAbility(abilitiesList[active2], 2);
     }
 
-    private void SetUpAbility(AbilityData abilityData) {
+    private void SetUpAbility(AbilityDataOld abilityData) {
         var abilityObject = Instantiate(abilityData.abilityGameObject, transform.position, Quaternion.identity);
         var ability = abilityObject.GetComponent<Ability>();
         abilitiesList.Add(ability);
         Color[] abilityColors = powers.GetColorsOfAbility(abilityData);
-        ability.Init(gameObject,abilityColors[0], abilityColors[1], abilityColors[2], 
-            powers.GetUnlocksArr(abilityData.abilityEnum));
+        ability.Init(gameObject,abilityColors, powers.GetUnlocksArr(abilityData.abilityEnum));
     }
 
 
-    public void AddPowerAbility(AbilityData.AbilityEnum newPowerEnum, bool fromMainPowers) {
+    public void AddPowerAbility(AbilityDataOld.AbilityEnum newPowerEnum, bool fromMainPowers) {
         var abilityData = powers.AddAbilityFromClass(newPowerEnum, fromMainPowers);
         SetUpAbility(abilityData);
         
@@ -175,7 +174,7 @@ public class PowersInstance : MonoBehaviour
     }
 
 
-    public bool IsAbilityUnlocked(AbilityData ability) {
+    public bool IsAbilityUnlocked(AbilityDataOld ability) {
         return powers.IsAbilityUnlocked(ability);
     }
 

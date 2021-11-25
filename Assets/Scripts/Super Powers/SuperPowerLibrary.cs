@@ -11,7 +11,7 @@ public class SuperPowerLibrary : ScriptableObject
 {
     public List<PowersClass> powersClasses;
 
-    public List<AbilityData> abilities;
+    public List<AbilityDataOld> abilities;
 
 
     public PowersClass GetPowerClass(string powerName) {

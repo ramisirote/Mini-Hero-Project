@@ -168,15 +168,8 @@ public class FlameThrower : Ability
             }
         }
         if(!hasHitTag) return;
-        
-        // var damager = otherGameObject.GetComponent<TakeDamage>();
-        // if (damager) {
-        //     // damager.Damage(damageAmount, _controller2D.GetFacingMult());
-        //     damager.DamageOverTime(damageAmountOverTime, dotTicks);
-        // }
 
-        OnFire.MakeOnFire(otherGameObject, dotTicks, onFirePartical, extraDamagePerSecond, 
-            damageAmountOverTime, particleSystemRenderer.material);
+        OnFire.MakeOnFire(otherGameObject, onFirePartical, Colors, true);
     }
 
     // private void MakeOnFire(GameObject otherGameObject) {
@@ -211,8 +204,7 @@ public class FlameThrower : Ability
         }
         if(!hasHitTag) return;
         
-        OnFire.MakeOnFire(otherGameObject, dotTicks, onFirePartical, extraDamagePerSecond, 
-            damageAmountOverTime, particleSystemRenderer.material);
+        OnFire.MakeOnFire(otherGameObject, onFirePartical, Colors, true);
     }
 
     protected override void OnDamageTaken(object o, float damageAmount) {

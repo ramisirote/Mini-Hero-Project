@@ -5,12 +5,21 @@ using UnityEngine;
 public class Refarences
 {
     
-    public Dictionary<string, EBodyParts> bodyPartKeys = new Dictionary<string, EBodyParts>() {
+    public static Dictionary<string, EBodyParts> bodyPartKeys = new Dictionary<string, EBodyParts>() {
         {"Head", EBodyParts.Head}, {"Chest", EBodyParts.Chest}, {"ArmL", EBodyParts.ArmL}, {"ArmR", EBodyParts.ArmR},
         {"Waist", EBodyParts.Waist}, {"LegL", EBodyParts.LegL}, {"LegR", EBodyParts.LegR},
         {"Cape", EBodyParts.Cape}, {"Hair", EBodyParts.Hair}, {"Logo", EBodyParts.Logo}, {"Face", EBodyParts.Face},
         {"HairBack", EBodyParts.HairBack}
     };
+
+    public static string BodyPartEnumToString(EBodyParts enumVal){
+        foreach (KeyValuePair<string, EBodyParts> item in bodyPartKeys) {
+            if(item.Value == enumVal){
+                return item.Key;
+            }
+        }
+        return "Head"; 
+    }
     
     public enum EBodyParts
     {

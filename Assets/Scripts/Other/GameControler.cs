@@ -17,6 +17,7 @@ public class GameControler : MonoBehaviour
 
     private GameObject _player;
     private PlayerManager _playerManager;
+    private CharacterPowerManager _powerManager;
     private GameObject _uiOverlay;
 
     private CharacterStatsData _characterStatsData = null;
@@ -35,6 +36,10 @@ public class GameControler : MonoBehaviour
 
     public static PlayerManager GetPlayerManager() {
         return _gameControler._playerManager;
+    }
+
+    public static CharacterPowerManager GetPowerManager() {
+        return _gameControler._powerManager;
     }
 
     private void Awake() {
@@ -71,6 +76,7 @@ public class GameControler : MonoBehaviour
     private void FindPlayerAndOverlay() {
         _player = GameObject.FindWithTag("Player");
         _playerManager = _player?.GetComponent<PlayerManager>();
+        _powerManager = _player?.GetComponent<CharacterPowerManager>();
         _uiOverlay = GameObject.FindWithTag("UI");
     }
 

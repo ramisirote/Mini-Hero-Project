@@ -58,12 +58,14 @@ public abstract class Ability: MonoBehaviour
     }
 
     // When an ability is added to the player (first time or on load) its init is called to set it up.
-    public void Init(GameObject parent, Color color1, Color color2, Color color3) {
-        _color1 = color1;
-        _color2 = color2;
-        _color3 = color3;
-        
-        Colors = new Color[]{_color1, _color2, _color3};
+    public void Init(GameObject parent, Color[] colors=null) {
+        if (colors != null){
+            _color1 = colors[0];
+            _color2 = colors[1];
+            _color3 = colors[2];
+            this.Colors = new Color[colors.Length];
+            colors.CopyTo(this.Colors, 0);
+        }
         
         if (parentCharacter) return;
         parentCharacter = parent;
@@ -79,14 +81,9 @@ public abstract class Ability: MonoBehaviour
 
     // Init, but with unlockables.
     // Unlockables have to yet been implemented.
-    public void Init(GameObject parent, Color color1, Color color2, Color color3, bool[] otherUnlocks) {
+    public void Init(GameObject parent, Color[] colors, bool[] otherUnlocks) {
         UpdateUnlocks(otherUnlocks);
-        Init(parent, color1, color2, color3);
-    }
-
-    // Init, but without changing the color.
-    public void Init(GameObject parent) {
-        Init(parent, _color1, _color2, _color3);
+        Init(parent, colors);
     }
     
     // Run right after Init

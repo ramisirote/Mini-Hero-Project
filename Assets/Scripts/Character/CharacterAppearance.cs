@@ -103,6 +103,11 @@ public class CharacterAppearance : ScriptableObject
                 return Color.black;
         }
     }
+
+    public List<Color> GetColors(string part){
+        var bodyPart = bodyParts[bodyPartKeys[part]];
+        return new List<Color>(){bodyPart.color1, bodyPart.color2, bodyPart.color3};
+    }
     
     public void SetColor(int part, int subColor, Color c) {
         switch (subColor) {

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +7,12 @@ using UnityEngine;
  */
 [CreateAssetMenu(fileName = "NewAbility", menuName = "CharacterPowers/AbilityData", order = 1)]
 [System.Serializable]
-public class AbilityData : ScriptableObject
+public class AbilityDataOld : ScriptableObject
 {
+
     public enum AbilityEnum
     {
-        FlameThrower, FireBody, FireBolts, Blast, Flying, Teleportation, SuperSpeed, Strength, Invisibility, EnergyBurst, EnergyCharge,
+        FlameThrower, FireBody, FireBurst, FireBall, Blast, Flying, Teleportation, SuperSpeed, Strength, Invisibility, EnergyBurst, EnergyCharge,
         EnergyBeam, SpeedDash, StrengthSmash, TornadoRun, BullRun, FlurryPunches, MartialArts, PickupThrow, Detonate,
         SuperPunch, Telekinesis, TelekineticBurst, TelekineticShield, TelekineticBlast
     }

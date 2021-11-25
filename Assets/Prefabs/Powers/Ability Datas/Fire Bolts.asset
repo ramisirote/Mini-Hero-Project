@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d615aa1075face4bbbb1de402b108a6, type: 3}
   m_Name: Fire Bolts
   m_EditorClassIdentifier: 
-  abilityName: Fire Bolts
+  abilityName: Fire Burst
   abilityEnum: 2
   icon: {fileID: -7132433922774202216, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
-  abilityGameObject: {fileID: 4394675251642499599, guid: 12896a162793d4b43a1c6213d74a8029, type: 3}
+  abilityGameObject: {fileID: 4239689092826450037, guid: e96f350e45cc7004facad3e37c42920a, type: 3}
   powerClassName: Fire Powers
   description: 'A simple ray-cast line attack that hit enemies at a distance. Part
     of the Energy Power class. Strengths: Range, low cooldown, easy to use and aim,

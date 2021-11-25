@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powersClasses:
   - {fileID: 11400000, guid: a4ca37368d7072f47bfedc8fcfd0ab1e, type: 2}
-  - {fileID: 11400000, guid: 0834799cfd944d9409bba9af93eb9e83, type: 2}
   - {fileID: 11400000, guid: bfda14939b87f1d4089c9f9232c54cac, type: 2}
   - {fileID: 11400000, guid: 37604ea57c202c046bb6d61ff951e077, type: 2}
   - {fileID: 11400000, guid: cb491fe0dbe12294cbcce2b9c8302818, type: 2}
@@ -22,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe7ff625b0f59394faec0ea72cb06185, type: 2}
   - {fileID: 11400000, guid: 9816808f5b964994d9802bdf411650e9, type: 2}
   - {fileID: 11400000, guid: 0d1249c7b1382644f9dae8cad370f981, type: 2}
+  - {fileID: 11400000, guid: 0834799cfd944d9409bba9af93eb9e83, type: 2}
   abilities:
   - {fileID: 11400000, guid: 4b757a7f48d8048419f7125db7d6b357, type: 2}
   - {fileID: 11400000, guid: 10a028d0d6adbbe47be1326569181b33, type: 2}

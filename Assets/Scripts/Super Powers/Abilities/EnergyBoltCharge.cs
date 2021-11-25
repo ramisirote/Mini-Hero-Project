@@ -34,10 +34,14 @@ public class EnergyBoltCharge : Ability
 
     private EnergyChargeProjectile _chargeProjectile = null;
 
+    private TakeDamage _damager;
+
     // private GameObject _curentChaging;
 
     protected override void OnDamageTaken(object o, float damageAmount) {
-        if(AbilityOn && _chargeProjectile) _animator.SetBool(AnimRefarences.IsFireingContinues, false);
+        if (AbilityOn && _chargeProjectile) {
+            _animator.SetBool(AnimRefarences.IsFireingContinues, false);
+        }
         SetAbilityOff();
     }
 
@@ -52,6 +56,9 @@ public class EnergyBoltCharge : Ability
             projectileTemp.SetUp(maxCharge, enemyLayers, damagePerCharge, _color1, _color2, _color3, IsPlayer);
             projectileTemp.gameObject.SetActive(false);
         }
+
+        _damager = parentCharacter.GetComponent<TakeDamage>();
+        _damager.OnDeathEvent += delegate(object sender, IManager manager) {SetAbilityOff();};
     }
     
     private void Update() {

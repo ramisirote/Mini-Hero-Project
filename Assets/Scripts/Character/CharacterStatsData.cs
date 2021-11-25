@@ -11,43 +11,56 @@ public class CharacterStatsData
     public event EventHandler OnHealthChange;
     public event EventHandler OnEnergyChange;
 
+    public event EventHandler OnUnlockPoitnsChange;
+
     public event EventHandler<float> OnDamageTaken;
 
     private enum FieldToArrayIndex
     {
-        Level, CurrentXp, XpToNextLevel, 
+        Level, CurrentXp, XpToNextLevel,
         MaxHealth, Health, HealthRegen, HealthPerLevel,
         MaxEnergy, Energy, EnergyRegen, EnergyPerLevel,
-        AttackSpeed, AttackRate, MoveSpeed, JumpForce, 
+        AttackSpeed, AttackRate, MoveSpeed, JumpForce,
         PunchDamage, UnlockPoints, ThisEnumLength
     }
-    
+
     [SerializeField] private int _level;
     [SerializeField] private float _currentXp;
     [SerializeField] private float _xpToNextLevel;
-    
-    [field: SerializeField] public float MaxHealth{ get; private set; }
-    [field: SerializeField] public float Health{ get; private set; }
-    [field: SerializeField] public float HealthRegen{ get; private set; }
-    
+
+    [field: SerializeField] public float MaxHealth { get; private set; }
+    [field: SerializeField] public float Health { get; private set; }
+    [field: SerializeField] public float HealthRegen { get; private set; }
+
     [field: SerializeField] private float _healthPerLevel = 1;
-    
-    [field: SerializeField] public float MaxEnergy{ get; private set; }
-    [field: SerializeField] public float Energy{ get; private set; }
-    [field: SerializeField] public float EnergyRegen{ get; private set; }
-    
+
+    [field: SerializeField] public float MaxEnergy { get; private set; }
+    [field: SerializeField] public float Energy { get; private set; }
+    [field: SerializeField] public float EnergyRegen { get; private set; }
+
     [field: SerializeField] private float _energyPerLevel = 1;
 
     [field: SerializeField] public float AttackSpeed { get; private set; }
     [field: SerializeField] public float AttackRate { get; private set; }
-    [field: SerializeField] public float MoveSpeed{ get; private set; }
-    [field: SerializeField] public float JumpForce{ get; private set; }
+    [field: SerializeField] public float MoveSpeed { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
 
-    [field: SerializeField] public float PunchDamage{ get; set; }
-    [field: SerializeField] public float UnlockPoints{ get; set; }
+    [field: SerializeField] public float PunchDamage { get; set; }
+
+    private float _UnlockPoints = 0;
+    [SerializeField] public float UnlockPoints
+    {
+        get { return _UnlockPoints; }
+        set
+        {
+            _UnlockPoints = value;
+            OnUnlockPoitnsChange?.Invoke(this, EventArgs.Empty);
+        }
+    }
 
 
-    public CharacterStatsData() {
+    public CharacterStatsData()
+    {
         _level = 1;
         _currentXp = 0;
         _xpToNextLevel = 100;
@@ -69,16 +82,19 @@ public class CharacterStatsData
         PunchDamage = 5;
         UnlockPoints = 0;
     }
-    
-    public CharacterStatsData(CharacterStatsData otherStatsData) {
+
+    public CharacterStatsData(CharacterStatsData otherStatsData)
+    {
         CopyStats(otherStatsData);
     }
 
-    public CharacterStatsData(float[] statsArray) {
-        if (statsArray.Length < (int) FieldToArrayIndex.ThisEnumLength) {
+    public CharacterStatsData(float[] statsArray)
+    {
+        if (statsArray.Length < (int)FieldToArrayIndex.ThisEnumLength)
+        {
             return;
         }
-        
+
         _level = (int)statsArray[(int)FieldToArrayIndex.Level];
         _currentXp = statsArray[(int)FieldToArrayIndex.CurrentXp];
         _xpToNextLevel = statsArray[(int)FieldToArrayIndex.XpToNextLevel];
@@ -101,9 +117,10 @@ public class CharacterStatsData
         UnlockPoints = statsArray[(int)FieldToArrayIndex.UnlockPoints];
     }
 
-    public float[] GetFieldsArray() {
+    public float[] GetFieldsArray()
+    {
         float[] fieldsArray = new float[(int)FieldToArrayIndex.ThisEnumLength];
-        fieldsArray[(int) FieldToArrayIndex.Level] = _level;
+        fieldsArray[(int)FieldToArrayIndex.Level] = _level;
         fieldsArray[(int)FieldToArrayIndex.CurrentXp] = _currentXp;
         fieldsArray[(int)FieldToArrayIndex.XpToNextLevel] = _xpToNextLevel;
 
@@ -127,7 +144,8 @@ public class CharacterStatsData
         return fieldsArray;
     }
 
-    public void CopyStats(CharacterStatsData otherStatsData) {
+    public void CopyStats(CharacterStatsData otherStatsData)
+    {
         _level = otherStatsData._level;
         _currentXp = otherStatsData._currentXp;
         _xpToNextLevel = otherStatsData._xpToNextLevel;
@@ -145,70 +163,79 @@ public class CharacterStatsData
         AttackRate = otherStatsData.AttackRate;
         MoveSpeed = otherStatsData.MoveSpeed;
         JumpForce = otherStatsData.JumpForce;
-        
+
         PunchDamage = otherStatsData.PunchDamage;
         UnlockPoints = otherStatsData.UnlockPoints;
-        
-        
+
+
         OnHealthChange?.Invoke(this, EventArgs.Empty);
         OnEnergyChange?.Invoke(this, EventArgs.Empty);
         OnLevelChange?.Invoke(this, EventArgs.Empty);
         OnXpChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void ChangeHpBy(float amount) {
+    public void ChangeHpBy(float amount)
+    {
         if (amount < 0) OnDamageTaken?.Invoke(this, -amount);
-        
-        if(amount > 0 && Health >= MaxHealth) return;
+
+        if (amount > 0 && Health >= MaxHealth) return;
         if (amount < 0 && Health <= 0) return;
 
         Health += amount;
         if (Health < 0) Health = 0;
         if (Health > MaxHealth) Health = MaxHealth;
-        
+
         OnHealthChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void RegenerateHealth(float multiplier=1) {
-        ChangeHpBy(HealthRegen*multiplier);
+    public void RegenerateHealth(float multiplier = 1)
+    {
+        ChangeHpBy(HealthRegen * multiplier);
     }
 
-    public void SetHealthToMax() {
+    public void SetHealthToMax()
+    {
         Health = MaxHealth;
         OnHealthChange?.Invoke(this, EventArgs.Empty);
     }
-    
-    public void ChangeEnergyBy(float amount) {
-        
-        if(amount > 0 && Energy >= MaxEnergy) return;
+
+    public void ChangeEnergyBy(float amount)
+    {
+
+        if (amount > 0 && Energy >= MaxEnergy) return;
         if (amount < 0 && Energy <= 0) return;
 
         Energy += amount;
         if (Energy < 0) Energy = 0;
         if (Energy > MaxEnergy) Energy = MaxEnergy;
-        
+
         OnEnergyChange?.Invoke(this, EventArgs.Empty);
     }
-    
-    public void RegenerateEnergy(float multiplier=1) {
+
+    public void RegenerateEnergy(float multiplier = 1)
+    {
         ChangeEnergyBy(EnergyRegen * multiplier);
     }
-    
-    public void SetEnergyToMax() {
+
+    public void SetEnergyToMax()
+    {
         Energy = MaxEnergy;
         OnEnergyChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void AddXp(float xpToAdd) {
+    public void AddXp(float xpToAdd)
+    {
         _currentXp += xpToAdd;
-        while (_currentXp >= _xpToNextLevel) {
+        while (_currentXp >= _xpToNextLevel)
+        {
             _currentXp -= _xpToNextLevel;
             LevelUp();
         }
         OnXpChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void LevelUp() {
+    public void LevelUp()
+    {
         _level++;
 
         MaxHealth += _healthPerLevel;
@@ -218,22 +245,26 @@ public class CharacterStatsData
         Energy += _energyPerLevel;
 
         UnlockPoints++;
-        
+
         OnLevelChange?.Invoke(this, EventArgs.Empty);
     }
 
-    public void ReduceXp(float xpToReduce) {
-        if (_currentXp > 0) {
+    public void ReduceXp(float xpToReduce)
+    {
+        if (_currentXp > 0)
+        {
             _currentXp = Math.Max(0, _currentXp - xpToReduce);
             OnXpChange?.Invoke(this, EventArgs.Empty);
         }
     }
 
-    public int GetLevel() {
+    public int GetLevel()
+    {
         return _level;
     }
 
-    public float GetXpNormalized() {
+    public float GetXpNormalized()
+    {
         return _currentXp / _xpToNextLevel;
     }
 }

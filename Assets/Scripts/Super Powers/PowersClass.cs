@@ -10,23 +10,23 @@ public class PowersClass : ScriptableObject
 {
     [SerializeField] private string powerName;
     [SerializeField] private Sprite powerIcon;
-    [SerializeField] private AbilityData[] abilitiesInClass;
+    [SerializeField] private AbilityDataOld[] abilitiesInClass;
     public bool isSinglePower;
 
 
-    public AbilityData GetAbilityAt(int i) {
+    public AbilityDataOld GetAbilityAt(int i) {
         if (abilitiesInClass.Length == 0) return null;
         if (i >= abilitiesInClass.Length || i < 0) return abilitiesInClass[0];
 
         return abilitiesInClass[i];
     }
 
-    public AbilityData GetPowerByEnum(AbilityData.AbilityEnum enumOfAbility) {
+    public AbilityDataOld GetPowerByEnum(AbilityDataOld.AbilityEnum enumOfAbility) {
         var ab = Array.Find(abilitiesInClass, ability => ability.abilityEnum == enumOfAbility);
         return ab;
     }
 
-    public AbilityData GetPowerDefault() {
+    public AbilityDataOld GetPowerDefault() {
         return abilitiesInClass.Length == 0 ? null : abilitiesInClass[0];
     }
 
@@ -34,7 +34,7 @@ public class PowersClass : ScriptableObject
         return Array.Exists(abilitiesInClass, ability => ability.abilityGameObject.name == abilityObject.name);
     }
 
-    public AbilityData[] GetAbilities() {
+    public AbilityDataOld[] GetAbilities() {
         return abilitiesInClass;
     }
 

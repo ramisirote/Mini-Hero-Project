@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour, IManager
     
     private Ability _ability1;
     private Ability _ability2;
-    private PowersInstance _powersInstance;
+    private CharacterPowerManager _powersManager;
 
     private Ability _activePower;
 
@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour, IManager
         
         SetAttackSpeed(characterStats.GetCharacterStats().AttackSpeed);
         _runSpeed = characterStats.GetCharacterStats().MoveSpeed;
-        _powersInstance = gameObject.GetComponent<PowersInstance>();
+        _powersManager = gameObject.GetComponent<CharacterPowerManager>();
         _mainCam = Camera.main;
     }
 
@@ -98,13 +98,13 @@ public class PlayerManager : MonoBehaviour, IManager
     }
     
     // Gets an ability and and int, sets the ability as the ability in the appropriate place.
-    public void SetAbility(Ability newPower, int which) {
-        switch (which) {
-            case 1: 
+    public void SetAbility(Ability newPower, int slot) {
+        switch (slot) {
+            case 0: 
                 _ability1 = newPower;
                 ActivePowerChange?.Invoke(this, 0);
                 break;
-            case 2: 
+            case 1: 
                 _ability2 = newPower;
                 ActivePowerChange?.Invoke(this, 1);
                 break;
@@ -231,27 +231,27 @@ public class PlayerManager : MonoBehaviour, IManager
 
     private void CheckActiveAbilityChange() {
         if (Input.GetKeyDown(KeyCode.Q)) {
-            _powersInstance.RotateAbility(1);
+            _powersManager.RotateAbility(0);
             _ability1.OnAbilitySwitchIn();
         }
         
         if (Input.GetKeyDown(KeyCode.E)) {
-            _powersInstance.RotateAbility(2);
+            _powersManager.RotateAbility(1);
             _ability2.OnAbilitySwitchIn();
         }
         
         // for debug only, a new system will be impelmented
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            _powersInstance.UpgradeAbility(0);
+            _powersManager.UpgradeAbility(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            _powersInstance.UpgradeAbility(1);
+            _powersManager.UpgradeAbility(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            _powersInstance.UpgradeAbility(2);
+            _powersManager.UpgradeAbility(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            _powersInstance.UpgradeAbility(3);
+            _powersManager.UpgradeAbility(3);
         }
     }
 

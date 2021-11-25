@@ -50,6 +50,15 @@ TextureImporter:
   - first:
       213: -5612695987946839547
     second: PowerIcons_MartialArts
+  - first:
+      213: 2628297195983863369
+    second: linked
+  - first:
+      213: -8983910835482389656
+    second: unlinked
+  - first:
+      213: -5669455417292534578
+    second: lock
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -81,8 +90,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -103,6 +112,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -460,7 +471,7 @@ TextureImporter:
         width: 17
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -468,6 +479,69 @@ TextureImporter:
       bones: []
       spriteID: 5022b2e7cb2bb12b0800000000000000
       internalID: -5612695987946839547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linked
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 138
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94ef5cadf56997420800000000000000
+      internalID: 2628297195983863369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unlinked
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 111
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8631a45a1bcb25380800000000000000
+      internalID: -8983910835482389656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lock
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 141
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc4d56065c0251b0800000000000000
+      internalID: -5669455417292534578
       vertices: []
       indices: 
       edges: []

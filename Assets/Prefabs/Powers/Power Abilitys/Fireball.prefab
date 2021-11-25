@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8998314542630912185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8998314542630912187}
+  - component: {fileID: 8998314542630912186}
+  m_Layer: 0
+  m_Name: Fireball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8998314542630912187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998314542630912185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.2655497, y: -2.0511153, z: -0.36968333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8998314542630912186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998314542630912185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69ed4af049ced247ba123aea1dbf504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentCharacter: {fileID: 0}
+  abilityCooldown: 0.1
+  energyRequired: 0
+  _color1: {r: 0, g: 0, b: 0, a: 0}
+  _color2: {r: 0, g: 0, b: 0, a: 0}
+  _color3: {r: 0, g: 0, b: 0, a: 0}
+  abilityIcon: {fileID: -2942423210981212740, guid: 09cb240eeac57f345a8a4f20586186ca, type: 3}
+  audioSource: {fileID: 0}
+  fireBallProjectile: {fileID: 7818885828271406021, guid: 37d848c8fa0a05f4088a823856328074, type: 3}
+  material: {fileID: 2100000, guid: 71da275f808a01c47af80acfd15430dc, type: 2}
+  speed: 20
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  hitDamage: 10
+  dotTicks: 2
+  damageAmountOverTime: 3
+  extraDamagePerSecond: 0.3
+  radius: 2
+  bonFireLifeTime: 0.01
