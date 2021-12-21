@@ -15,12 +15,20 @@ public class AbilityManager : MonoBehaviour
     public List<AbilityStatic> abilityLibrary;
     public List<PowerClassData> powerClassDatas;
 
+    public List<AbilityStatic> GetAbiitiesExceptClass(PowerClassData.PowerClasses classId){
+        return abilityLibrary.FindAll(ability => ability.powerClass != classId);
+    }
+
     public AbilityStatic GetAbilityStatic(AbilityStatic.AbilityEnum id){
-        return abilityLibrary.Find(abilityStatic => (int)abilityStatic.id == (int)id);
+        return abilityLibrary.Find(ability => (int)ability.id == (int)id);
     }
 
     public PowerClassData GetPowerClass(PowerClassData.PowerClasses id){
         return powerClassDatas.Find(powerData => (int)powerData.id == (int)id);
+    }
+
+    public List<AbilityStatic> GetAbilitiesForClass(PowerClassData.PowerClasses classId){
+        return abilityLibrary.FindAll(ability => ability.powerClass == classId);
     }
 }
 
@@ -65,6 +73,8 @@ public class AbilityStatic
     public PowerClassData.PowerClasses powerClass;
 
     public UpgradeData[] upgradeData = new UpgradeData[4];
+
+    public Color[] defaultColors = new Color[3];
 }
 
 [System.Serializable]

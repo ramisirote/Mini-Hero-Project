@@ -161,22 +161,47 @@ public class CharacterPowerManager : MonoBehaviour
     }
 
     public void UnlockAbility(AbilityStatic.AbilityEnum abilityEnum){
-        var abilityState = abilities.Find(abState => (int)abState.id == (int)abilityEnum);
+        var abilityStateIndex = abilities.FindIndex(abState => (int)abState.id == (int)abilityEnum);
+
+        var abilityState = abilities[abilityStateIndex];
+        print(abilityState.id);
         abilityState.unlocked = true;
+        if(abilityState.isMain && actives[0] <= -1){
+            actives[0] = abilityStateIndex;
+            manager.SetAbility(abilityState.abilityScript, abilityStateIndex);
+        }
+        if(!abilityState.isMain && actives[1] <= -1){
+            actives[1] = abilityStateIndex;
+            manager.SetAbility(abilityState.abilityScript, abilityStateIndex);
+        }
     }
 
 
-    public void AddNewAbility(AbilityStatic newPower, Color[] colors = null, bool unlocked = false)
+    public void AddNewAbility(AbilityStatic newPower, Color[] colors = null, bool unlocked = false, bool isMain = false)
     {
         var newAbilityStatus = new AbilityState(newPower, colors, unlocked);
         SetUpAbility(newAbilityStatus);
-        if (abilities.Count <= 2)
-        {
-            actives[abilities.Count] = abilities.Count;
+        // if (abilities.Count < 2 && unlocked)
+        // {
+        //     actives[abilities.Count] = abilities.Count;
+        //     manager.SetAbility(newAbilityStatus.abilityScript, abilities.Count);
+        // }
+        if(isMain && unlocked && actives[0] <= -1){
+            actives[0] = abilities.Count;
+            manager.SetAbility(newAbilityStatus.abilityScript, abilities.Count);
+        }
+        if(!isMain && unlocked && actives[1] <= -1){
+            actives[1] = abilities.Count;
             manager.SetAbility(newAbilityStatus.abilityScript, abilities.Count);
         }
         // after setting active to not have to use 'Count - 1'
         abilities.Add(newAbilityStatus);
+    }
+
+    public void AddNewAbilities(List<AbilityStatic> abilities, Color[] colors = null, int unlockInt=-1, bool isMain = true){
+        for(var i=0; i<abilities.Count; i++){
+            AddNewAbility(abilities[i], colors, unlockInt==i, isMain);
+        }
     }
 
     public void UpgradeAbility(AbilityStatic.AbilityEnum abilityEnum, int upgradeIndex)
@@ -194,6 +219,14 @@ public class CharacterPowerManager : MonoBehaviour
     public void ClearPowers()
     {
         this.abilities.Clear();
+        actives = new int[]{-1, -1};
+    }
+
+    public bool IsSetUp(){
+        if (abilities.Count < 0 || GetSecondaryAbility() == null){
+            return false;
+        }
+        return true;
     }
 
     public bool IsAbilityUnlocked(AbilityStatic abilityStatic)
@@ -216,7 +249,13 @@ public class CharacterPowerManager : MonoBehaviour
 
     public AbilityStatic GetSecondaryAbilityData()
     {
-        return this.abilities.Find(abilitySate => !abilitySate.isMain).abilityData;
+        var secondaryAbility = GetSecondaryAbility();
+        if (secondaryAbility != null) return secondaryAbility.abilityData;
+        return null;
+    }
+
+    public AbilityState GetSecondaryAbility(){
+        return this.abilities.Find(abilitySate => !abilitySate.isMain);
     }
 
     public PowerClassData.PowerClasses GetMainPower(){
@@ -257,7 +296,6 @@ public class CharacterPowerManager : MonoBehaviour
                     abilities = (from ability in this.abilities select ability.GetSerializedAbilityState()).ToArray(),
                     actives = this.actives
                 };
-            
                 formatter.Serialize(stream, save); 
                 Debug.Log($"Abilities saved to {path}"); 
             }
@@ -284,7 +322,6 @@ public class CharacterPowerManager : MonoBehaviour
                 {
                     var savedAbility = new AbilityState(serializedAbility);
                     this.abilities.Add(savedAbility);
-                    Debug.Log(savedAbility.name);
                 }
                 Debug.Log($"Abilities loaded from {path}");
             }
@@ -328,6 +365,7 @@ public class AbilityState
         }
         this.unlocked = unlocked;
         this.isMain = true;
+        this.id = abilityStatic.id;
     }
 
     public AbilityState(SerializedAbilityState serializedSate){

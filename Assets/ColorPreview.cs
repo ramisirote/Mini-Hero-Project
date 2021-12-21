@@ -13,7 +13,9 @@ public class ColorPreview : MonoBehaviour
     public float hues;
     public float shades;
 
-    private ApearanceCustimiser apearanceCustimiser;
+    public bool apreance;
+
+    private ColorCustimizer custimizer;
 
     private List<colorCell> cells = new List<colorCell>();
 
@@ -42,8 +44,12 @@ public class ColorPreview : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        apearanceCustimiser = ApearanceCustimiser.instance;
-        apearanceCustimiser.OnColorPickIndexChange += OnColorIndexChange;
+        if(apreance){
+            custimizer = ApearanceCustimiser.instance;
+        } else {
+            custimizer = powerCustimizer.instance;
+        }
+        custimizer.OnColorPickIndexChange += OnColorIndexChange;
         rainbow = GenerateRainbow();
         int i=0;
         foreach(var color in rainbow){
@@ -66,45 +72,35 @@ public class ColorPreview : MonoBehaviour
         Utils.SetOutlineAmount(cells[selectedIndex].outline, 0);
         Utils.SetOutlineAmount(cells[index].outline, 5);
         selectedIndex = index;
-        apearanceCustimiser.ChangeSelectedColor(cells[index].image.color, selectedIndex);
+        custimizer.ChangeSelectedColor(cells[index].image.color, selectedIndex);
     }
 
     public List<Color> GenerateRainbow(){
-        float hueSteps = 1f/hues;
-        float shadeSteps = 1f/shades;
         var colors = new List<Color>();
-
-        float[] RGB = new float[]{1f, 0f, 0f};
-        for(float adjustVal=1-shadeSteps; adjustVal>=-1+shadeSteps; adjustVal-=shadeSteps){
-            var adjustColor = Color.white * adjustVal;
-            adjustColor.a = 1f;
-
-            RGB = new float[]{1f, 0f, 0f};
-            for(int i=0; i<3; i++){
-                var j = (i+1)%3;
-                while(RGB[j] < 1){
-                    colors.Add(new Color(){r=RGB[0], g=RGB[1], b=RGB[2], a=1} + adjustColor);
-                    RGB[j] = Mathf.Min(RGB[j] + hueSteps, 1);
-                }
-                while(RGB[i] > hueSteps){
-                    colors.Add(new Color(){r=RGB[0], g=RGB[1], b=RGB[2], a=1} + adjustColor);
-                    RGB[i] = Mathf.Max(RGB[i] - hueSteps, 0);
-                }
+        var shadeStep = 1f/shades;
+        var satStep = 1f/(shades);
+        float graySteps = 2*shades - 1;
+        float grayIndex = graySteps;
+        for(float s = satStep; s < 1f; s += satStep){
+            colors.Add(Color.HSVToRGB(H:0, S:0, V:grayIndex/graySteps));
+            grayIndex -= 1;
+            for(float h=0; h <= hues; h++){
+                colors.Add(Color.HSVToRGB(H: h/hues, S: s, V: 1f));
             }
         }
-        var grayScale = 1f;
-        while(grayScale >= 0){
-            float r,g,b;
-            r = g = b = grayScale;
-            colors.Add(new Color(r,g,b,1));
-            grayScale -= hueSteps/4.8f;
+        for(float v=1f; v > shadeStep; v -= shadeStep){
+            colors.Add(Color.HSVToRGB(H:0, S:0, V:grayIndex/graySteps));
+            grayIndex -= 1;
+            for(float h=0; h <= hues; h++){
+                colors.Add(Color.HSVToRGB(H: h/hues, S: 1f, V: v));
+            }
         }
-
+  
         return colors;
     }
 
     private void OnColorIndexChange(object sender, int index){
-        var currentSelectedColor = apearanceCustimiser.GetCurrentColor();
+        var currentSelectedColor = custimizer.GetCurrentColor();
         var closestIndex = GetClosestColorIndex(currentSelectedColor);
         ChangeSelectedColor(closestIndex);
     }

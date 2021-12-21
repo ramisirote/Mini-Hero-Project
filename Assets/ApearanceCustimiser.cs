@@ -4,23 +4,19 @@ using UnityEngine;
 using System;
 using UnityEngine.U2D.Animation;
 
-public class ApearanceCustimiser : MonoBehaviour
+public class ApearanceCustimiser : ColorCustimizer
 {
     public static ApearanceCustimiser instance;
     // public List<Color> currentColorPallet = new List<Color>();
     private CharacterAppearance characterAppearance;
     private SpriteHandler spriteHandler;
     private List<string> curentPartCatagories= new List<string>(){"Head"};
-    private int currentColorIndex = 0;
-    private Color currentColor;
+    // private Color currentColor;
     private Dictionary<string, SpriteResolver> partSprites = new Dictionary<string, SpriteResolver>();
 
     private Dictionary<string, int> catagorySelectedIndex = new Dictionary<string, int>();
     private Dictionary<string, List<Color>> catagoryColors = new Dictionary<string, List<Color>>();
     public event EventHandler<List<string>> onPartCatagorChange;
-
-    public event EventHandler<Tuple<Color, int, int>> OnColorSelectChange;
-    public event EventHandler<int> OnColorPickIndexChange;
 
     private void Awake() {
         if (instance == null){
@@ -39,6 +35,8 @@ public class ApearanceCustimiser : MonoBehaviour
             catagorySelectedIndex[catagory] = characterAppearance.GetSelectedPart(catagory);
             catagoryColors[catagory] = characterAppearance.GetColors(catagory);
         }
+        catagorySelectedIndex["Colors"] = characterAppearance.GetSelectedPart("Logo");
+        catagoryColors["Colors"] = characterAppearance.GetColors("Logo");
     }
 
     public int GetSelectedIndex(string catagory){
@@ -57,7 +55,7 @@ public class ApearanceCustimiser : MonoBehaviour
         return catagoryColors[catagory];
     }
 
-    public Color GetCurrentColor(){
+    public override Color GetCurrentColor(){
         return GetCatagoryColors(curentPartCatagories[0])[currentColorIndex];
     }
 
@@ -80,26 +78,31 @@ public class ApearanceCustimiser : MonoBehaviour
         catagorySelectedIndex[catagory] = index;
     }
 
-    public void ChangeSelectedColor(Color newColor, int selectedRainbowIndex=-1){
-        currentColor = newColor;
-        OnColorSelectChange?.Invoke(this, new Tuple<Color, int, int>(newColor, currentColorIndex, selectedRainbowIndex));
+    public override void ChangeSelectedColor(Color newColor, int selectedRainbowIndex=-1){
+        base.ChangeSelectedColor(newColor, selectedRainbowIndex);
         foreach (var partName in curentPartCatagories)
         {
+            print(partName);
+            if(partName == "Colors"){
+                foreach(var partNameKey in catagoryColors.Keys){
+                    if(partNameKey != "Colors") spriteHandler.SetColor(partNameKey, newColor, currentColorIndex);
+                    catagoryColors[partNameKey][currentColorIndex] = newColor;
+                }
+                continue;
+            }
             spriteHandler.SetColor(partName, newColor, currentColorIndex);
             catagoryColors[partName][currentColorIndex] = newColor;
         }
     }
 
-    public void ChangeSelectedCOlorIndex(int index, Color color){
-        currentColorIndex = index;
-        currentColor = color;
-        // currentColorPallet[index] = color;
+    public override void ChangeSelectedColorIndex(int index, Color color){
         foreach(var catagory in curentPartCatagories){
             catagoryColors[catagory][index] = color;
         }
-        OnColorPickIndexChange?.Invoke(this, index);
+        base.ChangeSelectedColorIndex(index, color);
     }
 
+    
     // Start is called before the first frame update
     void Start()
     {

@@ -63,6 +63,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0.38113207, b: 0.38113207, a: 1}
+    - {r: 1, g: 0.63584906, b: 0.63584906, a: 1}
   - name: Flame Thrower
     id: 0
     abilityObject: {fileID: 7653137281587227988, guid: 80d3a9eb2b37c524981b88bb3a8fb293, type: 3}
@@ -82,6 +86,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 1, g: 0.16194496, b: 0, a: 1}
+    - {r: 1, g: 0.3937046, b: 0, a: 1}
+    - {r: 1, g: 0.86663836, b: 0, a: 1}
   - name: Flight
     id: 5
     abilityObject: {fileID: 3170358597876350239, guid: bb4135b52195b4e4b8dcf18bd486506d, type: 3}
@@ -101,6 +109,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: -8727222065128082878, guid: 39f2fe25d8f30bf4494c8b46fd7473dc, type: 3}
+    defaultColors:
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
+    - {r: 1, g: 1, b: 1, a: 1}
   - name: Super Punch
     id: 21
     abilityObject: {fileID: 6129591209507844417, guid: d44aa1fe948706c4092f7f6890f059f8, type: 3}
@@ -120,6 +132,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 1, g: 0.8649347, b: 0, a: 1}
+    - {r: 1, g: 0.96858495, b: 0.37169808, a: 1}
+    - {r: 1, g: 0.9651957, b: 0.64705884, a: 1}
   - name: Telekinesis
     id: 22
     abilityObject: {fileID: 1619968505312571945, guid: 4aeb2d391df5db74c9024b0f84caf54b, type: 3}
@@ -139,6 +155,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Telekinetic Blast
     id: 25
     abilityObject: {fileID: 1614017693320500932, guid: 8a827194476f80a46943d89b0a1f6227, type: 3}
@@ -158,6 +178,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Telekinetic Shield
     id: 24
     abilityObject: {fileID: 8039291926632993011, guid: 9391c45e2db7c5e42af701b66b3a3dc6, type: 3}
@@ -177,6 +201,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Telekinetic Burst
     id: 23
     abilityObject: {fileID: 6656809389346071569, guid: e7fb4b838db2d9041a6393ff8ef20e82, type: 3}
@@ -196,6 +224,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Super Speed
     id: 7
     abilityObject: {fileID: 3170358597876350239, guid: cd6e091adab63bd488ff85ae7baea10b, type: 3}
@@ -215,6 +247,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Speed Dash
     id: 13
     abilityObject: {fileID: 6706058779998514126, guid: f0e1fc20c174fc24fba46c1723b4d3fa, type: 3}
@@ -234,6 +270,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Flurry Punches
     id: 17
     abilityObject: {fileID: 7988352650293869346, guid: bcaaa00c9f6f4f34c841942435cb02f7, type: 3}
@@ -253,6 +293,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Tornado Run
     id: 15
     abilityObject: {fileID: 4556485749308130964, guid: 9204d807d9a7ff34f83eb4fefc4b2629, type: 3}
@@ -272,6 +316,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Bull Rush
     id: 16
     abilityObject: {fileID: 8362779591632145283, guid: c488b5321828632438b23002fa5ed6b1, type: 3}
@@ -291,6 +339,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Enerdy Detonaor
     id: 20
     abilityObject: {fileID: 2386657458246045314, guid: 41d2e32dce2d5a543a383536a154f5b8, type: 3}
@@ -310,6 +362,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Energy Bolt
     id: 11
     abilityObject: {fileID: 4098649680627851673, guid: c378ecf52dda90a4fba36d3461bd6329, type: 3}
@@ -329,6 +385,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Energy Burst
     id: 10
     abilityObject: {fileID: 3288564294537034966, guid: 342eca419ea01ed448bee97aea7852af, type: 3}
@@ -348,6 +408,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Fire Body
     id: 1
     abilityObject: {fileID: 2976611540852367982, guid: d118564ab0a372948a60f4a0e4af5fb9, type: 3}
@@ -367,9 +431,13 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Fireball
     id: 3
-    abilityObject: {fileID: 2976611540852367982, guid: d118564ab0a372948a60f4a0e4af5fb9, type: 3}
+    abilityObject: {fileID: 8998314542630912185, guid: 36dea0b4fcfa757499ee42b48ac98c71, type: 3}
     icon: {fileID: -4929241301462443967, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
     description: 
     powerClass: 1
@@ -386,6 +454,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0, g: 0, b: 0, a: 1}
+    - {r: 0, g: 0, b: 0, a: 1}
   - name: Fire Burst
     id: 2
     abilityObject: {fileID: 4239689092826450037, guid: e96f350e45cc7004facad3e37c42920a, type: 3}
@@ -405,6 +477,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Invisibility
     id: 9
     abilityObject: {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
@@ -424,6 +500,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Teleportation
     id: 6
     abilityObject: {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
@@ -443,6 +523,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Throw
     id: 6
     abilityObject: {fileID: 7688493542216791843, guid: 5ea042e128e18d2478a7291dc6f63538, type: 3}
@@ -462,6 +546,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   - name: Ground Smash
     id: 14
     abilityObject: {fileID: 6162389683430649219, guid: 20f37e4953121c7468788a4f8632b8b0, type: 3}
@@ -481,6 +569,10 @@ MonoBehaviour:
     - name: 
       description: 
       icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   powerClassDatas:
   - name: Energy
     id: 0

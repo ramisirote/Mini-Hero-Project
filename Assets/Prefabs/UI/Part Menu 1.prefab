@@ -229,7 +229,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1979349564901015301}
         m_TargetAssemblyTypeName: partCustMenu, Assembly-CSharp
-        m_MethodName: OnClickSelectPart
+        m_MethodName: OnClickSelectCatagory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -440,12 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78edf798bdd0504aaed0c4117cd82db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partIds: 
   colors:
   - {fileID: 1450872359387844972}
   - {fileID: 8519393250044444892}
   - {fileID: 3013889461026590569}
   selectedColorsRainbowIndex: ffffffffffffffffffffffff
+  partIds: 
   button: {fileID: 2996245657463896469}
   outline: {fileID: 8966441209657948097}
 --- !u!1001 &3105962989285942632

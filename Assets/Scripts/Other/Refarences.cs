@@ -9,7 +9,7 @@ public class Refarences
         {"Head", EBodyParts.Head}, {"Chest", EBodyParts.Chest}, {"ArmL", EBodyParts.ArmL}, {"ArmR", EBodyParts.ArmR},
         {"Waist", EBodyParts.Waist}, {"LegL", EBodyParts.LegL}, {"LegR", EBodyParts.LegR},
         {"Cape", EBodyParts.Cape}, {"Hair", EBodyParts.Hair}, {"Logo", EBodyParts.Logo}, {"Face", EBodyParts.Face},
-        {"HairBack", EBodyParts.HairBack}
+        {"HairBack", EBodyParts.HairBack}, {"Colors", EBodyParts.colors}
     };
 
     public static string BodyPartEnumToString(EBodyParts enumVal){
@@ -23,7 +23,7 @@ public class Refarences
     
     public enum EBodyParts
     {
-        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack, punch
+        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack, punch, colors
     }
     
     public enum BodyJoints
