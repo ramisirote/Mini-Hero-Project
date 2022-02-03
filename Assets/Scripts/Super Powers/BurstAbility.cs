@@ -12,7 +12,7 @@ public abstract class BurstAbility : Ability
     
     protected bool powerActive;
     protected Animator _animator;
-    protected string animation = AnimRefarences.Burst;
+    protected string animationRef = AnimRefarences.Burst;
     
     protected override void AdditionalInit() {
         _animator = parentCharacter.GetComponent<Animator>();
@@ -62,7 +62,7 @@ public abstract class BurstAbility : Ability
         if (!AbilityOn && CharacterStats.UseEnergy(energyRequired)) {
             
             Controller.StopHorizontal();
-            _animator.SetTrigger(animation);
+            _animator.SetTrigger(animationRef);
             
             if(chargeParticle) chargeParticle.Play();
 

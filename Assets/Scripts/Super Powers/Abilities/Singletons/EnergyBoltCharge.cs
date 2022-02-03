@@ -30,8 +30,6 @@ public class EnergyBoltCharge : Ability
     private float _armDefaultRotationAngle = -1;
     private BodyAngler _bodyAngler;
 
-    private float _chargeAmount = 0;
-
     private EnergyChargeProjectile _chargeProjectile = null;
 
     private TakeDamage _damager;

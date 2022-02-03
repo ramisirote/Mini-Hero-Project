@@ -486,7 +486,7 @@ MonoBehaviour:
     abilityObject: {fileID: 3170358597876350239, guid: 67e55f0c31e6f9e4f8f46133ee20db43, type: 3}
     icon: {fileID: -1206386446500177724, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
     description: 
-    powerClass: 6
+    powerClass: 8
     upgradeData:
     - name: 
       description: 
@@ -509,7 +509,7 @@ MonoBehaviour:
     abilityObject: {fileID: 3170358597876350239, guid: e11172fb925afd0438c91b67ca3f104f, type: 3}
     icon: {fileID: -410340012252742778, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
     description: 
-    powerClass: 6
+    powerClass: 8
     upgradeData:
     - name: 
       description: 
@@ -528,7 +528,7 @@ MonoBehaviour:
     - {r: 0, g: 0, b: 0, a: 0}
     - {r: 0, g: 0, b: 0, a: 0}
   - name: Throw
-    id: 6
+    id: 19
     abilityObject: {fileID: 7688493542216791843, guid: 5ea042e128e18d2478a7291dc6f63538, type: 3}
     icon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
     description: 
@@ -573,6 +573,75 @@ MonoBehaviour:
     - {r: 0, g: 0, b: 0, a: 0}
     - {r: 0, g: 0, b: 0, a: 0}
     - {r: 0, g: 0, b: 0, a: 0}
+  - name: Acrobatics
+    id: 26
+    abilityObject: {fileID: 1488961279573938495, guid: 697bff8c4a20f324d8737b14598db1d5, type: 3}
+    icon: {fileID: 3676262092081720374, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+    description: 
+    powerClass: 6
+    upgradeData:
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+  - name: StunStrike
+    id: 27
+    abilityObject: {fileID: 5653098466778112409, guid: 830567fc8ed9dcc4fa51a0ab4b6fb759, type: 3}
+    icon: {fileID: -2703109551042691996, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+    description: 
+    powerClass: 6
+    upgradeData:
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+  - name: CounterStrike
+    id: 28
+    abilityObject: {fileID: 3536358060335034764, guid: f1b2b44682dcd5949980e90b642057eb, type: 3}
+    icon: {fileID: -5612695987946839547, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+    description: 
+    powerClass: 6
+    upgradeData:
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    - name: 
+      description: 
+      icon: {fileID: 0}
+    defaultColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
+    - {r: 0, g: 0, b: 0, a: 0}
   powerClassDatas:
   - name: Energy
     id: 0
@@ -593,4 +662,8 @@ MonoBehaviour:
   - name: Telekinesis
     id: 5
     icon: {fileID: -410340012252742778, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+    description: 
+  - name: Martial Arts
+    id: 6
+    icon: {fileID: -5612695987946839547, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
     description: 

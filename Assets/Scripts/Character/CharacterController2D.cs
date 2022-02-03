@@ -12,20 +12,15 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce;							// Amount of force added when the player jumps.
-	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D m_CrouchDisableCollider;
-	[SerializeField] private Transform m_AttackCenter;
 	[SerializeField] private float flyingDrag;
 	[SerializeField] private bool baseFlying = false;
 	private Animator animator;
 
 	private bool _flying = false;
-	private bool inAir = false;
 	
 	// A collider that will be disabled when crouching
 
@@ -35,8 +30,6 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-	private float reEnableTime = 0;
-	private bool _enabled = true;
 	private float _defaultGravity;
 	private float _defaultDrag;
 	private bool _coyoteTime = false;
@@ -47,6 +40,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private bool _stopAll;
 	private bool _stopVertical;
+	private float maxInAirTime;
 	private Collider2D[] groundCheckOverlapArray;
 
 	public bool canTurn = true;
@@ -61,7 +55,6 @@ public class CharacterController2D : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	
-	private bool m_wasCrouching = false;
 
 	public bool IsGrounded() {
 		return m_Grounded || _coyoteTime;
@@ -180,22 +173,26 @@ public class CharacterController2D : MonoBehaviour
 	private void DoStops() {
 		if (_stopAll) {
 			Vector3 targetVelocity = new Vector2(0, 0);
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing/4);
-			_stopAll = false;
-			_stopHoriz = false;
-			_stopVertical = false;
+			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing*3);
+			_stopHoriz = Mathf.Abs(m_Rigidbody2D.velocity.x) > 0.1f;
+			_stopVertical = Mathf.Abs(m_Rigidbody2D.velocity.y) > 0.1f;
+			_stopAll = _stopHoriz && _stopVertical;
+			
+			if(!_stopAll) m_Rigidbody2D.velocity = targetVelocity;
 		}
 		else {
 			if (_stopHoriz){
 				Vector3 targetVelocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing/4);
-				_stopHoriz = false;
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing*3);
+				_stopHoriz = Mathf.Abs(m_Rigidbody2D.velocity.x) > 0.01f;
+				if(!_stopHoriz) m_Rigidbody2D.velocity = targetVelocity;
 			}
 
 			if (_stopVertical) {
 				Vector3 targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
-				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing/4);
-				_stopVertical = false;
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing*3);
+				_stopVertical = Mathf.Abs(m_Rigidbody2D.velocity.y) > 0.1f;
+				if(!_stopVertical) m_Rigidbody2D.velocity = targetVelocity;
 			}
 		}
 	}
@@ -213,14 +210,14 @@ public class CharacterController2D : MonoBehaviour
 														groundCheckOverlapArray, m_WhatIsGround);
 		if (groundCheckOverlapArray.Any(colliderOverlapped => 
 												colliderOverlapped && colliderOverlapped.gameObject != gameObject)) {
-			m_Grounded = true;
+			m_Grounded = m_Rigidbody2D.velocity.y < 0.01f || Time.time >= maxInAirTime;
 			if (!wasGrounded) {
 				animator.SetBool(AnimRefarences.Jumping, false);
 				OnLandEvent.Invoke();
 			}
 		}
 
-		if (wasGrounded && !m_Grounded && m_Rigidbody2D.velocity.y <= 0.01f && !_coyoteTime) {
+		if (wasGrounded && !m_Grounded && m_Rigidbody2D.velocity.y < 0.01f && !_coyoteTime) {
 			StartCoroutine(CoyoteTime());
 		}
 
@@ -301,6 +298,7 @@ public class CharacterController2D : MonoBehaviour
 		if ((m_Grounded || _coyoteTime) && jump) {
 			_coyoteTime = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			maxInAirTime = Time.time + 0.5f;
 		}
 	}
 

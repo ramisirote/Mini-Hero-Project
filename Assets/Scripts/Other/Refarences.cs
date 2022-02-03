@@ -23,7 +23,7 @@ public class Refarences
     
     public enum EBodyParts
     {
-        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack, punch, colors
+        Head, Chest, ArmL, ArmR, Waist, LegL, LegR, Cape, Hair, Logo, Face, HairBack, punch, colors, ground
     }
     
     public enum BodyJoints
@@ -75,7 +75,11 @@ public class AnimRefarences
     public static string Grab = "Grab";
     public static string Stunned = "Stunned";
     public static string PunchLoad = "PunchLoad";
-    //public static string PunchRelease;
+    public static string StrongPuchRel = "StrongPuchRel";
+    public static string Block = "block";
+    public static string Flipping = "fliping";
+    public static string Stunned2 = "Stunned2";
+    public static string StunStrike = "StunStrike";
 
 
     public static void ResetAnimatorBools(Animator anim) {

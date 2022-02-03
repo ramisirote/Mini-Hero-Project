@@ -50,7 +50,7 @@ MonoBehaviour:
   onFireObject: {fileID: 6654149311719123626, guid: 66aa53d976b1c804c9e53a1c3960a0ed, type: 3}
   rigidBody: {fileID: 4969953467359781840}
   spriteRenderer: {fileID: 1405647885078664990}
-  particleSystem: {fileID: 8761321099750396462}
+  fireParticles: {fileID: 3274351296893886173, guid: 8a942f92ce390914d97aa387a6462725, type: 3}
   bonFire: {fileID: 1855837053076562564, guid: e8b2f84e7fc8256419033a960852e9fc, type: 3}
   bonFireLifeTime: 0
 --- !u!212 &1405647885078664990
@@ -202,10 +202,5 @@ PrefabInstance:
 --- !u!4 &5908854345231414219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497319617383399224, guid: 8a942f92ce390914d97aa387a6462725, type: 3}
-  m_PrefabInstance: {fileID: 6117755500549557491}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8761321099750396462 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3274351296893886173, guid: 8a942f92ce390914d97aa387a6462725, type: 3}
   m_PrefabInstance: {fileID: 6117755500549557491}
   m_PrefabAsset: {fileID: 0}

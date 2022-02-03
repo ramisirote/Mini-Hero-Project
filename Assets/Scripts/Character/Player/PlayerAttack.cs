@@ -16,19 +16,22 @@ public class PlayerAttack : AttackManagerBase
 
     private float resetStateTime;
     
-    protected override void AttackStart() {
+    protected override void AttackStart(string animation=null) {
         if (Time.time > resetStateTime) {
             _animationState = 0;
         }
-
-        switch (_animationState) {
-            case 0:
-                _animator.SetTrigger(AnimRefarences.Punch01); break;
-            case 1:
-                _animator.SetTrigger(AnimRefarences.Punch02);
-                timeCanNextAttack = Time.time + secondaryCooldown/_attackSpeed;
-                break;
+        if(animation == null){
+            switch (_animationState) {
+                case 0:
+                    _animator.SetTrigger(AnimRefarences.Punch01); break;
+                case 1:
+                    _animator.SetTrigger(AnimRefarences.Punch02);
+                    break;
+            }
         }
+        else _animator.SetTrigger(animation);
+        
+        if (_animationState == 1) timeCanNextAttack = Time.time + secondaryCooldown/_attackSpeed;
 
         _animationState = (_animationState + 1) % 2;
         resetStateTime = Time.time + resetStateTimeLength;

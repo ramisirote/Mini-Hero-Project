@@ -7,7 +7,7 @@ public class FireBallProjectile : MonoBehaviour
     [SerializeField] private GameObject onFireObject;
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private ParticleSystem fireParticles;
     [SerializeField] private GameObject bonFire;
     [SerializeField] private float bonFireLifeTime;
 
@@ -43,7 +43,7 @@ public class FireBallProjectile : MonoBehaviour
 
         material = spriteRenderer.material;
 
-        particleSystemInstance = Instantiate(particleSystem);
+        particleSystemInstance = Instantiate(fireParticles);
         particleSystemInstance.Stop();
         particleSystemInstance.GetComponent<ParticleSystemRenderer>().material = material;
 

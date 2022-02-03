@@ -44,22 +44,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentCharacter: {fileID: 0}
-  abilityCooldown: 0
-  energyRequired: 0
+  abilityCooldown: 0.2
+  energyRequired: 3
   _color1: {r: 0, g: 0, b: 0, a: 0}
   _color2: {r: 0, g: 0, b: 0, a: 0}
   _color3: {r: 0, g: 0, b: 0, a: 0}
   abilityIcon: {fileID: 7342691947149563974, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
   audioSource: {fileID: 0}
-  baseDamage: 0
-  damageHoldInc: 0
-  knockBack: 0
-  hitRadius: 0
+  baseDamage: 10
+  damageHoldInc: 5
+  knockBack: 10
+  hitRadius: 0.3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
-  chargePerSecond: 0
-  maxCharge: 0
+  chargePerSecond: 1
+  maxCharge: 3
   reducedEnergy: 0
   reducedCooldown: 0
   increasedKnockback: 0

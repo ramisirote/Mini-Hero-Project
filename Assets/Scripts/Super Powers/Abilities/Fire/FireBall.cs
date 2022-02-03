@@ -19,8 +19,6 @@ public class FireBall : Ability
     
     private Transform armEffect;
     private Vector3 directionToTarget;
-    private BodyAngler bodyAngler;
-    private Animator _animator;
     private bool throwing;
 
     protected override void OnDamageTaken(object o, float damageAmount) {
@@ -30,8 +28,6 @@ public class FireBall : Ability
 
     protected override void AdditionalInit() {
         armEffect = parentCharacter.GetComponent<EffectPoints>().GetPointTransform(Refarences.EBodyParts.ArmR);
-        bodyAngler = parentCharacter.GetComponent<BodyAngler>();
-        _animator = parentCharacter.GetComponent<Animator>();
     }
 
     public override void UseAbility(Vector3 direction) {
@@ -39,7 +35,7 @@ public class FireBall : Ability
         if (!AbilityOn) {
             AbilityOn = true;
             AbilityOnInvoke();
-            _animator.SetTrigger(AnimRefarences.Blast);
+            Animator.SetTrigger(AnimRefarences.Blast);
             directionToTarget = Manager.GetDirectionToTarget();
             Manager.FaceTarget();
             Manager.DisableFlip();

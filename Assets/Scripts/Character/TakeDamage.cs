@@ -9,7 +9,6 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 {
     [FormerlySerializedAs("stats")] [SerializeField] private CharacterStats characterStats;
     [SerializeField] private CharacterController2D controller2D;
-    [SerializeField] private float pushBackForce = 20f;
     [SerializeField] private float hitInvonerableTime;
     [SerializeField] private Animator animator;
     [SerializeField] private SoundManager soundManager;
@@ -36,15 +35,15 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     }
 
 
-    public void Damage(float damage, int pushDirectionMult, float pushForceUp = 70f, float pushForceSide = 70f,
-        bool ignoreInvonerable = false) {
+    public void Damage(float damage, int pushDirectionMult, float pushForceUp = -1, float pushForceSide = 70f,
+                        bool ignoreInvonerable = false) {
         if (characterStats.IsDead()) return;
         if (!ignoreInvonerable && Time.time < _nextCanBeHitTime) return;
         
         controller2D.StopHorizontal();
         controller2D.Push(pushForceSide * pushDirectionMult, pushForceUp);
 
-        characterStats.GetCharacterStats()?.ChangeHpBy(-1*damage);
+        characterStats.GetCharacterStats()?.Damage(-1*damage);
         StartCoroutine(HitRecolor());
         if(gameObject.CompareTag("Player")) CinemachineShake.Instance.ShakeCamera();
         soundManager.PlayAudio(SoundManager.SoundClips.TakeDamage);
@@ -75,7 +74,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
         controller2D.StopHorizontal();
         controller2D.Push(push);
 
-        characterStats.GetCharacterStats()?.ChangeHpBy(-1*damage);
+        characterStats.GetCharacterStats()?.Damage(-1*damage);
         StartCoroutine(HitRecolor());
         soundManager.PlayAudio(SoundManager.SoundClips.TakeDamage);
         
@@ -106,7 +105,7 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
     IEnumerator EDamageOverTime() {
         while (_dotTicks >= 1) {
             _dotTicks--;
-            characterStats.GetCharacterStats()?.ChangeHpBy(-1*_dotDamage);
+            characterStats.GetCharacterStats()?.Damage(-1*_dotDamage);
             StartCoroutine(HitRecolor());
             
             if (characterStats.IsDead()) {
@@ -133,6 +132,25 @@ public class TakeDamage : MonoBehaviour, ITakeDamage
 
     public void SetPlayAnimatoin(bool shouldPlay) {
         _playAnimation = shouldPlay;
+    }
+
+    public void Stun(float stunTime){
+        StartCoroutine(StunTimer(stunTime));
+    }
+
+    IEnumerator StunTimer(float timer){
+        _manager.Stunned(true);
+        animator.SetBool(AnimRefarences.Stunned, true);
+        while (timer >= 0){
+            yield return null;
+            if(!_manager.IsStunned()){
+                _manager.Stunned(true);
+                animator.SetBool(AnimRefarences.Stunned, true);
+            }
+            timer -= Time.deltaTime;
+        }
+        _manager.Stunned(false);
+        animator.SetBool(AnimRefarences.Stunned, false);
     }
 
     IEnumerator HitRecolor() {

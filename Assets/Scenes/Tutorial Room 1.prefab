@@ -19923,6 +19923,22 @@ PrefabInstance:
       propertyPath: timeToForgetPlayer
       value: 5000
       objectReference: {fileID: 0}
+    - target: {fileID: 929895585470838808, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Size.x
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 929895585470838808, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Size.y
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 929895585470838808, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 465989592855682538, guid: 9e81f42c6620c6d448cf973bf4747574, type: 3}
+    - target: {fileID: 929895585470838808, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2096103050176179825, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -19983,9 +19999,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2682703136511595920, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: characterBase
+      value: 
+      objectReference: {fileID: 11400000, guid: a7d7f6b3a36d0b445b534ca81f11a2c4, type: 2}
     - target: {fileID: 2682703136511595927, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682703136515261236, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -20051,6 +20071,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.23271008
       objectReference: {fileID: 0}
+    - target: {fileID: 2682703137938899928, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_SpriteKey
+      value: -9.00561e-17
+      objectReference: {fileID: 0}
     - target: {fileID: 2682703137999793102, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.40068483
@@ -20059,6 +20083,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Center.y
       value: -0.32434782
       objectReference: {fileID: 0}
+    - target: {fileID: 2682703138053999102, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6829635065898138584, guid: 98e197c522d5dec4aa6995b441bfae34, type: 3}
     - target: {fileID: 2682703138053999103, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: -0.014007911
@@ -20082,6 +20110,10 @@ PrefabInstance:
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.16179778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216492569780959557, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_SpriteKey
+      value: 1.05428714e-13
       objectReference: {fileID: 0}
     - target: {fileID: 6931872555705970681, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: characterStats.<Health>k__BackingField

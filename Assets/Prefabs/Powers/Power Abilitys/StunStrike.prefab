@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5653098466778112409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5653098466778112415}
+  - component: {fileID: 5653098466778112408}
+  m_Layer: 0
+  m_Name: StunStrike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5653098466778112415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653098466778112409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7321577, y: -2.3154213, z: -3.8439507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5653098466778112408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653098466778112409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88e4216e4d88cc409f530a4447b4699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentCharacter: {fileID: 0}
+  abilityCooldown: 0
+  energyRequired: 0
+  _color1: {r: 0, g: 0, b: 0, a: 0}
+  _color2: {r: 0, g: 0, b: 0, a: 0}
+  _color3: {r: 0, g: 0, b: 0, a: 0}
+  abilityIcon: {fileID: -2703109551042691996, guid: 96feaaed57f604649806a18f5a2c5d25, type: 3}
+  audioSource: {fileID: 0}
+  energyRequiredWindUp: 0
+  energyRequiredHang: 0
+  energyRequiredWindDown: 0
+  energyCostReduction: 0
+  cooldownReduction: 0
+  _colors: []
+  windUpTime: -10
+  hangTime: 0
+  windDownTime: -10
+  damage: 10
+  hitRadius: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  stunTime: 1

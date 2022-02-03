@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyAttack : AttackManagerBase
 {
 
-    protected override void AttackStart() {
+    protected override void AttackStart(string animation=null) {
 
         _animator.SetTrigger(AnimRefarences.Punch01);
 

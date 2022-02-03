@@ -35,6 +35,8 @@ public class GameControler : MonoBehaviour
     }
 
     public static PlayerManager GetPlayerManager() {
+        if(!_gameControler) _gameControler = GameObject.FindWithTag("GameController").GetComponent<GameControler>();
+        if(_gameControler._playerManager == null) _gameControler.FindPlayerAndOverlay();
         return _gameControler._playerManager;
     }
 

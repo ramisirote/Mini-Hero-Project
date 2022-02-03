@@ -5,7 +5,6 @@ public class FPSChecker : MonoBehaviour
 {
     [SerializeField] private Text text;
     [SerializeField] private float refreshRate = 0.2f;
-    private float deltaTime = 0.0f;
     private float timer;
 
     // Update is called once per frame

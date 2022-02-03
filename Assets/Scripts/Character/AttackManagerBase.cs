@@ -36,10 +36,10 @@ public abstract class AttackManagerBase: MonoBehaviour
     }
 
     // Do the attack if attack cooldown is done. Resetting the timer.
-    public virtual void Attack() {
-        if (Time.time > timeCanNextAttack) {
+    public virtual void Attack(bool forceAttack=false, string animation=null) {
+        if (forceAttack || Time.time > timeCanNextAttack) {
             timeCanNextAttack = Time.time + cooldown/_attackSpeed;
-            AttackStart();
+            AttackStart(animation);
         }
     }
 
@@ -49,7 +49,7 @@ public abstract class AttackManagerBase: MonoBehaviour
     }
 
     // Start the attack. Mostly plays the animation
-    protected abstract void AttackStart();
+    protected abstract void AttackStart(string animation=null);
 
     // Get the trigger that the damage part of the attack is triggered.
     public abstract void AttackTrigger();

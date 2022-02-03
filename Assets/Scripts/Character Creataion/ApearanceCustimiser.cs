@@ -19,9 +19,7 @@ public class ApearanceCustimiser : ColorCustimizer
     public event EventHandler<List<string>> onPartCatagorChange;
 
     private void Awake() {
-        if (instance == null){
-            instance = this;
-        }
+        instance = this;
         // currentColor = currentColorPallet[0];
         characterAppearance = GameControler.GetPlayerManager().GetComponent<AppearanceInstance>().characterBase;
         spriteHandler = GameControler.GetPlayerManager().GetComponent<SpriteHandler>();
@@ -35,8 +33,8 @@ public class ApearanceCustimiser : ColorCustimizer
             catagorySelectedIndex[catagory] = characterAppearance.GetSelectedPart(catagory);
             catagoryColors[catagory] = characterAppearance.GetColors(catagory);
         }
-        catagorySelectedIndex["Colors"] = characterAppearance.GetSelectedPart("Logo");
-        catagoryColors["Colors"] = characterAppearance.GetColors("Logo");
+        catagorySelectedIndex["Colors"] = characterAppearance.GetSelectedPart("Chest");
+        catagoryColors["Colors"] = characterAppearance.GetColors("Chest");
     }
 
     public int GetSelectedIndex(string catagory){

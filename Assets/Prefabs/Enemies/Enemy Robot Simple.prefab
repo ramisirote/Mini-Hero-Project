@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: -8.0065755e+30
   m_labelHash: -1.2985474e-36
-  m_SpriteKey: 1.3186834e+33
+  m_SpriteKey: -8.625438e+28
 --- !u!114 &4689856972623312650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,16 +448,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 700
-  m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 512
   m_GroundCheck: {fileID: 2903337873585772860}
-  m_CeilingCheck: {fileID: 8927841563203436377}
-  m_CrouchDisableCollider: {fileID: 0}
-  m_AttackCenter: {fileID: 0}
   flyingDrag: 0
   baseFlying: 0
   canTurn: 1
@@ -481,7 +477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 6931872555705970681}
   controller2D: {fileID: 5432537355353751961}
-  pushBackForce: 300
   hitInvonerableTime: 0.2
   animator: {fileID: 2682703136511595927}
   soundManager: {fileID: 381063581410409141}
@@ -525,7 +520,6 @@ MonoBehaviour:
     <MoveSpeed>k__BackingField: 20
     <JumpForce>k__BackingField: 700
     <PunchDamage>k__BackingField: 5
-    <UnlockPoints>k__BackingField: 0
 --- !u!114 &9146110530796499620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothness: 15
+  bodyParts: []
 --- !u!114 &-1316203038832834108
 MonoBehaviour:
   m_ObjectHideFlags: 0

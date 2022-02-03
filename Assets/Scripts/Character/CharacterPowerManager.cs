@@ -83,7 +83,6 @@ public class CharacterPowerManager : MonoBehaviour
 
     public void SetActiveAbility(AbilityStatic.AbilityEnum abilityId, int activeSlot)
     {
-
         var index = abilities.FindIndex(abilityState => (int)abilityState.id == (int)abilityId);
         SetActiveAbility(index, activeSlot);
     }
@@ -98,7 +97,7 @@ public class CharacterPowerManager : MonoBehaviour
         abilities[actives[activeSlot]].abilityScript.SetAbilityOff();
 
         SetNextUnocked(activeSlot, abilityIndex);
-        manager.SetAbility(abilities[activeSlot].abilityScript, activeSlot);
+        manager.SetAbility(abilities[actives[activeSlot]].abilityScript, activeSlot);
     }
 
     // Sets the active slot to point to the given index, or the next legal index
@@ -109,14 +108,17 @@ public class CharacterPowerManager : MonoBehaviour
         {
             return;
         }
-        while (!abilities[index].unlocked || actives.Contains(index))
-        {
+
+        while(true){
             index = index + 1 < abilities.Count ? index + 1 : 0;
             if (index == startingIndex){
                 return;
             }
+            if(abilities[index].unlocked && !actives.Contains(index)){
+                break;
+            }
         }
-        this.actives[targetSlot] = index;
+        actives[targetSlot] = index;
     }
 
     private void SwapActives()
@@ -325,8 +327,8 @@ public class CharacterPowerManager : MonoBehaviour
                 }
                 Debug.Log($"Abilities loaded from {path}");
             }
-            catch{
-                Debug.Log("An error acured. Closing the file");
+            catch (Exception ex){
+                Debug.Log($"An error acured. Closing the file. {ex.ToString()}");
                 stream.Close();
             }
             return true;
@@ -381,7 +383,7 @@ public class AbilityState
     public string name;
     public AbilityStatic.AbilityEnum id;
 
-    private AbilityStatic _abilityData;
+    private AbilityStatic _abilityData = null;
     public AbilityStatic abilityData{
         get{
             if (this._abilityData == null){

@@ -51,8 +51,12 @@ public class SuperStrangthAttack : AttackManagerBase
     /*
      * Runs the decided animation and stops the character.
      */
-    protected override void AttackStart() {
-        _animator.SetTrigger(AnimRefarences.Punch03);
+    protected override void AttackStart(string animation=null) {
+        if(animation is null){
+            _animator.SetTrigger(AnimRefarences.Punch03);
+        } else {
+            _animator.SetTrigger(animation);
+        } 
         _controller.StopHorizontal();
         // _manager.FaceTarget();
     }

@@ -34,6 +34,9 @@ public abstract class Ability: MonoBehaviour
     protected CharacterStats CharacterStats;
     protected bool IsPlayer;
     protected Animator Animator;
+    protected BodyAngler bodyAngler;
+    protected EffectPoints effectoints;
+    protected TakeDamage takeDamage;
 
     protected Color[] Colors;
 
@@ -49,10 +52,12 @@ public abstract class Ability: MonoBehaviour
         Manager = parentCharacter.GetComponent<IManager>();
         Controller = parentCharacter.GetComponent<CharacterController2D>();
         CharacterStats = parentCharacter.GetComponent<CharacterStats>();
-        var takeDamage = parentCharacter.GetComponent<TakeDamage>();
+        takeDamage = parentCharacter.GetComponent<TakeDamage>();
         if (takeDamage) { takeDamage.OnDamage += OnDamageTaken; }
 
         Animator = parentCharacter.GetComponent<Animator>();
+        bodyAngler = parentCharacter.GetComponent<BodyAngler>();
+        effectoints = parentCharacter.GetComponent<EffectPoints>();
         
         AdditionalInit();
     }

@@ -42,6 +42,7 @@ public class powerCustimizer : ColorCustimizer
         if (instance == null){
             instance = this;
         }
+        gameObject.SetActive(false);
         powerManager = GameControler.GetPowerManager();
         abilityManager = AbilityManager.instance;
         if(powerManager.IsSetUp()){

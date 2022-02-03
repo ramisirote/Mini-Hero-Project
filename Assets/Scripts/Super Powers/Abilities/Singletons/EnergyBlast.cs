@@ -17,7 +17,6 @@ public class EnergyBlast : Ability
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float damage;
     [SerializeField] private ParticleSystem powEffect;
-    private float _turnLineInvisibleTime = 0;
     private Animator _animator;
     private float _phaseTime;
     private float _solidPhaseTime;

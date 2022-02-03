@@ -36,7 +36,7 @@ public class AbilityManager : MonoBehaviour
 public class PowerClassData
 {
     public enum PowerClasses{
-        Energy, Fire, Strength, Speed, Flight, Telekinesis, Custome,
+        Energy, Fire, Strength, Speed, Flight, Telekinesis, MartialArts, Custome,
         Single
     }
     public string name;
@@ -56,7 +56,7 @@ public class AbilityStatic
     {
         FlameThrower, FireBody, FireBurst, FireBall, Blast, Flying, Teleportation, SuperSpeed, Strength, Invisibility, EnergyBurst, EnergyCharge,
         EnergyBeam, SpeedDash, StrengthSmash, TornadoRun, BullRun, FlurryPunches, MartialArts, PickupThrow, Detonate,
-        SuperPunch, Telekinesis, TelekineticBurst, TelekineticShield, TelekineticBlast
+        SuperPunch, Telekinesis, TelekineticBurst, TelekineticShield, TelekineticBlast, Acrobatics, StunStrike, CounterSrtike
     }
 
     public string name;

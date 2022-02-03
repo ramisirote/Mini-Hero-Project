@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class FlameThrowerTrap : MonoBehaviour
 {
-    [SerializeField] private Collider2D collider2D;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private Collider2D mCollider;
+    [SerializeField] private ParticleSystem flamesPerticals;
     [SerializeField] private ParticleSystemRenderer particleSystemRenderer;
     [SerializeField] private Material material;
     [SerializeField] private float DelayOn;
@@ -38,13 +38,13 @@ public class FlameThrowerTrap : MonoBehaviour
     private IEnumerator Cycle() {
         yield return new WaitForSeconds(DelayOn);
         while (true) {
-            particleSystem.Play();
+            flamesPerticals.Play();
             yield return new WaitForSeconds(fireTurnOnTime);
-            collider2D.enabled = true;
+            mCollider.enabled = true;
             yield return new WaitForSeconds(fireOnTime);
 
-            collider2D.enabled = false;
-            particleSystem.Stop();
+            mCollider.enabled = false;
+            flamesPerticals.Stop();
             
             yield return new WaitForSeconds(fireOffTime);
         }

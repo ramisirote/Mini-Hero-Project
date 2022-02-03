@@ -39,7 +39,6 @@ public class FlyingPower : Ability
         if (!AbilityOn) {
             AbilityOffInvoke();
         }
-
         if (AbilityOn) {
             CharacterStats.UseEnergy(CharacterStats.GetCharacterStats().EnergyRegen*Time.deltaTime);   
         }

@@ -23,7 +23,6 @@ public class SpriteHandler : MonoBehaviour
         }
 
         _powerManager = GetComponent<CharacterPowerManager>();
-        SpriteRenderer sp;
         UnityEngine.U2D.Animation.SpriteResolver sr;
         Material m;
         string label;

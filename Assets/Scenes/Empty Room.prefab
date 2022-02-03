@@ -153,21 +153,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8463677838876202699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2355300343778757303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbdb509f621206443b014b1437c10f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentScene: {fileID: 2125003261682607600}
-  sceneToLoad: {fileID: 2125003261682607600}
-  transitionPointName: 1
 --- !u!1 &6654498698845063010
 GameObject:
   m_ObjectHideFlags: 0
@@ -12934,6 +12919,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -13385,6 +13371,10 @@ PrefabInstance:
       value: 0.04091181
       objectReference: {fileID: 0}
     - target: {fileID: 2682703137166472775, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: -0.0063376725
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682703137166472775, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.x
       value: 0.109872654
       objectReference: {fileID: 0}
@@ -13422,19 +13412,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.x
-      value: 0.025529474
+      value: 0.036488783
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.020695806
+      value: -0.123732805
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.x
-      value: 0.091397375
+      value: 0.091397
       objectReference: {fileID: 0}
     - target: {fileID: 2682703138154071888, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 0.16179782
+      value: 0.16179785
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15a61821c9a954e4086a1ab750b6c670, type: 3}
@@ -13916,6 +13906,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7764505607196794529}
     m_Modifications:
+    - target: {fileID: 3630418977285927563, guid: 812ae0bfd48ed4b49b4f1b97ac93e874, type: 3}
+      propertyPath: sceneToLoad
+      value: 
+      objectReference: {fileID: 2125003261682607600}
+    - target: {fileID: 3630418977285927563, guid: 812ae0bfd48ed4b49b4f1b97ac93e874, type: 3}
+      propertyPath: currentScene
+      value: 
+      objectReference: {fileID: 2125003261682607600}
     - target: {fileID: 9004439894069804536, guid: 812ae0bfd48ed4b49b4f1b97ac93e874, type: 3}
       propertyPath: m_Name
       value: Erea Transition

@@ -46,7 +46,7 @@ public class MartialArtAttaker : AttackManagerBase
         _numberOfStates = cooldowns.Length;
     }
     
-    protected override void AttackStart() {
+    protected override void AttackStart(string animation=null) {
         if (Time.time > resetStateTime) {
             _animationState = 0;
         }
@@ -54,24 +54,17 @@ public class MartialArtAttaker : AttackManagerBase
             _animationState %= _numberOfStates;
         }
 
-        switch (_animationState) {
-            case 0:
-                _animator.SetTrigger(AnimRefarences.Punch01); 
-                timeCanNextAttack = Time.time + cooldowns[_animationState]/_attackSpeed;
-                break;
-            case 1:
-                _animator.SetTrigger(AnimRefarences.Punch02);
-                timeCanNextAttack = Time.time + cooldowns[_animationState]/_attackSpeed;
-                break;
-            case 2:
-                _animator.SetTrigger(AnimRefarences.Punch05);
-                timeCanNextAttack = Time.time + cooldowns[_animationState]/_attackSpeed;
-                break;
-            case 3:
-                _animator.SetTrigger(AnimRefarences.Punch04);
-                timeCanNextAttack = Time.time + cooldowns[_animationState]/_attackSpeed;
-                break;
+        if (animation is null){
+            switch (_animationState) {
+                case 0: _animator.SetTrigger(AnimRefarences.Punch01); break;
+                case 1: _animator.SetTrigger(AnimRefarences.Punch02); break;
+                case 2: _animator.SetTrigger(AnimRefarences.Punch05); break;
+                case 3: _animator.SetTrigger(AnimRefarences.Punch04); break;
+            }
+        } else {
+            _animator.SetTrigger(animation);
         }
+        timeCanNextAttack = Time.time + cooldowns[_animationState]/_attackSpeed;
         
         _animationState++;
         resetStateTime = Time.time + resetStateTimeLength;
@@ -92,8 +85,7 @@ public class MartialArtAttaker : AttackManagerBase
 
         if (_animationState < 1) _animationState = 1;
         
-        var hitPush = new Vector2(_controller.GetFacingMult() * pushVectors[_animationState - 1].x,
-            pushVectors[_animationState - 1].y);
+        var hitPush = new Vector2(_controller.GetFacingMult() * pushVectors[_animationState - 1].x, pushVectors[_animationState - 1].y);
         if (_animationState < _numberOfStates && !_controller.IsGrounded()) {
             hitPush = new Vector2(_controller.GetFacingMult() * pushVectors[_numberOfStates].x, pushVectors[_numberOfStates].y);
         }

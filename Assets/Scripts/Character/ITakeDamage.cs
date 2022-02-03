@@ -12,5 +12,7 @@ public interface ITakeDamage
 
     void DamageOverTime(float damage, float ticks);
 
+    public void Stun(float stunTime);
+
     bool IsDotTicking();
 }

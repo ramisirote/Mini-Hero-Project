@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ProjectileShield : MonoBehaviour
 {
-    private Collider2D collider;
+    private Collider2D mCollider;
     public void Init(LayerMask layer, Vector3 position, Vector3 rotation) {
         gameObject.layer = (int) Mathf.Log(layer.value, 2);
         var mTransform = transform;
@@ -24,6 +24,6 @@ public class ProjectileShield : MonoBehaviour
     }
 
     private void Start() {
-        collider = gameObject.GetComponent<Collider2D>();
+        mCollider = gameObject.GetComponent<Collider2D>();
     }
 }
